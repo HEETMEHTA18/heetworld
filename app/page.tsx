@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 import { getAllProjects, getAllArticles, getAllResearchNotes } from "@/lib/content";
 import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
+import { GreetingTyping } from "@/components/greeting-typing";
 import { ProjectShowcase } from "@/components/project-scroll";
 
 const journey = [
@@ -52,9 +53,7 @@ export default async function HomePage() {
             </Reveal>
 
             <Reveal delay={0.08}>
-              <h1 className="mt-6 text-4xl font-medium tracking-[-0.06em] text-foreground sm:text-6xl">
-                hi, i&apos;m <span className="text-muted-foreground">heet mehta.</span>
-              </h1>
+              <GreetingTyping />
             </Reveal>
 
             <Reveal delay={0.15}>
