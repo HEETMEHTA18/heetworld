@@ -93,12 +93,6 @@ export function Navbar() {
           </nav>
 
           <div className="relative z-10 flex items-center gap-3">
-            <span className="hidden items-center gap-1.5 sm:flex">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                Available
-              </span>
-            </span>
             <ThemeToggle />
             <button
               aria-label="Toggle menu"
@@ -155,12 +149,6 @@ export function Navbar() {
             <div className="flex items-center justify-between border-t border-border px-6 py-6">
               <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
                 {site.location}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                  Available
-                </span>
               </span>
             </div>
           </motion.div>

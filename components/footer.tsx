@@ -14,8 +14,16 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-32 border-t border-border">
-      <Container className="py-16">
+    <footer className="relative mt-6 overflow-hidden">
+      {/* Subtle gradient texture */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div className="absolute inset-0 bg-gradient-to-b from-accent-soft via-transparent to-transparent opacity-60" />
+        <div className="absolute -top-20 left-1/4 h-72 w-72 rounded-full bg-accent-soft blur-3xl" />
+        <div className="absolute -right-16 bottom-10 h-80 w-80 rounded-full bg-accent-soft blur-3xl" />
+        <div className="absolute -left-16 bottom-24 h-72 w-72 rounded-full bg-accent-soft blur-3xl" />
+      </div>
+
+      <Container className="relative py-16">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
           {/* Identity */}
           <div className="flex flex-col gap-3 sm:col-span-2 lg:col-span-1">
