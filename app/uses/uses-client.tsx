@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Play, RotateCcw, Check } from "lucide-react";
+import { Play, RotateCcw } from "lucide-react";
 import { usesCategoriesData } from "@/content/data/uses";
 import { NotebookCell } from "@/components/notebook-cell";
 
@@ -71,6 +71,20 @@ export function UsesNotebookClient() {
             </>
           )}
         </button>
+      </div>
+
+      {/* Jupyter-style toolbar */}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-border bg-background/40 px-4 py-1.5 font-mono text-[10px] text-muted-foreground sm:px-6">
+        <span className="flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-[#4ade80]" />
+          Python 3 (ipykernel)
+        </span>
+        <span className="hidden sm:inline-block">· kernel idle</span>
+        <span className="ml-auto hidden items-center gap-1.5 sm:inline-flex">
+          cell type: code
+          <code className="rounded border border-border px-1">Markdown</code>
+          <code className="rounded border border-accent/40 bg-accent/5 px-1 text-accent">Code</code>
+        </span>
       </div>
 
       {/* Notebook Cells */}
@@ -182,6 +196,18 @@ export function UsesNotebookClient() {
             </p>
           </div>
         </NotebookCell>
+      </div>
+
+      {/* Jupyter-style status bar */}
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-t border-border bg-muted/40 px-4 py-1.5 font-mono text-[10px] text-muted-foreground sm:px-6">
+        <span className="flex items-center gap-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#4ade80]" />
+          kernel ready
+        </span>
+        <span className="hidden sm:inline-block">trusted notebook · autosaved</span>
+        <span>
+          cells: {totalCellsCount} · ln {String(totalCellsCount - 1)}, col 1
+        </span>
       </div>
     </div>
   );

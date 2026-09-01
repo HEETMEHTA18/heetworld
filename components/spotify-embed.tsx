@@ -1,3 +1,7 @@
+"use client";
+
+import { useTheme } from "next-themes";
+
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -8,24 +12,20 @@ export function SpotifyEmbed({
   className?: string;
   height?: number;
 }) {
+  const { resolvedTheme } = useTheme();
+  const theme = resolvedTheme === "dark" ? "1" : "0";
+
   return (
-    <div
-      className={cn(
-        "w-full overflow-hidden rounded-2xl border border-border bg-card shadow-card",
-        className
-      )}
-    >
-      <iframe
-        title={site.spotify.title}
-        src={site.spotify.embed}
-        width="100%"
-        height={height}
-        frameBorder="0"
-        loading="lazy"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        allowFullScreen
-        className="block"
-      />
-    </div>
+    <iframe
+      title={site.spotify.title}
+      src={`${site.spotify.embed}?utm_source=generator&theme=${theme}`}
+      width="100%"
+      height={height}
+      frameBorder="0"
+      allowFullScreen
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture; web-share"
+      loading="lazy"
+      className={cn("block w-full overflow-hidden rounded-xl", className)}
+    />
   );
 }

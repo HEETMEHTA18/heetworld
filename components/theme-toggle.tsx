@@ -27,31 +27,29 @@ export function ThemeToggle() {
       aria-label="Toggle color theme"
       title={mounted ? (isDark ? "Switch to light" : "Switch to dark") : undefined}
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="relative inline-flex h-9 w-16 items-center justify-between rounded-full border border-border bg-card px-1.5 text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      className="relative inline-flex h-8 w-[3.75rem] shrink-0 items-center justify-between rounded-full border border-border bg-card px-1 text-muted-foreground shadow-card transition-colors hover:border-foreground/30 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
     >
       <motion.span
         aria-hidden="true"
-        className="absolute left-1 top-1 z-0 h-7 w-7 rounded-full border border-border bg-background shadow-md"
-        animate={
-          mounted && !reduceMotion ? { x: isDark ? 28 : 0 } : undefined
-        }
+        className="absolute left-1 top-[3px] h-[26px] w-[26px] rounded-full border border-border bg-background shadow-md"
+        animate={mounted ? { left: isDark ? 30 : 4 } : undefined}
         transition={
           reduceMotion
-            ? { duration: 0 }
+            ? { duration: 0, ease: "linear" }
             : { type: "spring", stiffness: 500, damping: 34 }
         }
       />
 
       <Sun
         className={cn(
-          "relative z-10 h-4 w-4 transition-opacity duration-300",
-          isDark ? "opacity-40" : "opacity-100"
+          "relative z-10 h-4 w-4 transition-all duration-300",
+          isDark ? "opacity-30" : "opacity-100 text-foreground"
         )}
       />
       <Moon
         className={cn(
-          "relative z-10 h-4 w-4 transition-opacity duration-300",
-          isDark ? "opacity-100" : "opacity-40"
+          "relative z-10 h-4 w-4 transition-all duration-300",
+          isDark ? "opacity-100 text-foreground" : "opacity-30"
         )}
       />
     </button>
