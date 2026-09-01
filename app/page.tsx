@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { site } from "@/lib/site";
 import { getAllProjects, getAllArticles, getAllResearchNotes } from "@/lib/content";
@@ -29,8 +30,20 @@ export default async function HomePage() {
 
   return (
     <div className="w-full">
-      <section className="border-b border-border">
-        <Container className="py-28 sm:py-32">
+      <section className="relative overflow-hidden border-b border-border">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero-banner.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/20" />
+        </div>
+
+        <Container className="relative z-10 py-28 sm:py-32">
           <div className="max-w-3xl">
             <Reveal>
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
