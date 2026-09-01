@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { getAllArticles } from "@/lib/content";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
@@ -25,7 +23,7 @@ export default async function WritingPage() {
         title="How I think"
         description="Notes and essays on machine learning, computer vision, agentic systems, and the engineering judgment that turns ideas into systems."
       />
-      <Container className="py-10">
+      <Container className="py-10 sm:py-14">
         <div className="mb-8 flex flex-wrap gap-2">
           <Pill variant="soft">All topics</Pill>
           {topics.map((t) => (

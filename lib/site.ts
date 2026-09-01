@@ -21,6 +21,11 @@ export const site = {
     twitter: "https://x.com/heetmehta",
     email: "mailto:hello@heetmehta.dev",
   },
+  spotify: {
+    track: "https://open.spotify.com/track/0q4442eIt44kTWEhkoTlh8",
+    embed: "https://open.spotify.com/embed/track/0q4442eIt44kTWEhkoTlh8",
+    title: "Safar — Talha Anjum",
+  },
 } as const;
 
 export type NavLink = {
@@ -42,14 +47,10 @@ export const MORE_LINKS: NavLink[] = [
   { href: "/experience", label: "Experience" },
   { href: "/skills", label: "Skills" },
   { href: "/uses", label: "Uses" },
-  { href: "/current-stack", label: "Current Stack" },
   { href: "/bookmarks", label: "Bookmarks" },
-  { href: "/reading", label: "Reading" },
   { href: "/thoughts", label: "Thoughts" },
-  { href: "/playground", label: "Playground" },
   { href: "/now", label: "Now" },
   { href: "/resume", label: "Resume" },
-  { href: "/changelog", label: "Changelog" },
 ];
 
 export const FOOTER_LINKS = [

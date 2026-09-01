@@ -23,7 +23,7 @@ export default function BookmarksPage() {
         title="Things worth returning to"
         description="Links, specs, and papers I keep a tab open for."
       />
-      <Container className="py-8">
+      <Container className="py-10 sm:py-14">
         <div className="mb-6 flex flex-wrap gap-2">
           <Pill variant="soft">All</Pill>
           {tags.map((t) => (

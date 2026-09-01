@@ -62,12 +62,3 @@ export type Photo = {
   alt: string;
   ratio: "tall" | "wide" | "square";
 };
-
-export type ReadingBook = {
-  title: string;
-  author: string;
-  status: "Reading" | "Finished" | "Up next";
-  category: string;
-  note: string;
-  progress?: number;
-};

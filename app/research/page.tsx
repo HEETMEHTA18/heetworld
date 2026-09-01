@@ -22,7 +22,7 @@ export default async function ResearchPage() {
         title="What I'm learning"
         description="Active areas: computer vision, large language models, agentic AI, distributed systems, and MLOps. These are working notes, not finished essays — expect iteration."
       />
-      <Container className="py-10">
+      <Container className="py-10 sm:py-14">
         <div className="mb-8 flex flex-wrap gap-2">
           <Pill variant="soft">All areas</Pill>
           {areas.map((a) => (

@@ -7,6 +7,7 @@ import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
 import { GreetingTyping } from "@/components/greeting-typing";
 import { ProjectShowcase } from "@/components/project-scroll";
+import { SpotifyEmbed } from "@/components/spotify-embed";
 
 const journey = [
   ["01", "Started with electronics, IoT, and the joy of making things move."],
@@ -216,6 +217,37 @@ export default async function HomePage() {
               </Link>
             ))}
           </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-border">
+        <Container className="py-16 sm:py-20">
+          <Reveal>
+            <div className="flex items-end justify-between gap-4">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                currently listening
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.05}>
+            <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-2xl">
+                <h2 className="text-3xl font-medium tracking-[-0.04em] text-foreground sm:text-4xl">
+                  {site.spotify.title}
+                </h2>
+                <p className="mt-3 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
+                  A recent find, on heavy rotation. Stream it right here.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="mt-8 max-w-md">
+              <SpotifyEmbed />
+            </div>
+          </Reveal>
         </Container>
       </section>
     </div>

@@ -23,9 +23,7 @@ const more = [
   { href: "/now", label: "Now" },
   { href: "/uses", label: "Uses" },
   { href: "/bookmarks", label: "Bookmarks" },
-  { href: "/reading", label: "Reading" },
   { href: "/thoughts", label: "Thoughts" },
-  { href: "/playground", label: "Playground" },
 ];
 
 export default function NotFound() {

@@ -17,7 +17,7 @@ export default function UsesPage() {
         description="My setup is built around one thing: making it easy to learn, experiment, and build. Rendered below as an interactive notebook."
       />
 
-      <Container className="py-10">
+      <Container className="py-10 sm:py-14">
         <Reveal>
           <UsesNotebookClient />
         </Reveal>

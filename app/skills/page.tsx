@@ -26,7 +26,7 @@ export default function SkillsPage() {
         title="How I work, by tool"
         description="Grouped not graded. I list proficiency to keep my own map honest, not to rank myself."
       />
-      <Container className="py-10">
+      <Container className="py-10 sm:py-14">
         <div className="grid gap-14">
           {skillGroups.map((group, gi) => (
             <Reveal key={group.key} delay={gi * 0.05}>
