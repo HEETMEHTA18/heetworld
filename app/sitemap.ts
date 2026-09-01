@@ -3,6 +3,8 @@ import { MetadataRoute } from "next";
 import { getContentSlugs } from "@/lib/content";
 import { site } from "@/lib/site";
 
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projectSlugs = getContentSlugs("content/projects");
   const articleSlugs = getContentSlugs("content/articles");

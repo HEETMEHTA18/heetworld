@@ -1,6 +1,7 @@
 import { getAllArticles } from "@/lib/content";
 import { site } from "@/lib/site";
 
+export const dynamic = "force-static";
 export const runtime = "nodejs";
 export const revalidate = 3600;
 

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/lib/site";
 
-export const runtime = "edge";
+export const dynamic = "force-static";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
