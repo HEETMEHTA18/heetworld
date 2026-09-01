@@ -5,11 +5,13 @@ import { fileURLToPath } from "node:url";
 const projectRoot = fileURLToPath(new URL(".", import.meta.url));
 
 const nextConfig: NextConfig = {
+  output: "export",
   turbopack: {
     root: projectRoot,
   },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
   },
 };
