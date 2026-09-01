@@ -1,3 +1,4 @@
+import { Bookmark, ExternalLink, Tag as TagIcon } from "lucide-react";
 import { bookmarks } from "@/content/data/bookmarks";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
@@ -33,21 +34,26 @@ export default function BookmarksPage() {
         </div>
 
         <div className="prose lg:prose-lg max-w-reading">
-          <ul className="space-y-4">
+          <ul className="space-y-4 pl-0">
             {(bookmarks as readonly { title: string; url: string; tag: string; note: string }[]).map((b, i) => (
               <Reveal key={b.url} delay={i * 0.02}>
-                <li className="list-none rounded-xl border border-border bg-card p-4 transition-all hover:-translate-y-0.5 hover:shadow-sm">
-                  <a
-                    href={b.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-foreground underline-offset-4 hover:underline"
-                  >
-                    {b.title}
-                  </a>
-                  <p className="mt-1 text-sm text-muted-foreground">{b.note}</p>
-                  <span className="mt-2 inline-block font-mono text-[10px] text-accent">
-                    {b.tag}
+                <li className="group list-none rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-lift">
+                  <div className="flex items-start justify-between gap-4">
+                    <a
+                      href={b.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 font-medium text-foreground transition-colors group-hover:text-accent"
+                    >
+                      <Bookmark className="h-4 w-4 shrink-0 text-accent" />
+                      <span>{b.title}</span>
+                      <ExternalLink className="h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
+                    </a>
+                  </div>
+                  <p className="mt-2 text-sm text-muted-foreground">{b.note}</p>
+                  <span className="mt-3 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-wider text-accent">
+                    <TagIcon className="h-3 w-3" />
+                    <span>{b.tag}</span>
                   </span>
                 </li>
               </Reveal>

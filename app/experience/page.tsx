@@ -1,3 +1,13 @@
+import {
+  GraduationCap,
+  FlaskConical,
+  Briefcase,
+  GitPullRequest,
+  Trophy,
+  Code2,
+  Target,
+  type LucideIcon,
+} from "lucide-react";
 import { experience } from "@/content/data/experience";
 import type { ExperienceItem } from "@/types";
 import { Container } from "@/components/container";
@@ -12,14 +22,17 @@ export const metadata = {
     "A vertical timeline of open source, research, projects, and learning.",
 };
 
-const typeMeta: Record<ExperienceItem["type"], { tone: string }> = {
-  Education: { tone: "text-sky-400" },
-  Research: { tone: "text-violet-400" },
-  Internship: { tone: "text-amber-400" },
-  "Open Source": { tone: "text-emerald-400" },
-  Hackathon: { tone: "text-pink-400" },
-  Project: { tone: "text-cyan-400" },
-  Goal: { tone: "text-muted-foreground" },
+const typeMeta: Record<
+  ExperienceItem["type"],
+  { tone: string; icon: LucideIcon }
+> = {
+  Education: { tone: "text-sky-400", icon: GraduationCap },
+  Research: { tone: "text-violet-400", icon: FlaskConical },
+  Internship: { tone: "text-amber-400", icon: Briefcase },
+  "Open Source": { tone: "text-emerald-400", icon: GitPullRequest },
+  Hackathon: { tone: "text-pink-400", icon: Trophy },
+  Project: { tone: "text-cyan-400", icon: Code2 },
+  Goal: { tone: "text-muted-foreground", icon: Target },
 };
 
 export default function ExperiencePage() {
@@ -34,6 +47,7 @@ export default function ExperiencePage() {
         <div className="relative">
           {experience.map((item, i) => {
             const meta = typeMeta[item.type] ?? typeMeta.Project;
+            const IconComponent = meta.icon;
             return (
               <Reveal key={`${item.org}-${i}`} delay={i * 0.06} className="relative">
                 <div className="absolute -left-[33px] top-6 h-full w-px bg-border" />
@@ -41,11 +55,11 @@ export default function ExperiencePage() {
                   <div className="relative z-10 flex flex-col items-center">
                     <div
                       className={cn(
-                        "flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card",
+                        "flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-all hover:scale-105",
                         item.type === "Goal" ? "bg-muted" : "bg-accent/10"
                       )}
                     >
-                      <span className="h-2.5 w-2.5 rounded-full bg-current" />
+                      <IconComponent className={cn("h-4 w-4", meta.tone)} />
                     </div>
                     <span
                       className={cn(

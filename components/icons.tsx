@@ -6,11 +6,12 @@ export function GitHubIcon(props: React.SVGProps<SVGSVGElement>) {
       viewBox="0 0 24 24"
       fill="currentColor"
       {...props}
-      aria-hidden
+      aria-hidden="true"
     >
       <path
-        d="M12 .297c-6.63 0-12 5.237-12 11.69 0 5.14 3.44 9.49 8.21 11.09.6.1.82-.26.82-.58 0-.29-.01-1.04-.02-2.04-3.38.7-4.13-1.62-4.13-1.62-.56-1.42-1.37-1.8-1.37-1.8-1.12.08-.01.08-.01.08-1.23.01-1.87 1.27-1.87 1.27-1.12 1.9-2.9 1.34-3.6.96-.01-.77-.39-1.34-.72-1.64 2.55-.3 5.23-.9 6.98-3.9-.75.01-1.46.25-2.03.88-.6.64-1.1 1.62-1.1 2.83 0 1.97 1.2 3.64 2.79 3.64 1.94 0 3.79-1.29 3.79-3.15 0-.93-.28-1.8-0.79-2.53 1.95-.4 4.01.85 5.28 3.1.02-.42.14-.98.4-1.68-3.01-.85-5.06-2.49-5.06-4.9 0-.97.32-1.89.9-2.7-1.8-.73-3.82-1.08-5.98-.82-1.92-.27-3.94.03-5.94 1.07-1.86 1.05-3.59 2.73-3.59 5.06 0 1.6.58 3.02 1.56 4.1-1.44.02-2.75 0-3.72-.03-.58-.2-1.06.4-1.06 1.15 0 2.88 3.26 3.72 3.26 3.26;1.15.5 3.22 1.05 3.22 3.03 0 3.36-2.55 3.44-3.42 3.49 1.23.82 2.15 1.9 2.15 3.37 0 3.56-.01 6.43-.01 7.36 0 .31.2.7.81.57A11.79 11.79 0 0 0 24 11.99c0-6.45-5.35-11.69-12-11.69
-        "
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
       />
     </svg>
   );
@@ -18,36 +19,90 @@ export function GitHubIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export function LinkedInIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...props} aria-hidden>
-      <path d="M19.7 3H4.3c-1.23 0-2.27.95-2.27 2.1v15.43c0 1.06.84 1.9 1.9 1.9h13.55c1.07 0 2.1-.83 2.27-1.9V5c0-1.1-.85-2.2-2-2.12Z" />
-      <path d="M6.94 10.33a2.43 2.43 0 0 1 0-4.86 2.43 2.43 0 0 1 0 4.86Zm2.16 1.4h-4.3V19h4.3V11.73Z" />
-      <path d="M13.07 19h-4.3V11.7h4.3v2.4h.06c.5-.1 1.24-.4 2.3-.9-.1.6-.24 1.2-.4 1.8v3.6Z" />
-      <circle cx="12" cy="7.23" r="1.1" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props} aria-hidden="true">
+      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
     </svg>
   );
 }
 
 export function TwitterIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" {...props} aria-hidden>
-      <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.49-1.73.85-2.71 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.28 0 .33.04.65.1.96C8.28 9.04 5.12 7.38 3 4.85c-.36.6-.57 1.3-.57 2.08 0 1.43.73 2.69 1.86 3.45-.68 0-1.32-.2-1.9-.5v.03c0 2 1.4 3.67 3.27 4.05-.35.1-.71.15-1.09.15-.26 0-.5-.03-.75-.08.5 1.56 1.99 2.7 3.76 2.74A8.6 8.6 0 0 1 2 19.54a12.13 12.13 0 0 0 6.45 1.92c7.75 0 12-6.39 12-11.94v-.5a8.5 8.5 0 0 0 2-2.1Z" />
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props} aria-hidden="true">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
     </svg>
   );
 }
 
 export function MailIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props} aria-hidden>
-      <path
-        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-        strokeWidth={1.5}
-      />
-      <path
-        d="M22 6l-10 7L2 6"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+      aria-hidden="true"
+    >
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  );
+}
+
+export function ExternalLinkIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+      aria-hidden="true"
+    >
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" x2="21" y1="14" y2="3" />
+    </svg>
+  );
+}
+
+export function ArrowRightIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+      aria-hidden="true"
+    >
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
+  );
+}
+
+export function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+      <path d="M2 12h20" />
     </svg>
   );
 }

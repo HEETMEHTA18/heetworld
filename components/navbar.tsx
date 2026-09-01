@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight, Globe } from "lucide-react";
 
 import { NAV_LINKS, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -59,7 +59,7 @@ export function Navbar() {
 
           <Link
             href="/"
-            className="relative z-10 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-foreground transition-opacity hover:opacity-60"
+            className="relative z-10 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-foreground transition-opacity hover:opacity-60 flex items-center gap-1.5"
             aria-label="Home — Heet Mehta"
           >
             {site.initials}
@@ -78,13 +78,15 @@ export function Navbar() {
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noreferrer" : undefined}
                   className={cn(
-                    "link-underline px-3 py-2 font-mono text-[11px] uppercase tracking-[0.15em] transition-colors",
+                    "link-underline inline-flex items-center gap-1 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.15em] transition-colors",
                     isActivePath(pathname, link.href)
                       ? "is-active text-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   )}
                 >
-                  {link.label}
+                  {isExternal && <Globe className="h-3 w-3 text-accent" />}
+                  <span>{link.label}</span>
+                  {isExternal && <ArrowUpRight className="h-3 w-3 opacity-70" />}
                 </Link>
               );
             })}

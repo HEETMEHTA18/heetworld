@@ -1,3 +1,4 @@
+import { MapPin, Send } from "lucide-react";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { Input, Textarea } from "@/components/ui/input";
@@ -68,9 +69,10 @@ export default function ContactPage() {
                 </a>
               </div>
 
-              <p className="pt-2 text-xs text-muted-foreground">
-                Based in {site.location}. Usually online.
-              </p>
+              <div className="flex items-center gap-2 pt-2 text-xs text-muted-foreground">
+                <MapPin className="h-3.5 w-3.5 text-accent" />
+                <span>Based in {site.location}. Usually online.</span>
+              </div>
             </div>
           </Reveal>
 
@@ -100,8 +102,9 @@ export default function ContactPage() {
                 rows={5}
                 required
               />
-              <Button type="submit" variant="primary" className="self-start">
-                Send
+              <Button type="submit" variant="primary" className="inline-flex items-center gap-2 self-start">
+                <span>Send Message</span>
+                <Send className="h-3.5 w-3.5" />
               </Button>
             </form>
           </Reveal>

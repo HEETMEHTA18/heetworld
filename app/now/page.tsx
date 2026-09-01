@@ -1,3 +1,4 @@
+import { Briefcase, GraduationCap, BookOpen, Compass, Clock, type LucideIcon } from "lucide-react";
 import { now } from "@/content/data/now";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
@@ -20,27 +21,28 @@ export default function NowPage() {
         description="Updated on the first Sunday of each month. This is the stuff in flight, not a plan."
       />
       <Container className="py-8">
-        <p className="mb-10 font-mono text-xs text-muted-foreground">
-          Last updated {formatDate(now.update)}
-        </p>
+        <div className="mb-10 flex items-center gap-2 font-mono text-xs text-muted-foreground">
+          <Clock className="h-3.5 w-3.5 text-accent" />
+          <span>Last updated {formatDate(now.update)}</span>
+        </div>
 
         <div className="prose lg:prose-lg max-w-reading space-y-12">
-          <NowSection title="Working on" emoji="•">
+          <NowSection title="Working on" icon={Briefcase}>
             {now.working.map((w) => (
               <li key={w}>{w}</li>
             ))}
           </NowSection>
-          <NowSection title="Studying">
+          <NowSection title="Studying" icon={GraduationCap}>
             {now.studying.map((s) => (
               <li key={s}>{s}</li>
             ))}
           </NowSection>
-          <NowSection title="Reading">
+          <NowSection title="Reading" icon={BookOpen}>
             {now.reading.map((r) => (
               <li key={r}>{r}</li>
             ))}
           </NowSection>
-          <NowSection title="Planning">
+          <NowSection title="Planning" icon={Compass}>
             {now.planning.map((p) => (
               <li key={p}>{p}</li>
             ))}
@@ -57,19 +59,24 @@ export default function NowPage() {
 
 function NowSection({
   title,
-  emoji,
+  icon: Icon,
   children,
 }: {
   title: string;
-  emoji?: string;
+  icon: LucideIcon;
   children: React.ReactNode;
 }) {
   return (
     <Reveal>
       <div>
-        <h2 className="font-serif text-2xl tracking-tight text-foreground">
-          {emoji} {title}
-        </h2>
+        <div className="flex items-center gap-3">
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-border bg-card text-accent">
+            <Icon className="h-4 w-4" />
+          </span>
+          <h2 className="font-serif text-2xl tracking-tight text-foreground">
+            {title}
+          </h2>
+        </div>
         <ul className="mt-4 list-disc space-y-1.5 pl-5 text-base leading-relaxed text-muted-foreground">
           {children}
         </ul>

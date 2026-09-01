@@ -4,7 +4,8 @@ import { projectsMeta } from "@/content/data/projects";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { PrintButton } from "@/components/print-button";
-import { GitHubIcon, LinkedInIcon, MailIcon, TwitterIcon } from "@/components/icons";
+import { Download, MapPin } from "lucide-react";
+import { GitHubIcon, LinkedInIcon, MailIcon } from "@/components/icons";
 import { site } from "@/lib/site";
 
 export const metadata = {
@@ -29,9 +30,10 @@ export default function ResumePage() {
           <a
             href="/resume.pdf"
             download
-            className="rounded-xl border border-border bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-xl border border-border bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition hover:opacity-90"
           >
-            Download PDF
+            <Download className="h-4 w-4" />
+            <span>Download PDF</span>
           </a>
         </div>
       </PageHeader>
@@ -67,8 +69,9 @@ export default function ResumePage() {
                 </a>
               </span>
             </div>
-            <span className="font-mono text-xs text-muted-foreground">
-              {site.location}
+            <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+              <MapPin className="h-3.5 w-3.5" />
+              <span>{site.location}</span>
             </span>
           </div>
 
