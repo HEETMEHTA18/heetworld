@@ -1,0 +1,48 @@
+export const metadata = {
+  slug: "labelling-2400-images-of-shelves",
+  title: "What 2,400 labelled images of supermarket shelves taught me",
+  description:
+    "Building Retail Shelf Intelligence, the hardest part wasn't the model — it was the data. Lessons from annotating shelves, glare, and thermal paper.",
+  date: "2025-03-02",
+  topics: ["Computer Vision", "ML", "Data"],
+  readingMinutes: 7,
+  published: true,
+};
+
+# What 2,400 labelled images of supermarket shelves taught me
+
+When I started Retail Shelf Intelligence, I assumed the interesting work was the model. I was wrong. The interesting work — and 90% of the effort — was the data.
+
+## The data is the model
+
+Anyone can download a YOLO checkpoint. Few can say exactly what's on a specific shelf, in a specific store, under specific lighting. A shelf detection system is essentially a dataset with a wrapper around it.
+
+The facts from my own project:
+
+- **2,400+ images** collected and labelled by hand.
+- **~40% of my time** went to preprocessing and relabelling, not training.
+- Every accuracy gain I saw came from *fixing labels*, not from changing the architecture.
+
+## What made it painful
+
+**Glare.** Packaged goods are glossy. Reflections read as edges to a detector. I learned to treat glare as a data problem, not a model problem: more angles, better preprocessing, and honest labels for partially visible products.
+
+**Class imbalance.** Three products accounted for most of the data and almost all of the easy wins. The long tail of niche SKUs is where the system actually failed — and where nobody wants to spend labelling effort.
+
+**Boundary cases.** A product half-stocked looks "fine" to a detector and "empty" to a manager. If your labels can't distinguish these, your model won't either.
+
+## The rule I'd teach anyone
+
+> Label the boundaries, not the easy cases.
+
+An hour spent labelling the confusing 5% of images moves accuracy more than five hours on the easy 95%. That's counterintuitive, because the easy 95% is where progress *feels* fastest.
+
+## Why this matters beyond retail
+
+Every ML project I've touched has the same shape: the model is the smallest, best-understood piece. The system — data quality, evaluation, deployment, monitoring — is where real engineering happens. Labelling those shelves was the best possible reminder of that.
+
+I keep the full pipeline notes in the [project documentation](/projects/retail-shelf-intelligence).
+
+<Callout type="info" title="If you're new to CV">
+Start with a dataset you built yourself, even a tiny one. You'll learn more about what models *actually need* in a weekend of labelling than in a month of reading papers.
+</Callout>

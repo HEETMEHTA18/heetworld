@@ -1,65 +1,235 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+import { site } from "@/lib/site";
+import { getFeaturedProjects, getAllArticles, getAllResearchNotes } from "@/lib/content";
+import { Container } from "@/components/container";
+import { Reveal } from "@/components/reveal";
+
+const journey = [
+  ["01", "Started with electronics, IoT, and the joy of making things move."],
+  ["02", "Found web development, then learned to care about the systems underneath."],
+  ["03", "Moved into machine learning, computer vision, and practical AI applications."],
+  ["now", "Building local-first tools and AI systems that feel useful, clear, and human."],
+];
+
+export default async function HomePage() {
+  const [projects, articles, research] = await Promise.all([
+    getFeaturedProjects(),
+    getAllArticles(),
+    getAllResearchNotes(),
+  ]);
+
+  const currentFocus = [
+    "AI systems",
+    "machine learning",
+    "automation",
+    "developer tooling",
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="w-full">
+      <section className="border-b border-border">
+        <Container className="py-28 sm:py-32">
+          <div className="max-w-3xl">
+            <Reveal>
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                {site.location} · computer engineering · 2026
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.08}>
+              <h1 className="mt-6 text-4xl font-medium tracking-[-0.06em] text-foreground sm:text-6xl">
+                hi, i&apos;m <span className="text-muted-foreground">heet.</span>
+              </h1>
+            </Reveal>
+
+            <Reveal delay={0.15}>
+              <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
+                I build software, AI systems, and experiments that make complex ideas useful.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.22}>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="/projects"
+                  className="inline-flex items-center gap-2 border border-foreground bg-foreground px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-background transition-colors hover:bg-background hover:text-foreground"
+                >
+                  See my work <span aria-hidden="true">↗</span>
+                </Link>
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 border border-border bg-background px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground transition-colors hover:border-foreground"
+                >
+                  About me
+                </Link>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.28}>
+              <div className="mt-12 flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted-foreground">
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground">
+                  currently
+                </span>
+                {currentFocus.map((item) => (
+                  <span key={item} className="font-mono text-[10px] uppercase tracking-[0.18em]">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-border" id="work">
+        <Container className="py-16 sm:py-20">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <Reveal>
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                selected work
+              </p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <Link
+                href="/projects"
+                className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
+              >
+                view all ↗
+              </Link>
+            </Reveal>
+          </div>
+
+          <div className="space-y-1">
+            {projects.slice(0, 5).map((project, index) => (
+              <Reveal key={project.slug} delay={index * 0.04}>
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="group flex flex-col gap-2 border-b border-border py-4 transition-colors hover:border-foreground/30 sm:flex-row sm:items-end sm:justify-between"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h2 className="text-xl font-medium text-foreground sm:text-2xl">
+                        {project.metadata.title}
+                      </h2>
+                      <p className="mt-1 text-base text-muted-foreground">
+                        {project.metadata.tagline}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 sm:gap-6">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                      {project.metadata.tags.slice(0, 2).join(" / ")}
+                    </span>
+                    <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                      {project.metadata.year} ↗
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-border">
+        <Container className="py-16 sm:py-20">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_2fr] lg:gap-16">
+            <Reveal>
+              <div>
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                  the journey
+                </p>
+                <h2 className="mt-4 text-3xl font-medium tracking-[-0.04em] text-foreground sm:text-4xl">
+                  still learning,<br />still making.
+                </h2>
+              </div>
+            </Reveal>
+
+            <div className="space-y-6">
+              {journey.map(([number, text]) => (
+                <Reveal key={number}>
+                  <div className="flex gap-4 border-b border-border pb-4">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                      {number}
+                    </span>
+                    <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
+                      {text}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+
+      <section className="border-b border-border">
+        <Container className="py-16 sm:py-20">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <Reveal>
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                latest writing
+              </p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <Link
+                href="/writing"
+                className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
+              >
+                read notebook ↗
+              </Link>
+            </Reveal>
+          </div>
+
+          <div className="space-y-1">
+            {articles.slice(0, 3).map((article) => (
+              <Link
+                key={article.slug}
+                href={`/writing/${article.slug}`}
+                className="group flex flex-col gap-2 border-b border-border py-4 text-left transition-colors hover:border-foreground/30 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <div className="flex items-center gap-4">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                    {article.metadata.date ?? "2026"}
+                  </span>
+                  <strong className="text-lg text-foreground group-hover:text-muted-foreground">
+                    {article.metadata.title}
+                  </strong>
+                </div>
+                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                  Read ↗
+                </span>
+              </Link>
+            ))}
+            {research.slice(0, 1).map((note) => (
+              <Link
+                key={note.slug}
+                href={`/research/${note.slug}`}
+                className="group flex flex-col gap-2 border-b border-border py-4 text-left transition-colors hover:border-foreground/30 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <div className="flex items-center gap-4">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                    lab
+                  </span>
+                  <strong className="text-lg text-foreground group-hover:text-muted-foreground">
+                    {note.metadata.title}
+                  </strong>
+                </div>
+                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                  Read ↗
+                </span>
+              </Link>
+            ))}
+          </div>
+        </Container>
+      </section>
     </div>
   );
 }
+

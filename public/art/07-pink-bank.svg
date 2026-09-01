@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" width="400" height="520" preserveAspectRatio="xMidYMid slice" role="img">
+    <defs>
+      <linearGradient id="sky-a07" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2a1320"/>
+        <stop offset="100%" stop-color="#f0a0b8" stop-opacity="0.55"/>
+      </linearGradient>
+      <filter id="grain-a07">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" stitchTiles="stitch" result="n"/>
+        <feColorMatrix in="n" type="saturate" values="0"/>
+        <feComponentTransfer><feFuncA type="discrete" tableValues="0 0.35 0.7 1"/></feComponentTransfer>
+      </filter>
+      <pattern id="dots-a07" width="3" height="3" patternUnits="userSpaceOnUse">
+        <circle cx="1.5" cy="1.5" r="0.7" fill="#ffd0dd" opacity="0.5"/>
+      </pattern>
+      
+    </defs>
+    <rect width="400" height="520" fill="url(#sky-a07)"/>
+    <circle cx="280" cy="100" r="26" fill="#ffd0dd" opacity="0.9"/>
+    
+    <polygon points="0,520 0,326.2 80.0,321.0 160.0,317.3 240.0,304.8 320.0,310.6 400,304.5 400,520" fill="#f0a0b8"/><polygon points="0,520 0,263.5 57.1,272.1 114.3,258.5 171.4,257.9 228.6,268.0 285.7,256.7 342.9,253.1 400,273.4 400,520" fill="#d06a86"/>
+    <g><rect x="168" y="262.4" width="8" height="60" fill="#2a1622"/><circle cx="176" cy="242.39999999999998" r="34" fill="#ffd0dd" opacity="0.8"/><circle cx="208" cy="258.4" r="22" fill="#ffd0dd" opacity="0.6"/></g>
+    <g opacity="0.55"><rect x="0" y="322.4" width="400" height="197.60000000000002" fill="#1c0e16"/><g transform="translate(0,644.8) scale(1,-1)" opacity="0.6"><polygon points="0,520 0,326.2 80.0,321.0 160.0,317.3 240.0,304.8 320.0,310.6 400,304.5 400,520" fill="#f0a0b8"/><polygon points="0,520 0,263.5 57.1,272.1 114.3,258.5 171.4,257.9 228.6,268.0 285.7,256.7 342.9,253.1 400,273.4 400,520" fill="#d06a86"/></g><line x1="0" y1="336.4" x2="400" y2="336.4" stroke="#ffd0dd" stroke-width="0.6" opacity="0.25"/><line x1="0" y1="352.4" x2="400" y2="352.4" stroke="#ffd0dd" stroke-width="0.6" opacity="0.25"/><line x1="0" y1="368.4" x2="400" y2="368.4" stroke="#ffd0dd" stroke-width="0.6" opacity="0.25"/><line x1="0" y1="384.4" x2="400" y2="384.4" stroke="#ffd0dd" stroke-width="0.6" opacity="0.25"/></g>
+    
+    
+    <rect width="400" height="520" filter="url(#grain-a07)" opacity="0.22" style="mix-blend-mode:overlay"/>
+    <rect width="400" height="520" fill="url(#dots-a07)" opacity="0.06" style="mix-blend-mode:soft-light"/>
+    <rect width="400" height="520" fill="none" stroke="#2a1622" stroke-opacity="0.15"/></svg>

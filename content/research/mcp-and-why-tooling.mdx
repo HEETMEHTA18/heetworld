@@ -1,0 +1,47 @@
+export const metadata = {
+  slug: "mcp-and-agent-tooling",
+  title: "MCP and why it's the boring layer agents need",
+  description:
+    "Working notes on the Model Context Protocol: what it standardises, where it shines, and the sharp edges I've hit building AutoDevs on it.",
+  date: "2025-08-15",
+  area: "Agentic AI",
+  tags: ["MCP", "Agentic AI", "Tooling"],
+  readingMinutes: 6,
+  published: true,
+};
+
+# MCP and why it's the boring layer agents need
+
+The Model Context Protocol is not an agent. It's the plumbing so that agents can be boring and predictable: a standard way for models to reach tools and data without hard-coding each integration.
+
+## What MCP actually standardises
+
+At its core MCP gives you three things:
+
+1. **Tools** — a typed inventory of what an agent can call.
+2. **Resources** — data the model can read (files, context, databases).
+3. **Prompts** — repeatable starting points for tasks.
+
+The win is the *interface*, not the implementation. Any agent can talk to any tool host in the same way. That's why it's "boring": the value is in standardisation, not cleverness.
+
+## Where I put the agent boundary
+
+```
+ agent loop ──MCP──▶ tool host ──▶ files / shell / tests / apis
+```
+
+With AutoDevs I exposed **12 well-scoped tools** through MCP. The discipline that mattered was keeping the tool surface small and opinionated. A narrow interface is easier to make safe, and safety is the whole ballgame for a tool that edits code.
+
+## Anthropic hooks worth remembering
+
+- **Few, opinionated tools beat many vague ones.** Every tool is an attack surface and a source of ambiguity.
+- **Typed contracts reduce drift.** When the boundary is typed, client and server can't silently disagree.
+- **Verification belongs on the tool side.** Let the harness own testing so the agent doesn't have to guess what "done" means.
+
+## Open questions I'm tracking
+
+- How to make MCP servers **discoverable and versioned** at scale.
+- How **human-in-the-loop approval** composes with asynchronous MCP calls.
+- Where an agent's *memory* should live so it isn't re-scanned every session.
+
+I'm actively reading through the ecosystem as it settles and keeping comparisons as I build on the protocol — I'll update this note as the sharp edges become clear.

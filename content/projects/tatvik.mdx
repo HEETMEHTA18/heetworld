@@ -1,0 +1,141 @@
+export const metadata = {
+  slug: "tatvik",
+  title: "Tatvik",
+  tagline: "A local-first AI assistant that runs entirely on-device.",
+  description:
+    "Tatvik is an open-source, privacy-first personal AI assistant. Speech, intent, and language model inference all happen on-device — no cloud, no account, no data leaving the machine.",
+  year: "2025",
+  status: "Active",
+  category: "Applied AI · Edge",
+  tags: ["LLM", "Speech", "Edge", "Rust"],
+  stack: [
+    "Python",
+    "Rust",
+    "Whisper",
+    "llama.cpp",
+    "FastAPI",
+    "TypeScript",
+    "SQLite",
+  ],
+  github: "https://github.com/heetmehta/tatvik",
+  demo: "https://tatvik.example.com",
+  featured: true,
+  order: 2,
+  visual: "architecture",
+  accent: "#2B6EF2",
+  problem:
+    "Personal assistants route everything through the cloud. Voice is recorded, transcribed, and answered remotely, which means a transcript of your life sits on a third-party server. I wanted to see how far on-device inference could go in 2025 — and whether a genuinely useful assistant could be built that never phones home.",
+  solution:
+    "Tatvik is a fully local stack: wake-word + Whisper speech-to-text, an intent router, and llama.cpp-hosted models for the language parts. A small Rust service owns audio capture and hotword detection for low latency; Python handles the heavier NLP layers.",
+  metrics: [
+    { value: "<300ms", label: "hotword-to-wake latency" },
+    { value: "0", label: "bytes sent to the cloud" },
+    { value: "1.2B", label: "parameter local LLM" },
+  ],
+  timeline: [
+    { period: "Jan 2025", label: "Prototype — wake word + transcript" },
+    { period: "Mar 2025", label: "LLM integration, first skills" },
+    { period: "Jun 2025", label: "Open-source release" },
+    { period: "Next", label: "Multi-language, tool calling" },
+  ],
+};
+
+# Tatvik
+
+Tatvik is a local-first AI assistant. Everything — hotword detection, speech-to-text, intent parsing, and language generation — runs on-device. It was born from a simple question: *can a useful voice assistant exist without a cloud dependency?*
+
+The answer turned out to be yes, with some hard trade-offs that are worth documenting.
+
+## The Problem
+
+Most assistants are thin clients for remote models. That architecture is convenient, but it has real costs:
+
+<Callout type="note" title="Why on-device">
+Voice is a transcript of your life — commands, questions, to-dos. Building on cloud STT means that transcript lives on someone else's servers. For me, that made local inference a hard requirement, not a nice-to-have.
+</Callout>
+
+- **Privacy** — audio and text never leave the machine.
+- **Latency** — no round-trips for the audio path.
+- **Reliability** — works without internet.
+
+The obvious trade-off is compute. Consumer laptops can run small LLMs comfortably, but a voice assistant also needs real-time audio processing and low-latency wake detection.
+
+## Architecture
+
+```
+ ┌─────────────┐   audio frames   ┌──────────────┐
+ │  Audio API  │ ───────────────▶ │  Rust core   │
+ │ (mic, ALSA) │                  │  hotword DSP │
+ └─────────────┘                  └──────┬───────┘
+                                         │ wake
+                                ┌────────▼────────┐
+                                │  Whisper STT    │
+                                │ (Python worker) │
+                                └────────┬────────┘
+                                         │ text
+                                ┌────────▼────────┐
+                                │  Intent router  │
+                                └───┬────┬────────┘
+                           skills │    │ LLM
+                          ┌───────▼┐  ┌▼─────────┐
+                          │ tools  │  │ llama.cpp │
+                          └────────┘  └──────────┘
+```
+
+Key decisions:
+
+- **Rust for the audio path.** Hotword detection must be interruption-free; a GC pause in the middle of an audio buffer is unacceptable. The Rust core owns the mic and pushes frames to a lock-free channel.
+- **Python for the NLP layer.** Whisper and the model ecosystem are strongest in Python. Keeping them in a separate worker process isolates crashes and lets each layer scale independently.
+- **One model, one process.** The local LLM (a 1.2B-parameter Q4 model) runs in its own process so a long generation never stalls the STT pipeline.
+
+## Engineering decisions
+
+1. **Chunked streaming STT.** Transcribing the whole utterance after recording adds startup latency. Whisper streaming gives partial transcripts that let the intent router start early.
+2. **Fallback chain.** If intent confidence is low, route to the LLM with the raw transcript. If the model is busy, queue the request rather than dropping it. These fallbacks matter more than accuracy benchmarks.
+3. **Disk as memory.** Session state and user profile live in SQLite, so Tatvik survives restarts and reboots without a server.
+
+```python
+@dataclass
+class Turn:
+    transcript: str
+    confidence: float
+    wake_time: float
+
+def route(turn: Turn) -> Intent:
+    if turn.confidence < 0.6:
+        return Intent.LLM_GENERAL
+    return intent_classifier(turn.transcript)
+```
+
+## Benchmarks
+
+| Metric | Result |
+| --- | --- |
+| Hotword-to-wake latency | &lt;300 ms on Apple silicon |
+| STT (Whisper small, streaming) | ~1.2× realtime |
+| LLM tokens/sec (1.2B, Q4, Metal) | ~38 tok/s |
+| Peak memory | ~4.2 GB |
+
+These numbers are on a M1-class laptop — a 2020 baseline. The point isn't that the numbers are exceptional; it's that they're *good enough* on commodity hardware.
+
+## Challenges
+
+The hardest problem was **audio ownership**. The OS may remix or re-route audio (e.g., a notification) mid-turn. Rebuilding a clean audio pipeline that survives OS-level interrupts took longer than the entire rest of the stack.
+
+The second was **VRAM contention**. STT and the LLM both want the GPU. The fix was strictly serializing heavy kernels and moving STT to CPU-bound workers when the GPU is generating.
+
+## Lessons
+
+- **Local-first is a constraint that sharpens design.** Every abstraction had to justify itself against the "run on one machine" budget.
+- **Latency budgets beat accuracy curves.** A 30 ms STT improvement moves the product more than a +1 accuracy point on a benchmark nobody feels.
+- **Open-source it early.** Shipping to GitHub forced better docs, cleaner APIs, and honest READMEs.
+
+## Roadmap
+
+- Tool calling so Tatvik can actually *do* things (calendar, files).
+- Multi-language wake word and STT.
+- A GUI control panel to tune models and latency without touching config files.
+
+<Callout type="info" title="Status">
+Active. Tatvik is open source — contributions and critique both welcome.
+</Callout>

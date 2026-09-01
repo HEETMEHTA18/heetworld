@@ -1,0 +1,52 @@
+export const metadata = {
+  slug: "agents-need-verification-not-guessing",
+  title: "Coding agents need verification, not better guessing",
+  description:
+    "AutoDevs taught me that the most valuable part of an agent isn't its planner — it's the test runner that checks its work.",
+  date: "2025-07-21",
+  topics: ["Agentic AI", "Developer Tools", "MCP"],
+  readingMinutes: 6,
+  published: true,
+};
+
+# Coding agents need verification, not better guessing
+
+Every coding agent demo I've seen ends the same way: a long, confident diff that looks right and is subtly wrong. Building **AutoDevs** made me stop blaming the model and start blaming the loop.
+
+## The loop is the product
+
+An agent that edits code is a closed loop:
+
+```
+explore → plan → edit → verify → repeat
+```
+
+If any step is weak, the agent looks stupid. But here's the thing I learned: most of the perceived "intelligence" of an agent is actually the **verify** step working hard. A model that guesses and checks is smarter than a model that guesses and commits.
+
+## Verification is underrated engineering
+
+Running tests for arbitrary repositories is genuinely hard:
+
+- Which subset of tests covers this change?
+- How do you run them without wrecking the user's environment?
+- How do you know a pass is a *real* pass, not a stale cache?
+
+The AutoDevs answer was to make verification a first-class pipeline stage with a sandboxed, cached, and *scoped* runner. The rule that changed everything:
+
+> A change is only "done" if the relevant tests pass. No exceptions.
+
+That single rule lifted first-try CI pass rate to ~80% — not by making the model smarter, but by making the loop honest.
+
+## Why MCP matters here
+
+The Model Context Protocol is the boring-but-important layer underneath. It gave me a clean, typed boundary between the agent and its tools — read files, apply edits, run tests — without the agent reaching directly into the shell. When the tool boundary is explicit, verification gets a stable foundation.
+
+## The takeaway
+
+When an agent fails, the temptation is to swap in a bigger model. Usually the bigger win is to strengthen the feedback loop: better exploration context, an explicit plan you can approve, and a verification step that's allowed to say *no*.
+
+I wrote the full architecture and the exact benchmark numbers in the [AutoDevs write-up](/projects/autodevs).
+
+<Callout type="note" title="Try this">
+Next time an agent produces a bad diff, don't prompt it harder. Give it a way to check its own work — a linter, a test, a typecheck — and watch what changes.
+</Callout>

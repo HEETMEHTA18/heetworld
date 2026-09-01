@@ -1,0 +1,45 @@
+export const metadata = {
+  slug: "local-first-ai-design-constraint",
+  title: "Local-first AI is a design constraint, not a compromise",
+  description:
+    "Building Tatvik taught me that running models on-device forces sharper architecture. A few notes on why the constraint is a feature.",
+  date: "2025-06-12",
+  topics: ["AI", "LLM", "Edge"],
+  readingMinutes: 6,
+  published: true,
+};
+
+# Local-first AI is a design constraint, not a compromise
+
+Every AI product I've built has started with the same default: put the model in the cloud. It's the path of least resistance. But when I built **Tatvik**, a voice assistant that runs entirely on-device, I discovered that removing the cloud changed how I thought about every part of the system — and mostly for the better.
+
+## Constraints expose assumptions
+
+A cloud architecture hides latency and memory behind a network boundary. When everything runs on one laptop, three assumptions I'd never questioned came to the surface:
+
+1. **Models are fungible.** Not true. On-device means a smaller model, and the whole UX has to be designed around what it can't do.
+2. **Abstractions are free.** Not true. Every layer in a local pipeline consumes the same scarce memory and CPU budget.
+3. **Data is cheap to move.** Not true. Your own machine is the only place with zero privacy cost.
+
+## What the constraint forced
+
+**A real pipeline.** On-device inference made me build actual queues, worker processes, and a hotword path in Rust — because a naive "call the model" design froze the microphone.
+
+**Honest latency budgets.** Instead of vaguely hoping the stack was fast, I measured hotword→wake, STT, and generation separately, then optimised the pipeline's bottleneck (audio ownership), not its most exciting part.
+
+**Small-model design.** The model was the last thing I optimised. The win was in the routing: a lightweight intent router that only escalates to the LLM when it has to.
+
+```python
+if turn.confidence < 0.6:
+    return Intent.LLM_GENERAL   # escalate
+```
+
+## The takeaway
+
+Cloud-first is a choice, and it's the right one for many products. But the default hides costs that a local-first constraint surfaces early. If your product can survive the constraint, you end up with an architecture that's cheaper, more private, and often *simpler* — because you can't paper over complexity with another service.
+
+I wrote more about the specific numbers and trade-offs in the [Tatvik project write-up](/projects/tatvik).
+
+<Callout type="note" title="A useful exercise">
+Try designing your next feature with a strict budget: one machine, no network. What collapses? What survives? That exercise tells you what your product is *actually* made of.
+</Callout>

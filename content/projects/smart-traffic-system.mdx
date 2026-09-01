@@ -1,0 +1,100 @@
+export const metadata = {
+  slug: "smart-traffic-system",
+  title: "Smart Traffic System",
+  tagline: "Adaptive signal control using real-time vehicle counting from intersection cameras.",
+  description:
+    "A prototype adaptive traffic system that counts vehicles at an intersection with computer vision and adjusts signal green-times on a rolling horizon, instead of fixed 30-second cycles.",
+  year: "2024",
+  status: "In Progress",
+  category: "Computer Vision",
+  tags: ["Computer Vision", "Real-time", "IoT", "Python"],
+  stack: ["Python", "OpenCV", "YOLO", "MQTT", "FastAPI", "Raspberry Pi"],
+  github: "https://github.com/heetmehta/smart-traffic-system",
+  featured: true,
+  order: 3,
+  visual: "diagram",
+  accent: "#F59E0B",
+  problem:
+    "Most city signals run on fixed timers, wasting minutes on empty lanes while queueing the lanes that need them. The project goal was a cheap, retrofittable system: mount a camera at an intersection, count waiting vehicles, and let signal duration follow demand.",
+  solution:
+    "A camera feed runs lightweight vehicle detection at the intersection edge; counts per lane publish over MQTT to a central controller that computes green-times from queue lengths. A simulation mode lets the logic be tested before any hardware is deployed.",
+  metrics: [
+    { value: "18%", label: "lower mean delay vs fixed timing (sim)" },
+    { value: "~30fps", label: "edge detection throughput" },
+    { value: "$120", label: "per-intersection hardware cost" },
+  ],
+  timeline: [
+    { period: "Jun 2024", label: "Edge detection prototype" },
+    { period: "Aug 2024", label: "MQTT + controller logic" },
+    { period: "Oct 2024", label: "Micro-simulation evaluation" },
+    { period: "Archived", label: "Findings written up" },
+  ],
+};
+
+# Smart Traffic System
+
+This project retrofit an ordinary intersection with adaptive signal control. The premise: *if you can see the queues, you can schedule the lights.*
+
+It is archived as a research prototype — but the simulation findings are the useful artifact.
+
+## The Problem
+
+Fixed-cycle signals optimize for *nothing in particular*. In low-traffic hours they hold lanes empty; in peak hours they starve the busiest approach. The classic fix (induction loops) is expensive to install; the modern fix (cameras + CV) is much cheaper and retrofittable.
+
+## Architecture
+
+```
+ ┌────────────┐  detections  ┌──────────┐  queue  ┌──────────────┐
+ │ edge cam   │─────────────▶│ counter  │───────▶│  controller  │
+ │ (RPi+YOLO) │              │  MQTT    │        │  (green-time) │
+ └────────────┘              └──────────┘        └──────┬───────┘
+                                                        │ timing
+                                               ┌────────▼────────┐
+                                               │   signal head   │
+                                               └─────────────────┘
+```
+
+## Engineering decisions
+
+1. **Count at the edge, decide centrally.** Sending raw frames to a central server is bandwidth-heavy and slow. Detection runs on a Raspberry Pi; only counts travel over MQTT.
+2. **Queue length, not flow rate.** Counting stopped vehicles in a region of interest is more robust than tracking speeds, and it maps directly to the control objective.
+3. **A simulation mode as a first-class citizen.** The same controller logic runs against a micro-simulator, so tuning never requires a real intersection.
+
+```python
+def green_time(queue_length: int, phase_min: int, phase_max: int) -> int:
+    """Greedy proportional allocation with min/max clamping."""
+    demand = max(queue_length, 1)
+    return min(phase_max, max(phase_min, int(demand * K)))
+```
+
+## Evaluation
+
+Using a simple micro-simulation of a four-approach intersection:
+
+| Metric | Fixed 30s | Adaptive |
+| --- | --- | --- |
+| Mean vehicle delay | 41 s | 34 s (−18%) |
+| 95th-percentile delay | 92 s | 71 s (−23%) |
+| Max queue length | 24 veh | 16 veh |
+
+The gains concentrate in off-peak hours, exactly where adaptive control should shine.
+
+## Challenges
+
+**Tracking ambiguity** — a stopped bus occludes the queue behind it, so naive counts are systematically low. Occlusion-aware counting (counting the visible line, then estimating) was the most valuable correction.
+
+**Dirty real-world video** — the prototype assumed a clean overhead view. Real cameras are tilted, jittery, and dirty. Robustness tricks mattered far more than detector choice.
+
+## Lessons
+
+- **The control logic was the easy 20%; the pipeline reliability was the hard 80%.**
+- **Simulation is not evidence, but it's the fastest way to be wrong cheaply.** It caught two logic bugs before any hardware was involved.
+- **Cost ceilings are design constraints.** At $120 per intersection, the system has to run on edge hardware — a useful forced constraint.
+
+## Roadmap
+
+- (Archived) If resumed: occlusion-aware counting and a public dashboard of the findings.
+
+<Callout type="note" title="Status">
+Archived as a prototype. The simulation harness and write-up remain public in the repo.
+</Callout>

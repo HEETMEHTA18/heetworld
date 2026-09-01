@@ -1,0 +1,50 @@
+export const metadata = {
+  slug: "squad-qa",
+  title: "Extractive Question Answering",
+  tagline: "SQuAD-based QA that finds the answer span instead of generating one.",
+  description:
+    "An extractive question-answering project on the SQuAD dataset that identifies the answer span inside a given context, building intuition for how NLP pipelines work from data to inference.",
+  year: "2025",
+  status: "In Progress",
+  category: "NLP · ML",
+  tags: ["NLP", "SQuAD", "TensorFlow", "Question Answering"],
+  stack: ["TensorFlow", "Python", "SQuAD"],
+  featured: false,
+  order: 5,
+  visual: "diagram",
+  accent: "#8B5CF6",
+  problem:
+    "Generative models feel like magic, which makes them hard to reason about. Extractive QA is the opposite: given a context and a question, the model must point to the exact span that answers it. That constraint is a great teacher.",
+  solution:
+    "I built an extractive QA pipeline over SQuAD: preprocess the dataset, represent question-context pairs, train a span-prediction model, and evaluate against the gold answers. The output is an index range, not free text.",
+  timeline: [
+    { period: "Data", label: "SQuAD preprocessing" },
+    { period: "Train", label: "Span prediction" },
+    { period: "Eval", label: "Exact-match & F1" },
+    { period: "Infer", label: "Serve a context + question" },
+  ],
+};
+
+# Extractive Question Answering
+
+An extractive QA system built on the SQuAD dataset. Instead of generating an answer, the model learns to locate the span in the context that answers the question.
+
+## Why extractive
+
+Extractive QA forces a clean definition of success: the answer already exists in the text, so the model's only job is to find its boundaries. That makes training, evaluation, and debugging far more interpretable than open generation.
+
+## Pipeline
+
+1. **Preprocess** the SQuAD examples into question-context-answer triples.
+2. **Tokenize** and align answer spans to token positions.
+3. **Train** a span-prediction model (start/end indices).
+4. **Evaluate** with exact-match and F1 against gold spans.
+5. **Infer** on new context + question pairs.
+
+## What it taught me
+
+NLP systems are easier to trust when you can point at the evidence. Building from the dataset level through to inference made the whole stack — tokenization, representation, evaluation — concrete rather than abstract.
+
+<Callout type="info" title="Status">
+Learning / development project. Part of a broader effort to understand NLP from data through to model inference.
+</Callout>

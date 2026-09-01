@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" width="400" height="520" preserveAspectRatio="xMidYMid slice" role="img">
+    <defs>
+      <linearGradient id="sky-a02" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#08203a"/>
+        <stop offset="100%" stop-color="#3f86c4" stop-opacity="0.55"/>
+      </linearGradient>
+      <filter id="grain-a02">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2" stitchTiles="stitch" result="n"/>
+        <feColorMatrix in="n" type="saturate" values="0"/>
+        <feComponentTransfer><feFuncA type="discrete" tableValues="0 0.35 0.7 1"/></feComponentTransfer>
+      </filter>
+      <pattern id="dots-a02" width="3" height="3" patternUnits="userSpaceOnUse">
+        <circle cx="1.5" cy="1.5" r="0.7" fill="#bfe0ff" opacity="0.5"/>
+      </pattern>
+      <radialGradient id="moon-a02" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#bfe0ff"/><stop offset="100%" stop-color="#3f86c4"/></radialGradient>
+    </defs>
+    <rect width="400" height="520" fill="url(#sky-a02)"/>
+    
+    <circle cx="280" cy="104" r="34" fill="url(#moon-a02)"/>
+    <polygon points="0,520 0,297.5 80.0,283.6 160.0,305.7 240.0,307.2 320.0,283.2 400,283.4 400,520" fill="#3f86c4"/><polygon points="0,520 0,259.7 57.1,235.9 114.3,239.9 171.4,260.6 228.6,233.6 285.7,237.3 342.9,241.8 400,243.7 400,520" fill="#1d4f80"/><polygon points="0,520 0,179.1 44.4,225.3 88.9,210.1 133.3,199.3 177.8,191.1 222.2,174.3 266.7,171.4 311.1,205.1 355.6,223.6 400,222.2 400,520" fill="#0a1730"/>
+    <g fill="#0a1730"><circle cx="200" cy="245.59999999999997" r="10"/><rect x="193" y="255.59999999999997" width="14" height="46" rx="6"/></g>
+    
+    
+    
+    <rect width="400" height="520" filter="url(#grain-a02)" opacity="0.22" style="mix-blend-mode:overlay"/>
+    <rect width="400" height="520" fill="url(#dots-a02)" opacity="0.06" style="mix-blend-mode:soft-light"/>
+    <rect width="400" height="520" fill="none" stroke="#0a1730" stroke-opacity="0.15"/></svg>

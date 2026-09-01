@@ -1,0 +1,44 @@
+export const metadata = {
+  slug: "checkpoints-distributed-training",
+  title: "Notes: checkpoints and fault tolerance in distributed training",
+  description:
+    "A working summary of checkpoint strategies — full, async, and sharded — and why restart-mid-run still takes minutes.",
+  date: "2025-04-03",
+  area: "Distributed Systems",
+  tags: ["Distributed Systems", "MLOps", "Infrastructure"],
+  readingMinutes: 5,
+  published: true,
+};
+
+# Checkpoints and fault tolerance in distributed training
+
+A 3-day training run on 8 GPUs will, with near-certainty, see a node fail. The difference between a hobby and an operation is what happens next.
+
+## The three checkpoint strategies
+
+1. **Full checkpoints.** The entire model state every N steps. Simple, reliable, and the most expensive thing you'll do in a day.
+2. **Async checkpoints.** Write state in a background thread to avoid blocking training. Saves throughput, costs memory, and risks checkpoint corruption at write time.
+3. **Sharded checkpoints.** Each rank saves its own shard. This is how the big frameworks actually scale past a single node — the catch is that resuming requires all shards present.
+
+## The numbers that matter
+
+- A 70B-parameter model's checkpoint is roughly **140 GB** in bf16.
+- Restarting from a full checkpoint often means **5–15 minutes** of shard reassembly and re-initialisation.
+- The real cost is the **gap**: everything computed since the last save is lost.
+
+## What I'd implement differently
+
+The pattern I keep gravitating toward is **checkpoint + journal**:
+
+- Sharded checkpoints for speed and portability.
+- A small write-ahead journal of the optimizer's momentum deltas since the last save.
+
+That hybrid shrinks worst-case loss from hours to minutes, at the cost of a modest journal log — which is cheap next to re-running a whole batch of epochs.
+
+## Reading list
+
+- The checkpoint internals of PyTorch's distributed library.
+- Disaster-recovery design in object storage (retry, checksum, atomic rename).
+- The async checkpointing docs of the frameworks I run.
+
+This note is a working summary — I'll revise it as I actually stress-test the hybrid approach.

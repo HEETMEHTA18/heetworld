@@ -1,0 +1,53 @@
+export const metadata = {
+  slug: "coastal-threat",
+  title: "Coastal Threat Alert System",
+  tagline: "AI-driven coastal risk monitoring from tides, weather, and satellite data.",
+  description:
+    "A hackathon-oriented system that fuses tide gauges, weather stations, and satellite signals to flag abnormal coastal conditions and surface early warnings.",
+  year: "2025",
+  status: "In Progress",
+  category: "AI · Climate Tech",
+  tags: ["Remote Sensing", "Climate", "Python", "Streamlit"],
+  stack: ["Python", "Streamlit", "NASA datasets", "NOAA datasets", "n8n", "Supabase"],
+  featured: false,
+  order: 4,
+  visual: "dashboard",
+  accent: "#0EA5E9",
+  problem:
+    "Coastal communities get risk information too late. Tide gauges, weather stations, and satellite feeds exist, but they aren't combined into something that can say 'this pattern looks dangerous' before it becomes an event.",
+  solution:
+    "The prototype ingests multiple environmental signals and applies machine-learning concepts to detect abnormal patterns, then pushes early warnings through an n8n automation layer into a Supabase-backed dashboard built with Streamlit.",
+  timeline: [
+    { period: "Concept", label: "Hackathon idea framing" },
+    { period: "Ingest", label: "NASA + NOAA + tide feeds" },
+    { period: "Detect", label: "Anomaly pattern model" },
+    { period: "Alert", label: "n8n → Supabase → dashboard" },
+  ],
+};
+
+# Coastal Threat Alert System
+
+A hackathon-oriented idea for detecting potentially dangerous coastal conditions using multiple data sources and machine learning.
+
+## Why
+
+Climate risk is local and fast. A system that only looks at one sensor misses the story the others are telling. The goal was to combine signals into an early-warning layer rather than another dashboard nobody checks.
+
+## Inputs
+
+- **Tide gauges** for water-level anomalies.
+- **Weather stations** for wind and pressure shifts.
+- **Satellite data** (NASA / NOAA) for large-scale context.
+- **Environmental signals** aggregated over time.
+
+## AI component
+
+The system uses machine-learning concepts to identify abnormal patterns across these inputs and surface them as early warnings, with a Streamlit dashboard for human review.
+
+## Prototype stack
+
+Python for data and modeling, Streamlit for the interface, n8n for automation, and Supabase for storage and alerts.
+
+<Callout type="info" title="Status">
+Prototype / hackathon concept. Strong real-world problem; built to explore the data-engineering and alerting path end to end.
+</Callout>

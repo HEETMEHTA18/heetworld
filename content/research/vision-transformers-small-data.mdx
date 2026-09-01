@@ -1,0 +1,38 @@
+export const metadata = {
+  slug: "vision-transformers-small-data",
+  title: "Paper notes: vision transformers on small datasets",
+  description:
+    "My running notes on why ViTs struggle with limited data and what inductive biases (CNN teachers, distillation, augmentation) recover.",
+  date: "2025-05-09",
+  area: "Computer Vision",
+  tags: ["Vision Transformers", "Papers", "PyTorch"],
+  readingMinutes: 7,
+  published: true,
+};
+
+# Vision transformers on small datasets
+
+Transformers dominate language. In vision they win at scale — and struggle in the regime most practitioners actually live in: a few thousand images.
+
+## The core tension
+
+A ViT has no built-in prior about locality. On ImageNet-scale data, that freedom is a feature. On a small dataset it's a liability: the model overfits positional patterns instead of learning features.
+
+## What the literature converges on
+
+Reading across the key papers, three fixes recur:
+
+1. **Distillation from a CNN teacher.** Give the ViT a strong inductive-bias teacher and let it learn spatial priors indirectly. The distilled variants beat plain ViTs at equal data with a fraction of the compute.
+2. **Stronger augmentation.** Small-data training is a data problem; mixup, cutmix, and aggressive crop schedules matter more than any architectural tweak.
+3. **Hybrid stems.** Starting with a convolutional patch stem reduces the "token poverty" problem — the model learns useful features before it ever sees the transformer blocks.
+
+## My takeaway for my own CV work
+
+For Retail Shelf Intelligence I defaulted to a YOLO-family CNN, not because transformers are worse, but because the *data regime* justified the prior. The lesson generalises: **match the architecture to the data budget, not to the benchmark leaderboard.**
+
+## Open threads
+
+- When does a small fine-tune of a huge pretrained ViT beat a CNN trained from scratch?
+- How do strong augmentations interact with annotation noise (my labelling notes suggest they don't help mislabelled data)?
+
+I'll keep this note updated as I work through the related-work graph.

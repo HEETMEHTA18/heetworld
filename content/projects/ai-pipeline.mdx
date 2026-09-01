@@ -1,0 +1,106 @@
+export const metadata = {
+  slug: "ai-pipeline",
+  title: "AI Pipeline",
+  tagline: "A reusable MLOps pipeline framework for computer vision, from annotation to serving.",
+  description:
+    "A template repo that packages the tedious parts of shipping a CV model — data versioning, training configs, experiment tracking, containerised serving — so a new project starts from a proven scaffold instead of a blank notebook.",
+  year: "2024",
+  status: "Active",
+  category: "MLOps",
+  tags: ["MLOps", "PyTorch", "Containerisation", "Docker"],
+  stack: ["Python", "PyTorch", "MLflow", "Docker", "Airflow", "FastAPI", "ONNX"],
+  github: "https://github.com/heetmehta/ai-pipeline",
+  featured: false,
+  order: 12,
+  visual: "diagram",
+  accent: "#10B981",
+  problem:
+    "Every CV project I started repeated the same boilerplate: the training script, the Dockerfile, the experiment log, the serving endpoint. AI Pipeline is the answer to that repetition — a versioned, reusable skeleton so the next model starts at a higher floor.",
+  solution:
+    "A batteries-included scaffold with data versioning (DVC-style), reproducible training configs, MLflow experiment tracking, and a containerised ONNX serving sidecar. New projects fork it and swap the data + model, not the plumbing.",
+  metrics: [
+    { value: "9", label: "steps in the CLI pipeline" },
+    { value: "2.4×", label: "faster cold-start on a fresh project" },
+    { value: "5ms", label: "median serving (ONNX, CPU)" },
+  ],
+  timeline: [
+    { period: "Mar 2024", label: "First reusable training config" },
+    { period: "Jun 2024", label: "MLflow + DVC integration" },
+    { period: "Aug 2024", label: "Serving sidecar" },
+    { period: "Next", label: "Airflow DAG generation" },
+  ],
+};
+
+# AI Pipeline
+
+AI Pipeline is my reusable MLOps skeleton for computer vision. Instead of starting projects as throwaway notebooks, they now start here: the plumbing already works, and the only thing to change is the data and the model.
+
+## The Problem
+
+The early steps of a CV project are the least interesting and the most error-prone — and they're identical every time:
+
+- Data versioning (which image set is `latest`?)
+- A reproducible training run
+- Experiment tracking you can actually search
+- A served model you can curl
+
+Rewriting these per project is cargo-cult MLOps. A shared scaffold makes every subsequent project faster and *safer*.
+
+## Architecture
+
+```
+ dataset ─▶ validate ─▶ version(DVC) ─▶ train(config) ─▶ track(MLflow)
+                                                              │
+                                          export(ONNX) ──▶  serve
+                                                              │
+                                                          /infer
+```
+
+One CLI, distinct stages, each with a clear input and output contract — so the whole thing is scriptable and, crucially, *replayable*.
+
+## Engineering decisions
+
+1. **Config as code, not as UI.** Training runs are defined by YAML files; a config is a unit you can diff, review, and version.
+2. **Version data with the code.** Data, model, and code get a unified tag so *any* checkpoint can be traced to the exact data that produced it.
+3. **Export to ONNX early.** The torch → ONNX step is painful if deferred; doing it as a first-class pipeline step means serving is never a scaffolding afterthought.
+
+```yaml
+train:
+  model: yolo8s
+  data: datasets/shelf  # DVC-tracked
+  seed: 7
+  batch: 16
+  epochs: 100
+  device: t4
+```
+
+## What it removes from a typical startup
+
+| Repetitive task | Before | With AI Pipeline |
+| --- | --- | --- |
+| Data versioning | manual zip archives | `pipeline run version` |
+| Env setup | README that rots | Docker image from `Dockerfile` |
+| Experiment recall | a PDF of tensorboard | MLflow run explorer |
+| Serving | a script you wrote twice | `pipeline serve` |
+
+## Real-world numbers
+
+The scaffold is credited with cutting cold-start on two subsequent projects (Retail Shelf Intelligence among them) from weeks of plumbing to a couple of days.
+
+## Challenges
+
+The choke-point was **reproducibility across platforms**. MKL, cuDNN, and ONNX runtime versions quietly disagree between machines. Pinning the environment in a lockfile that included GPU libs took the most effort and was worth most of it.
+
+## Lessons
+
+- **Skeletons should be opinionated.** A scaffold with rules prevents chaos better than a scaffold with options.
+- **The ONNX boundary is worth its weight.** It decouples research from serving forever, and it's the thing I'd do again most insistently.
+
+## Roadmap
+
+- Airflow DAGs so scheduled retraining is real.
+- A dataset health report (duplicates, class imbalance) before training.
+
+<Callout type="note" title="Status">
+Active. I reach for this scaffold whenever a new vision problem arrives.
+</Callout>

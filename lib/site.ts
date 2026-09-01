@@ -1,0 +1,38 @@
+export const site = {
+  name: "Heet Mehta",
+  initials: "HEET",
+  title: "AI / ML · Software · Experiments",
+  shortTitle: "Heet Mehta",
+  description:
+    "Computer engineering student building intelligent systems, developer tools, and machine learning products. I think in systems, ship in public, and write about what I learn.",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://heetworld.tech",
+  worldUrl: process.env.NEXT_PUBLIC_WORLD_URL ?? "https://world.heetworld.tech",
+  locale: "en_US",
+  location: "India",
+  email: "heet@heetmehta.dev",
+  twitter: "@heetmehta",
+  author: {
+    name: "Heet Mehta",
+    rss: "/rss.xml",
+  },
+  socials: {
+    github: "https://github.com/heetmehta",
+    linkedin: "https://linkedin.com/in/heetmehta",
+    twitter: "https://x.com/heetmehta",
+    email: "mailto:hello@heetmehta.dev",
+  },
+} as const;
+
+export const NAV_LINKS = [
+  { href: "/projects", label: "Work" },
+  { href: site.worldUrl, label: "World" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+] as const;
+
+export const FOOTER_LINKS = [
+  { href: "/skills", label: "Stack" },
+  { href: "/now", label: "Now" },
+  { href: "/resume", label: "Resume" },
+  { href: "/uses", label: "Uses" },
+] as const;

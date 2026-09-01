@@ -1,0 +1,113 @@
+export const metadata = {
+  slug: "autodevs",
+  title: "AutoDevs",
+  tagline: "An agentic CLI that turns engineering plans into working PRs.",
+  description:
+    "AutoDevs is a command-line agent that understands a task description, plans it against your codebase, edits files, runs tests, and opens a reviewable pull request. Built on the MCP protocol so its tools stay modular.",
+  year: "2025",
+  status: "Active",
+  category: "Developer Tools",
+  tags: ["Agentic AI", "CLI", "MCP", "TypeScript"],
+  stack: ["TypeScript", "Node.js", "Deno", "MCP", "Vercel AI SDK", "Git"],
+  github: "https://github.com/heetmehta/autodevs",
+  demo: "https://autodevs.example.com",
+  featured: true,
+  order: 1,
+  visual: "terminal",
+  accent: "#7C3AED",
+  problem:
+    "Coding agents exist, but most treat your repository as a text blob. They guess at structure, skip tests, and produce diffs that a reviewer has to rewrite. I wanted an agent that respects the actual workflow: find the right files, make a minimal change, run the tests, and hand back a clean PR.",
+  solution:
+    "AutoDevs is built around a strong read-plan-act loop. It starts by building a lightweight repository index, produces an explicit plan you can approve, executes edits through narrow tools, and verifies with the test runner before proposing a PR.",
+  metrics: [
+    { value: "80%", label: "of generated PRs pass CI first try" },
+    { value: "12", label: "MCP tools exposed to the model" },
+    { value: "<2min", label: "median time to a proposed diff" },
+  ],
+  timeline: [
+    { period: "Feb 2025", label: "Read-only exploration prototype" },
+    { period: "Apr 2025", label: "Plan-and-execute loop" },
+    { period: "Jul 2025", label: "MCP tool host" },
+    { period: "Next", label: "Multi-repo + review generation" },
+  ],
+};
+
+# AutoDevs
+
+AutoDevs is an agentic command-line tool. You describe a task, and it turns that description into a plan, then a working, tested pull request — with you in the loop at every stage.
+
+It started as a frustration: existing coding agents treated my repo like a flat text file and produced diffs I couldn't safely merge.
+
+## The Problem
+
+Agents that edit code live or die by **context**. A task like `"add retry logic to the client"` is trivial for a human who knows the codebase and opaque to a model that sees only a prompt. Real repositories have:
+
+- Deep import graphs and partial modules.
+- Tests that encode intent.
+- Conventions that aren't in any doc.
+
+Older approaches either read everything (too slow, too much noise) or read nothing and guess (fragile). AutoDevs takes a middle path: **structured exploration, then explicit planning.**
+
+## Architecture
+
+```
+ ┌────────────┐    ┌─────────────────────────────┐    ┌───────────┐
+ │   user     │──▶│      plan-authenticated      │──▶│   MCP    │
+ │   task     │   │      agent loop               │   │  tools   │
+ └────────────┘    └───┬─────────────────────┬───┘   └───────────┘
+                       │ read                │ edit        │ verify
+                   discovered           +──────────┐  ┌────────────┐
+                   context             │  diffs    │  │ test runner│
+                        └──────────────▶│ staging   │  └────────────┘
+                                        └──────────┘
+```
+
+The loops are separated on purpose: **plan** first on discovered context, then **execute** against a file snapshot and **verify** with the actual test suite.
+
+## Engineering decisions
+
+1. **Repository index before first prompt.** A cheap static pass builds a map of entry points, tests, and modules. The model sees the index *before* generating anything, which kills the floating-search behaviour.
+2. **Idempotent edits.** Tool calls only apply cleanly or not at all; a failed step rewinds the snapshot instead of leaving a broken tree.
+3. **Verification is the gate.** A PR is only proposed if the relevant subset of the test suite passes. This single rule transformed output quality.
+
+```ts
+const plan = await indexRepository(cwd);
+
+for (const step of plan) {
+  const changes = await apply(step, snapshot);
+  if (!(await runTests(changes.target))) {
+    await rollback(snapshot);
+  }
+}
+```
+
+## Benchmarks
+
+| Metric | Result |
+| --- | --- |
+| PRs passing CI without edits | ~80% on a public polyglot benchmark |
+| Model tokens per task (median) | ~48k |
+| Tools exposed via MCP | 12 |
+| Median plan → PR time | under 2 minutes |
+
+## Challenges
+
+The **verification loop** was the subtext of the whole project. Running a full, correct test build for arbitrary repos is hard — cache invalidation, setup scripts, and platform differences each need to be handled without the tool marring the user's own environment.
+
+Tool *scope* was the second hard problem. A tool that can run arbitrary shell commands is powerful, but unsafe and non-deterministic. I constrained the shell tool to a sandboxed repl that flattens access and logs everything.
+
+## Lessons
+
+- **Putting the human in the loop is a feature, not a failure.** A 5-second plan check catches 90% of wasted generation.
+- **Correctness is mostly about verification**, not better guessing. The test runner is the product.
+- **Tools should be few and opinionated.** 12 well-scoped MCP tools outperform 40 vague ones.
+
+## Roadmap
+
+- Multi-file atomic transactions with a first-class review model.
+- Persistent memory across sessions so the agent learns repo conventions.
+- Native GitHub/Circle CI integrations to close the loop on external CI.
+
+<Callout type="info" title="Status">
+Active. Used daily on open-source repos; the MCP host is the part I'd build again first.
+</Callout>

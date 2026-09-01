@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" width="400" height="225" preserveAspectRatio="xMidYMid slice" role="img">
+    <defs>
+      <linearGradient id="sky-a08" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#08203a"/>
+        <stop offset="100%" stop-color="#3f86c4" stop-opacity="0.55"/>
+      </linearGradient>
+      <filter id="grain-a08">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="8" stitchTiles="stitch" result="n"/>
+        <feColorMatrix in="n" type="saturate" values="0"/>
+        <feComponentTransfer><feFuncA type="discrete" tableValues="0 0.35 0.7 1"/></feComponentTransfer>
+      </filter>
+      <pattern id="dots-a08" width="3" height="3" patternUnits="userSpaceOnUse">
+        <circle cx="1.5" cy="1.5" r="0.7" fill="#bfe0ff" opacity="0.5"/>
+      </pattern>
+      
+    </defs>
+    <rect width="400" height="225" fill="url(#sky-a08)"/>
+    <circle cx="120" cy="90" r="30" fill="#bfe0ff" opacity="0.9"/>
+    
+    <polygon points="0,225 0,121.5 80.0,127.0 160.0,131.6 240.0,125.4 320.0,125.3 400,114.5 400,225" fill="#3f86c4"/><polygon points="0,225 0,108.1 57.1,98.1 114.3,101.8 171.4,96.6 228.6,114.1 285.7,121.7 342.9,116.7 400,112.1 400,225" fill="#1d4f80"/>
+    <g fill="#0a1730"><path d="M 200 72 q 18 30 0 70 q -18 -40 0 -70 Z"/><rect x="178" y="112.5" width="44" height="34" fill="#bfe0ff" opacity="0.5"/><path d="M 182 139.5 l -14 26 l 14 -8 Z"/><path d="M 218 139.5 l 14 26 l -14 -8 Z"/></g>
+    
+    
+    
+    <rect width="400" height="225" filter="url(#grain-a08)" opacity="0.22" style="mix-blend-mode:overlay"/>
+    <rect width="400" height="225" fill="url(#dots-a08)" opacity="0.06" style="mix-blend-mode:soft-light"/>
+    <rect width="400" height="225" fill="none" stroke="#0a1730" stroke-opacity="0.15"/></svg>

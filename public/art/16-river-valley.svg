@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" width="400" height="225" preserveAspectRatio="xMidYMid slice" role="img">
+    <defs>
+      <linearGradient id="sky-a16" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#08203a"/>
+        <stop offset="100%" stop-color="#3f86c4" stop-opacity="0.55"/>
+      </linearGradient>
+      <filter id="grain-a16">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="16" stitchTiles="stitch" result="n"/>
+        <feColorMatrix in="n" type="saturate" values="0"/>
+        <feComponentTransfer><feFuncA type="discrete" tableValues="0 0.35 0.7 1"/></feComponentTransfer>
+      </filter>
+      <pattern id="dots-a16" width="3" height="3" patternUnits="userSpaceOnUse">
+        <circle cx="1.5" cy="1.5" r="0.7" fill="#bfe0ff" opacity="0.5"/>
+      </pattern>
+      
+    </defs>
+    <rect width="400" height="225" fill="url(#sky-a16)"/>
+    <circle cx="300" cy="80" r="26" fill="#bfe0ff" opacity="0.9"/>
+    
+    <polygon points="0,225 0,122.3 80.0,140.4 160.0,138.0 240.0,136.4 320.0,139.6 400,139.7 400,225" fill="#3f86c4"/><polygon points="0,225 0,117.3 57.1,127.5 114.3,106.8 171.4,101.1 228.6,106.7 285.7,121.0 342.9,96.7 400,118.4 400,225" fill="#1d4f80"/><polygon points="0,225 0,84.1 44.4,98.1 88.9,79.9 133.3,100.5 177.8,109.4 222.2,105.0 266.7,101.3 311.1,67.3 355.6,65.3 400,90.3 400,225" fill="#0a1730"/><polygon points="0,225 0,76.2 36.4,39.8 72.7,97.2 109.1,77.1 145.5,102.3 181.8,60.7 218.2,35.2 254.5,34.0 290.9,76.3 327.3,74.9 363.6,78.1 400,48.4 400,225" fill="#06121f"/>
+    
+    <g opacity="0.55"><rect x="0" y="139.5" width="400" height="85.5" fill="#06121f"/><g transform="translate(0,279) scale(1,-1)" opacity="0.6"><polygon points="0,225 0,122.3 80.0,140.4 160.0,138.0 240.0,136.4 320.0,139.6 400,139.7 400,225" fill="#3f86c4"/><polygon points="0,225 0,117.3 57.1,127.5 114.3,106.8 171.4,101.1 228.6,106.7 285.7,121.0 342.9,96.7 400,118.4 400,225" fill="#1d4f80"/><polygon points="0,225 0,84.1 44.4,98.1 88.9,79.9 133.3,100.5 177.8,109.4 222.2,105.0 266.7,101.3 311.1,67.3 355.6,65.3 400,90.3 400,225" fill="#0a1730"/><polygon points="0,225 0,76.2 36.4,39.8 72.7,97.2 109.1,77.1 145.5,102.3 181.8,60.7 218.2,35.2 254.5,34.0 290.9,76.3 327.3,74.9 363.6,78.1 400,48.4 400,225" fill="#06121f"/></g><line x1="0" y1="153.5" x2="400" y2="153.5" stroke="#bfe0ff" stroke-width="0.6" opacity="0.25"/><line x1="0" y1="169.5" x2="400" y2="169.5" stroke="#bfe0ff" stroke-width="0.6" opacity="0.25"/><line x1="0" y1="185.5" x2="400" y2="185.5" stroke="#bfe0ff" stroke-width="0.6" opacity="0.25"/><line x1="0" y1="201.5" x2="400" y2="201.5" stroke="#bfe0ff" stroke-width="0.6" opacity="0.25"/></g>
+    
+    <path d="M 257.73529287427664 51.92546046350617 q 4.420023369183763 -3.6833528076531366 8.840046738367526 0 q 4.420023369183763 -3.6833528076531366 8.840046738367526 0" fill="none" stroke="#0a1730" stroke-width="1.4" stroke-linecap="round" opacity="0.8"/><path d="M 73.48734836094081 62.62201627378818 q 8.351030662469565 -6.959192218724638 16.70206132493913 0 q 8.351030662469565 -6.959192218724638 16.70206132493913 0" fill="none" stroke="#0a1730" stroke-width="1.4" stroke-linecap="round" opacity="0.8"/>
+    <rect width="400" height="225" filter="url(#grain-a16)" opacity="0.22" style="mix-blend-mode:overlay"/>
+    <rect width="400" height="225" fill="url(#dots-a16)" opacity="0.06" style="mix-blend-mode:soft-light"/>
+    <rect width="400" height="225" fill="none" stroke="#0a1730" stroke-opacity="0.15"/></svg>
