@@ -39,7 +39,7 @@ export default async function HomePage() {
 
             <Reveal delay={0.08}>
               <h1 className="mt-6 text-4xl font-medium tracking-[-0.06em] text-foreground sm:text-6xl">
-                hi, i&apos;m <span className="text-muted-foreground">heet.</span>
+                hi, i&apos;m <span className="text-muted-foreground">heet mehta.</span>
               </h1>
             </Reveal>
 

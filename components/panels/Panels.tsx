@@ -116,7 +116,7 @@ export default function Panels() {
                 </div>
                 <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
                   <a
-                    href="/Heet_Mehta_Resume.pdf"
+                    href="/resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#D4A017]/30 hover:border-[#D4A017] text-xs font-mono text-[#D4A017] transition-all hover:bg-[#D4A017]/10 hover:shadow-[0_0_15px_rgba(212,160,23,0.15)]"
@@ -548,7 +548,7 @@ function TownHallPanel() {
     <div className="space-y-6">
       <motion.div variants={fadeUp} className="flex gap-4">
         <a
-          href="/Heet_Mehta_Resume.pdf"
+          href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 flex items-center justify-center gap-2 px-5 py-3.5 bg-[#D4A017] hover:bg-[#B88714] text-[#1C1A14] font-bold rounded-xl transition-all text-sm font-mono shadow-md hover:shadow-[0_4px_20px_rgba(212,160,23,0.3)] hover:scale-[1.02] active:scale-[0.98]"

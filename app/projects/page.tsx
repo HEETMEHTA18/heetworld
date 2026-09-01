@@ -4,6 +4,7 @@ import { getAllProjects } from "@/lib/content";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
+import { WorkGallery } from "@/components/work-gallery";
 
 export const metadata = {
   title: "Projects",
@@ -112,6 +113,22 @@ export default async function ProjectsPage() {
               </div>
             );
           })}
+        </div>
+
+        {/* Selected work visuals */}
+        <div className="mt-16 border-t border-border pt-10">
+          <Reveal>
+            <div className="mb-8">
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                selected work visuals
+              </p>
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+                A look at the work in progress — prototypes, experiments, and
+                systems at various stages of being built.
+              </p>
+            </div>
+          </Reveal>
+          <WorkGallery />
         </div>
       </Container>
     </>

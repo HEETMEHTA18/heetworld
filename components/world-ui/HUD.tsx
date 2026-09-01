@@ -467,7 +467,7 @@ export default function HUD() {
               </button>
 
               <a
-                href="/Heet_Mehta_Resume.pdf"
+                href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`bg-black/40 backdrop-blur-md px-2 sm:px-4 py-1.5 sm:py-2.5 rounded-xl border border-[#D4A017]/30 hover:border-[#D4A017] transition-all text-[#D4A017] flex items-center gap-1 sm:gap-2 font-mono ${isMobile ? "text-[8px]" : "text-xs"} shadow-[0_0_15px_rgba(212,160,23,0.1)] hover:shadow-[0_0_20px_rgba(212,160,23,0.3)]`}
