@@ -70,13 +70,14 @@ export function Navbar() {
             className="relative z-10 hidden items-center gap-0 lg:flex"
           >
             {NAV_LINKS.map((link) => {
-              const isExternal = link.href.startsWith("http");
+              const external = link.href.startsWith("http");
+              const openNewTab = external && !link.sameTab;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  target={isExternal ? "_blank" : undefined}
-                  rel={isExternal ? "noreferrer" : undefined}
+                  target={openNewTab ? "_blank" : undefined}
+                  rel={openNewTab ? "noreferrer" : undefined}
                   className={cn(
                     "link-underline inline-flex items-center gap-1 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.15em] transition-colors",
                     isActivePath(pathname, link.href)
@@ -84,9 +85,9 @@ export function Navbar() {
                       : "text-muted-foreground hover:text-foreground"
                   )}
                 >
-                  {isExternal && <Globe className="h-3 w-3 text-accent" />}
+                  {openNewTab && <Globe className="h-3 w-3 text-accent" />}
                   <span>{link.label}</span>
-                  {isExternal && <ArrowUpRight className="h-3 w-3 opacity-70" />}
+                  {openNewTab && <ArrowUpRight className="h-3 w-3 opacity-70" />}
                 </Link>
               );
             })}
@@ -119,7 +120,8 @@ export function Navbar() {
               className="flex flex-1 flex-col gap-0 px-6 pt-20"
             >
               {NAV_LINKS.map((link, i) => {
-                const isExternal = link.href.startsWith("http");
+                const external = link.href.startsWith("http");
+                const openNewTab = external && !link.sameTab;
                 return (
                   <motion.div
                     key={link.href}
@@ -130,8 +132,8 @@ export function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      target={isExternal ? "_blank" : undefined}
-                      rel={isExternal ? "noreferrer" : undefined}
+                      target={openNewTab ? "_blank" : undefined}
+                      rel={openNewTab ? "noreferrer" : undefined}
                       className={cn(
                         "flex items-center justify-between border-b border-border py-4 font-mono text-sm uppercase tracking-[0.15em] transition-colors",
                         isActivePath(pathname, link.href)

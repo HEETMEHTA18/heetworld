@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import {
   GitHubIcon,
@@ -15,6 +16,20 @@ export function Footer() {
 
   return (
     <footer className="relative mt-6 overflow-hidden">
+      {/* Background image */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <Image
+          src="/images/projects/daniel-gomez-eKegp5f2PPk-unsplash.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          loading="lazy"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-background/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+      </div>
+
       {/* Subtle gradient texture */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute inset-0 bg-gradient-to-b from-accent-soft via-transparent to-transparent opacity-60" />

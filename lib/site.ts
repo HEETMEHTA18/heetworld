@@ -23,12 +23,18 @@ export const site = {
   },
 } as const;
 
-export const NAV_LINKS = [
+export type NavLink = {
+  href: string;
+  label: string;
+  sameTab?: boolean;
+};
+
+export const NAV_LINKS: NavLink[] = [
   { href: "/projects", label: "Work" },
-  { href: "/world", label: "World" },
+  { href: site.worldUrl, label: "World", sameTab: true },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
-] as const;
+];
 
 export const FOOTER_LINKS = [
   { href: "/skills", label: "Stack" },
