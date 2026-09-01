@@ -1,10 +1,8 @@
-import { Briefcase, GraduationCap, BookOpen, Compass, Clock, Music2, type LucideIcon } from "lucide-react";
+import { Briefcase, GraduationCap, BookOpen, Compass, Clock, type LucideIcon } from "lucide-react";
 import { now } from "@/content/data/now";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
-import { SpotifyEmbed } from "@/components/spotify-embed";
-import { site } from "@/lib/site";
 import { formatDate } from "@/lib/utils";
 
 export const metadata = {
@@ -48,27 +46,6 @@ export default function NowPage() {
               <li key={p}>{p}</li>
             ))}
           </NowSection>
-        </div>
-
-        <div className="mt-14 border-t border-border pt-10">
-          <Reveal>
-            <div className="flex items-center gap-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-border bg-card text-accent">
-                <Music2 className="h-4 w-4" />
-              </span>
-              <h2 className="font-serif text-2xl tracking-tight text-foreground">
-                Currently listening
-              </h2>
-            </div>
-            <p className="mt-3 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground">
-              {site.spotify.title} — a recent find, on heavy rotation.
-            </p>
-          </Reveal>
-          <div className="mt-6 max-w-md">
-            <Reveal delay={0.05}>
-              <SpotifyEmbed />
-            </Reveal>
-          </div>
         </div>
       </Container>
     </>

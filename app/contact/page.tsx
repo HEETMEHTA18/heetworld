@@ -1,9 +1,8 @@
-import { MapPin, Send } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
-import { Input, Textarea } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
+import { ContactForm } from "@/app/contact/contact-form";
 import { site } from "@/lib/site";
 import { GitHubIcon, LinkedInIcon, TwitterIcon, MailIcon } from "@/components/icons";
 
@@ -77,36 +76,7 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal delay={0.12}>
-            <form
-              className="grid gap-4"
-              action="https://formspree.io/f/your-form-id"
-              method="POST"
-            >
-              <Input
-                name="name"
-                label="Name"
-                placeholder="Jane Doe"
-                required
-              />
-              <Input
-                name="email"
-                type="email"
-                label="Email"
-                placeholder="jane@example.com"
-                required
-              />
-              <Textarea
-                name="message"
-                label="Message"
-                placeholder="What's this about?"
-                rows={5}
-                required
-              />
-              <Button type="submit" variant="primary" className="inline-flex items-center gap-2 self-start">
-                <span>Send Message</span>
-                <Send className="h-3.5 w-3.5" />
-              </Button>
-            </form>
+            <ContactForm />
           </Reveal>
         </div>
       </Container>

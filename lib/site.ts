@@ -9,17 +9,17 @@ export const site = {
   worldUrl: process.env.NEXT_PUBLIC_WORLD_URL ?? "https://world.heetworld.tech",
   locale: "en_US",
   location: "India",
-  email: "heet@heetmehta.dev",
+  email: "explore@heetworld.tech",
   twitter: "@heetmehta",
   author: {
     name: "Heet Mehta",
     rss: "/rss.xml",
   },
   socials: {
-    github: "https://github.com/heetmehta",
+    github: "https://github.com/heetmehta18",
     linkedin: "https://linkedin.com/in/heetmehta",
     twitter: "https://x.com/heetmehta",
-    email: "mailto:hello@heetmehta.dev",
+    email: "mailto:explore@heetworld.tech",
   },
   spotify: {
     track: "https://open.spotify.com/track/0q4442eIt44kTWEhkoTlh8",
