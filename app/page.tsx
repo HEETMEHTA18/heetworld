@@ -48,7 +48,7 @@ export default async function HomePage() {
           <div className="max-w-3xl">
             <Reveal>
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                {site.location} · computer engineering · 2026
+                {site.location} · computer engineering
               </p>
             </Reveal>
 
