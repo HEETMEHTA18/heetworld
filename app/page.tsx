@@ -1,9 +1,10 @@
 import Link from "next/link";
 
 import { site } from "@/lib/site";
-import { getFeaturedProjects, getAllArticles, getAllResearchNotes } from "@/lib/content";
+import { getAllProjects, getAllArticles, getAllResearchNotes } from "@/lib/content";
 import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
+import { ProjectScroll } from "@/components/project-scroll";
 
 const journey = [
   ["01", "Started with electronics, IoT, and the joy of making things move."],
@@ -13,8 +14,8 @@ const journey = [
 ];
 
 export default async function HomePage() {
-  const [projects, articles, research] = await Promise.all([
-    getFeaturedProjects(),
+  const [allProjects, articles, research] = await Promise.all([
+    getAllProjects(),
     getAllArticles(),
     getAllResearchNotes(),
   ]);
@@ -100,39 +101,7 @@ export default async function HomePage() {
             </Reveal>
           </div>
 
-          <div className="space-y-1">
-            {projects.slice(0, 5).map((project, index) => (
-              <Reveal key={project.slug} delay={index * 0.04}>
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="group flex flex-col gap-2 border-b border-border py-4 transition-colors hover:border-foreground/30 sm:flex-row sm:items-end sm:justify-between"
-                >
-                  <div className="flex items-start gap-4">
-                    <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <h2 className="text-xl font-medium text-foreground sm:text-2xl">
-                        {project.metadata.title}
-                      </h2>
-                      <p className="mt-1 text-base text-muted-foreground">
-                        {project.metadata.tagline}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 sm:gap-6">
-                    <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                      {project.metadata.tags.slice(0, 2).join(" / ")}
-                    </span>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                      {project.metadata.year} ↗
-                    </span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+          <ProjectScroll projects={allProjects.map((p) => p.metadata)} />
         </Container>
       </section>
 
