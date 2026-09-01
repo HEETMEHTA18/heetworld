@@ -22,9 +22,9 @@ export const experience: ExperienceItem[] = [
     org: "Applied AI Lab",
     type: "Internship",
     description:
-      "Worked on production computer vision and LLM infrastructure — the first time my code ran in front of real users.",
+      "Worked on production ML and LLM infrastructure — the first time my code ran in front of real users.",
     bullets: [
-      "Built an internal MLOps pipeline for a CV product",
+      "Built an internal MLOps pipeline for a production product",
       "Cut model-serving cold-start by packaging with ONNX",
       "Wrote evaluation harnesses used in release sign-off",
     ],
@@ -35,6 +35,7 @@ export const experience: ExperienceItem[] = [
     role: "Computer Vision Researcher",
     org: "Retail Shelf Intelligence",
     type: "Research",
+    legacy: true,
     description:
       "Independently researched and built a shelf-monitoring system, from dataset creation to deployment, and wrote up the findings.",
     bullets: [

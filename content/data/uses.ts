@@ -14,7 +14,7 @@ export const usesCategoriesData: UsesCategory[] = [
     command: "display(stack.hardware)  # Hardware",
     items: [
       { name: "Laptop", detail: "Daily driver for development, ML experiments, research, and general work" },
-      { name: "NVIDIA RTX 4050 Max-Q", detail: "~6 GB VRAM — local ML inference, computer vision, and model experimentation" },
+      { name: "NVIDIA RTX 4050 Max-Q", detail: "~6 GB VRAM — local ML inference and model experimentation" },
       { name: "External monitor", detail: "Used when working with multiple terminals, notebooks, documentation, and development tools" },
       { name: "Mechanical keyboard", detail: "Daily typing and development" },
       { name: "Mouse", detail: "Daily development and general use" },
@@ -64,7 +64,6 @@ export const usesCategoriesData: UsesCategory[] = [
       { name: "LLMs", detail: "Experimenting with different models, APIs, and local inference" },
       { name: "Local inference", detail: "NVIDIA GPU for experimenting with models locally" },
       { name: "AI APIs", detail: "Used when a hosted model makes more sense than local inference" },
-      { name: "Computer Vision", detail: "Image and vision experiments using local GPU resources" },
     ],
   },
   {
@@ -137,7 +136,7 @@ export const usesCategoriesData: UsesCategory[] = [
       { name: "LLM applications", detail: "Context-aware systems" },
       { name: "Developer tools", detail: "Productivity & automation" },
       { name: "Automation", detail: "Workflows & pipelines" },
-      { name: "Computer vision", detail: "Image processing & inference" },
+      { name: "NLP systems", detail: "Language models & text processing" },
       { name: "Open-source projects", detail: "Community contributions" },
       { name: "Web applications", detail: "Editorial & web apps" },
       { name: "Technical experiments", detail: "Hands-on prototypes" },

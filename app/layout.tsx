@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "AI Engineer",
     "ML Engineer",
     "Machine Learning",
-    "Computer Vision",
+    "Natural Language Processing",
     "LLM",
     "Agentic AI",
     "Open Source",

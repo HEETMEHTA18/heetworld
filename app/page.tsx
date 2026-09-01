@@ -11,21 +11,25 @@ import { ProjectShowcase } from "@/components/project-scroll";
 const journey = [
   ["01", "Started with electronics, IoT, and the joy of making things move."],
   ["02", "Found web development, then learned to care about the systems underneath."],
-  ["03", "Moved into machine learning, computer vision, and practical AI applications."],
+  ["03", "Moved into machine learning, natural language processing, and practical AI applications."],
   ["now", "Building local-first tools and AI systems that feel useful, clear, and human."],
 ];
 
 export default async function HomePage() {
-  const [allProjects, articles, research] = await Promise.all([
+  const [allProjects, allArticles, allResearch] = await Promise.all([
     getAllProjects(),
     getAllArticles(),
     getAllResearchNotes(),
   ]);
 
+  const projects = allProjects.filter((p) => !p.metadata.legacy);
+  const articles = allArticles.filter((a) => !a.metadata.legacy);
+  const research = allResearch.filter((n) => !n.metadata.legacy);
+
   const currentFocus = [
+    "NLP",
     "AI systems",
     "machine learning",
-    "automation",
     "developer tooling",
   ];
 
@@ -108,7 +112,7 @@ export default async function HomePage() {
                 </h2>
                 <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
                   Each project is a problem turned into software — AI assistants,
-                  developer tools, and computer vision systems, with an
+                  developer tools, and NLP systems, with an
                   architecture write-up.
                 </p>
               </div>
@@ -121,7 +125,7 @@ export default async function HomePage() {
             </div>
           </Reveal>
 
-          <ProjectShowcase projects={allProjects.map((p) => p.metadata)} />
+          <ProjectShowcase projects={projects.map((p) => p.metadata)} />
         </Container>
       </section>
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { about } from "@/content/data/about";
 import { experience } from "@/content/data/experience";
@@ -14,10 +15,11 @@ export const metadata = {
 };
 
 const focus = [
-  { id: "01", label: "Machine Learning", detail: "supervised learning · deep learning · computer vision" },
+  { id: "01", label: "Machine Learning", detail: "supervised learning · deep learning · transformers" },
   { id: "02", label: "LLM Systems", detail: "RAG · agents · fine-tuning · inference" },
-  { id: "03", label: "Developer Tools", detail: "MCP · CLI · AI coding workflows" },
-  { id: "04", label: "Product Engineering", detail: "React · Node.js · Firebase · full-stack systems" },
+  { id: "03", label: "NLP", detail: "tokenization · embeddings · retrieval · language models" },
+  { id: "04", label: "Developer Tools", detail: "MCP · CLI · AI coding workflows" },
+  { id: "05", label: "Product Engineering", detail: "React · Node.js · Firebase · full-stack systems" },
 ];
 
 const principles = [
@@ -38,6 +40,21 @@ export default function AboutPage() {
       />
 
       <Container className="py-12 sm:py-16">
+        {/* Banner */}
+        <Reveal>
+          <div className="mb-14 overflow-hidden rounded-2xl border border-border bg-card shadow-card">
+            <Image
+              src="/images/Blue Modern Motivational LinkedIn Banner (1).png"
+              alt="Personal banner — Heet Mehta, NLP engineer and builder"
+              width={2000}
+              height={600}
+              priority
+              sizes="(max-width: 640px) 100vw, 672px"
+              className="h-auto w-full object-cover"
+            />
+          </div>
+        </Reveal>
+
         {/* Introduction */}
         <div className="max-w-2xl">
           {about.slice(0, 3).map((section, i) => (
@@ -173,7 +190,10 @@ export default function AboutPage() {
           <div className="mt-4 h-px w-full bg-border" />
 
           <div className="mt-6 space-y-4">
-            {experience.slice(0, 3).map((item, i) => (
+            {experience
+              .filter((item) => !item.legacy)
+              .slice(0, 3)
+              .map((item, i) => (
               <div key={`${item.org}-${i}`} className="flex items-start gap-4 sm:gap-6">
                 <span className="min-w-[100px] font-mono text-[11px] text-muted-foreground">
                   {item.period}

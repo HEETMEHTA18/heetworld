@@ -5,6 +5,7 @@ export type ProjectMeta = {
   description: string;
   year: string;
   status: "Active" | "In Progress" | "Archived";
+  legacy?: boolean;
   category: string;
   tags: string[];
   stack: string[];
@@ -30,6 +31,7 @@ export type ArticleMeta = {
   readingMinutes?: number;
   published?: boolean;
   draft?: boolean;
+  legacy?: boolean;
 };
 
 export type ResearchNoteMeta = {
@@ -40,6 +42,7 @@ export type ResearchNoteMeta = {
   area: string;
   tags: string[];
   readingMinutes?: number;
+  legacy?: boolean;
 };
 
 export type ExperienceItem = {
@@ -51,6 +54,7 @@ export type ExperienceItem = {
   bullets: string[];
   tags: string[];
   link?: string;
+  legacy?: boolean;
 };
 
 export type Photo = {

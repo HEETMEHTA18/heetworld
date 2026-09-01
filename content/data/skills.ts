@@ -45,9 +45,7 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "TensorFlow", proficiency: "Intermediate" },
       { name: "Scikit-learn", proficiency: "Fluent" },
-      { name: "OpenCV", proficiency: "Fluent" },
       { name: "Neural Networks", proficiency: "Intermediate" },
-      { name: "Computer Vision", proficiency: "Fluent" },
       { name: "NLP", proficiency: "Intermediate" },
       { name: "LLM Applications", proficiency: "Fluent" },
       { name: "Embeddings", proficiency: "Intermediate" },
@@ -126,7 +124,6 @@ export const skillGroups: SkillGroup[] = [
       { name: "GitHub", proficiency: "Fluent" },
       { name: "Hugging Face", proficiency: "Intermediate" },
       { name: "Jupyter", proficiency: "Intermediate" },
-      { name: "OpenCV", proficiency: "Fluent" },
       { name: "Docker", proficiency: "Intermediate" },
       { name: "Flutter", proficiency: "Intermediate" },
       { name: "Firebase", proficiency: "Fluent" },

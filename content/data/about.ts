@@ -65,7 +65,7 @@ export const about: AboutSection[] = [
     label: "My Journey",
     title: "From circuits to intelligence",
     body: [
-      "I started in electronics, IoT, and software development, which gradually evolved into a deeper interest in AI and machine learning. My path has broadly moved through IoT → Web Development → Full-Stack Engineering → AI Applications → Machine Learning → Computer Vision → LLMs & AI Systems → Open Source.",
+      "I started in electronics, IoT, and software development, which gradually evolved into a deeper interest in AI and machine learning. My path has broadly moved through IoT → Web Development → Full-Stack Engineering → AI Applications → Machine Learning → NLP & LLMs → AI Systems → Open Source.",
       "I like understanding systems end-to-end rather than working on a single layer. That means caring about how data is collected and stored, how a model makes predictions, how it's integrated into an application, how the system scales, and how people actually interact with it.",
     ],
   },
@@ -74,7 +74,7 @@ export const about: AboutSection[] = [
     label: "Technical Focus",
     title: "AI & Machine Learning fundamentals",
     body: [
-      "My current focus is building a strong foundation in machine learning: supervised and unsupervised learning, neural networks, TensorFlow, and Scikit-learn, alongside Computer Vision, NLP, large language models, retrieval and question-answering systems, AI agents, LLM pipelines, model inference, and AI-powered developer tools.",
+      "My current focus is building a strong foundation in machine learning, with natural language processing as my chosen domain: supervised and unsupervised learning, neural networks, TensorFlow, and Scikit-learn, alongside NLP, large language models, retrieval and question-answering systems, AI agents, LLM pipelines, model inference, and AI-powered developer tools.",
       "I'm particularly interested in moving beyond simply consuming AI APIs and understanding the complete pipeline: Data → Preprocessing → Model → Training → Evaluation → Inference → Application → Deployment.",
     ],
   },
@@ -84,8 +84,7 @@ export const about: AboutSection[] = [
     title: "What I'm studying now",
     body: [
       "Machine Learning: linear algebra, probability, statistics, optimization, classical algorithms, model evaluation, and feature engineering.",
-      "Deep Learning: neural networks, CNNs, transformers, transfer learning, and representation learning.",
-      "Computer Vision: OpenCV, classification, detection, segmentation, tracking, and vision transformers.",
+      "Deep Learning: neural networks, transformers, transfer learning, and representation learning.",
       "NLP & LLMs: transformers, tokenization, embeddings, retrieval, question answering, RAG, LLM agents, and inference systems.",
       "ML Engineering: data pipelines, experiment tracking, model serving, deployment, monitoring, optimization, and production AI systems.",
     ],
@@ -95,7 +94,7 @@ export const about: AboutSection[] = [
     label: "Where I'm Headed",
     title: "Areas I want to work in",
     body: [
-      "AI / ML Engineering, Computer Vision, LLM Systems, AI Agents, Developer Tools, Open Source, AI Infrastructure, Intelligent IoT, and Real-Time AI Applications.",
+      "AI / ML Engineering, NLP, LLM Systems, AI Agents, Developer Tools, Open Source, AI Infrastructure, Intelligent IoT, and Real-Time AI Applications.",
     ],
   },
 ];
