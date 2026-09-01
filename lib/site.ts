@@ -6,7 +6,7 @@ export const site = {
   description:
     "Computer engineering student building intelligent systems, developer tools, and machine learning products. I think in systems, ship in public, and write about what I learn.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://heetworld.tech",
-  worldUrl: process.env.NEXT_PUBLIC_WORLD_URL ?? "https://world.heetworld.tech",
+  worldUrl: process.env.NEXT_PUBLIC_WORLD_URL ?? "https://explore.heetworld.tech/",
   locale: "en_US",
   location: "India",
   email: "explore@heetworld.tech",
