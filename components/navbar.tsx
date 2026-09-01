@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, Globe } from "lucide-react";
+import { Menu, X, ArrowUpRight, ChevronDown, Globe } from "lucide-react";
 
-import { NAV_LINKS, site } from "@/lib/site";
+import { NAV_LINKS, MORE_LINKS, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -18,6 +18,8 @@ export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -33,6 +35,26 @@ export function Navbar() {
        document.body.style.overflow = "";
     };
   }, [open]);
+
+  useEffect(() => {
+    if (!moreOpen) return;
+    const onPointerDown = (e: MouseEvent | TouchEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMoreOpen(false);
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("touchstart", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("touchstart", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [moreOpen]);
 
   return (
     <>
@@ -91,6 +113,71 @@ export function Navbar() {
                 </Link>
               );
             })}
+
+            {/* More dropdown */}
+            <div ref={moreRef} className="relative">
+              <button
+                type="button"
+                aria-haspopup="menu"
+                aria-expanded={moreOpen}
+                onClick={() => setMoreOpen((v) => !v)}
+                className={cn(
+                  "link-underline inline-flex items-center gap-1 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.15em] transition-colors",
+                  moreOpen || MORE_LINKS.some((l) => isActivePath(pathname, l.href))
+                    ? "is-active text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                <span>More</span>
+                <ChevronDown
+                  className={cn(
+                    "h-3 w-3 transition-transform duration-200",
+                    moreOpen && "rotate-180"
+                  )}
+                />
+              </button>
+
+              <AnimatePresence>
+                {moreOpen && (
+                  <motion.div
+                    role="menu"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 6 }}
+                    transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute right-0 top-full mt-2 w-64 origin-top-right overflow-hidden rounded-2xl border border-border bg-card p-1.5 shadow-lift"
+                  >
+                    {MORE_LINKS.map((link) => {
+                      const external = link.href.startsWith("http");
+                      const active = isActivePath(pathname, link.href);
+                      return (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          role="menuitem"
+                          target={external && !link.sameTab ? "_blank" : undefined}
+                          rel={
+                            external && !link.sameTab ? "noreferrer" : undefined
+                          }
+                          onClick={() => setMoreOpen(false)}
+                          className={cn(
+                            "flex items-center justify-between rounded-xl px-3 py-2 text-[13px] transition-colors",
+                            active
+                              ? "bg-muted text-foreground"
+                              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                          )}
+                        >
+                          <span>{link.label}</span>
+                          <span aria-hidden="true" className="text-[10px] text-muted-foreground">
+                            →
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </nav>
 
           <div className="relative z-10 flex items-center gap-3">
@@ -147,6 +234,39 @@ export function Navbar() {
                   </motion.div>
                 );
               })}
+
+              <div className="pt-6">
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  More
+                </p>
+                {MORE_LINKS.map((link, i) => {
+                  const external = link.href.startsWith("http");
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.04 * (i + NAV_LINKS.length), duration: 0.25 }}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        target={external && !link.sameTab ? "_blank" : undefined}
+                        rel={external && !link.sameTab ? "noreferrer" : undefined}
+                        className={cn(
+                          "flex items-center justify-between border-b border-border py-4 font-mono text-sm uppercase tracking-[0.15em] transition-colors",
+                          isActivePath(pathname, link.href)
+                            ? "text-foreground"
+                            : "text-muted-foreground"
+                        )}
+                      >
+                        {link.label}
+                        <span className="text-[10px] text-muted-foreground">→</span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </nav>
             <div className="flex items-center justify-between border-t border-border px-6 py-6">
               <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
