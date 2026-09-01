@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 import { getAllProjects, getAllArticles, getAllResearchNotes } from "@/lib/content";
 import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
-import { ProjectScroll } from "@/components/project-scroll";
+import { ProjectShowcase } from "@/components/project-scroll";
 
 const journey = [
   ["01", "Started with electronics, IoT, and the joy of making things move."],
@@ -85,23 +85,31 @@ export default async function HomePage() {
 
       <section className="border-b border-border" id="work">
         <Container className="py-16 sm:py-20">
-          <div className="mb-8 flex items-end justify-between gap-4">
-            <Reveal>
-              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                selected work
-              </p>
-            </Reveal>
-            <Reveal delay={0.05}>
+          <Reveal>
+            <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-2xl">
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                  selected work
+                </p>
+                <h2 className="mt-4 text-3xl font-medium tracking-[-0.04em] text-foreground sm:text-4xl">
+                  Systems I build, and the thinking underneath.
+                </h2>
+                <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
+                  Each project is a problem turned into software — AI assistants,
+                  developer tools, and computer vision systems, with an
+                  architecture write-up.
+                </p>
+              </div>
               <Link
                 href="/projects"
-                className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
+                className="shrink-0 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
               >
                 view all ↗
               </Link>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
 
-          <ProjectScroll projects={allProjects.map((p) => p.metadata)} />
+          <ProjectShowcase projects={allProjects.map((p) => p.metadata)} />
         </Container>
       </section>
 

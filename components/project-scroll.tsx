@@ -1,11 +1,10 @@
-"use client";
-
-import { useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, Projector } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 import type { ProjectMeta } from "@/types";
+import { Reveal } from "@/components/reveal";
+import { cn } from "@/lib/utils";
 
 const IMAGE_MAP: Record<string, string> = {
   autodevs: "/images/projects/aaron-burden-aRya3uMiNIA-unsplash.jpg",
@@ -16,106 +15,86 @@ const IMAGE_MAP: Record<string, string> = {
 
 const SLUGS = ["autodevs", "tatvik", "squad-qa", "ai-pipeline"] as const;
 
-export function ProjectScroll({ projects }: { projects: ProjectMeta[] }) {
+export function ProjectShowcase({ projects }: { projects: ProjectMeta[] }) {
   const ordered = SLUGS.map((slug) =>
     projects.find((p) => p.slug === slug)
   ).filter((p): p is ProjectMeta => Boolean(p));
 
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  const scrollBy = useCallback((dir: 1 | -1) => {
-    trackRef.current?.scrollBy({ left: dir * 360, behavior: "smooth" });
-  }, []);
-
-  const scrollAll = useCallback(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    el.scrollTo({ left: el.scrollWidth, behavior: "smooth" });
-  }, []);
-
-  useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    const hasOverflow = el.scrollWidth > el.clientWidth;
-    if (hasOverflow) scrollAll();
-  }, [scrollAll]);
-
   if (ordered.length === 0) return null;
 
   return (
-    <div className="relative">
-      <div
-        ref={trackRef}
-        className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 pt-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {ordered.map((project) => (
-          <Link
-            key={project.slug}
-            href={`/projects/${project.slug}`}
-            className="group flex w-[320px] shrink-0 snap-start items-stretch gap-4 rounded-2xl border border-border bg-card p-4 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:w-[400px]"
-          >
-            <div className="relative h-full w-28 shrink-0 overflow-hidden rounded-xl border border-border bg-muted sm:w-36">
-              <Image
-                src={IMAGE_MAP[project.slug]}
-                alt={`${project.title} — project thumbnail`}
-                fill
-                sizes="(min-width: 640px) 144px, 112px"
-                loading="lazy"
-                className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-              />
+    <div className="space-y-16 sm:space-y-24">
+      {ordered.map((project, i) => {
+        const imageFirst = i % 2 === 1;
+        return (
+          <Reveal key={project.slug}>
+            <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-14">
+              {/* Image */}
+              <div
+                className={cn(
+                  "relative overflow-hidden rounded-3xl border border-border bg-muted shadow-card",
+                  imageFirst && "lg:order-2"
+                )}
+              >
+                <div className="aspect-[16/11] w-full">
+                  <Image
+                    src={IMAGE_MAP[project.slug]}
+                    alt={`${project.title} — ${project.category}`}
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    loading="lazy"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className={cn(imageFirst && "lg:order-1")}>
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                  {project.year} · {project.category}
+                </p>
+                <h2 className="mt-3 font-serif text-2xl tracking-tight text-foreground sm:text-3xl">
+                  {project.title}
+                </h2>
+                <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
+                  {project.description ?? project.tagline}
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-1.5">
+                  {project.tags.slice(0, 4).map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-md border border-border bg-muted px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-wrap items-center gap-4">
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="group inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground transition-colors hover:text-accent"
+                  >
+                    View case study
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      source ↗
+                    </a>
+                  )}
+                </div>
+              </div>
             </div>
-
-            <div className="flex min-w-0 flex-1 flex-col">
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                {project.year} · {project.category}
-              </span>
-              <h3 className="mt-1 font-serif text-lg leading-tight tracking-tight text-foreground transition-colors group-hover:text-accent">
-                {project.title}
-              </h3>
-              <p className="mt-1.5 line-clamp-3 text-[13px] leading-relaxed text-muted-foreground">
-                {project.tagline}
-              </p>
-              <span className="mt-auto inline-flex items-center gap-1 pt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-accent">
-                View case study
-                <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-              </span>
-            </div>
-          </Link>
-        ))}
-
-        <button
-          onClick={scrollAll}
-          className="group flex w-[240px] shrink-0 snap-start flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-border text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
-        >
-          <Projector className="h-5 w-5" />
-          <span className="font-mono text-[11px] uppercase tracking-[0.18em]">
-            View all projects
-          </span>
-          <ArrowRight className="h-4 w-4" />
-        </button>
-      </div>
-
-      <div className="mt-2 flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-          scroll →
-        </span>
-        <div className="flex gap-2">
-          <button
-            onClick={() => scrollBy(-1)}
-            aria-label="Scroll left"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
-          >
-            <ArrowLeft className="h-4 w-4" />
-          </button>
-          <button
-            onClick={() => scrollBy(1)}
-            aria-label="Scroll right"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
-          >
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
+          </Reveal>
+        );
+      })}
     </div>
   );
 }
