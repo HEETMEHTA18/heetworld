@@ -7,6 +7,7 @@ import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 import { site } from "@/lib/site";
 import { GitHubIcon, LinkedInIcon, TwitterIcon, MailIcon } from "@/components/icons";
+import { PageFlow } from "@/components/page-flow";
 
 const greetings = [
   "Hey there",
@@ -214,6 +215,8 @@ export default function ContactPage() {
           </div>
         </Reveal>
       </Container>
+
+      <PageFlow currentPath="/contact" />
     </>
   );
 }

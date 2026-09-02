@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/page-header";
 import { Pill } from "@/components/ui/pill";
 import { Reveal } from "@/components/reveal";
 import { cn } from "@/lib/utils";
+import { PageFlow } from "@/components/page-flow";
 
 const levelLabel = {
   Primary: "Primary",
@@ -141,6 +142,8 @@ export default function SkillsPage() {
           </div>
         </div>
       </Container>
+
+      <PageFlow currentPath="/skills" />
     </>
   );
 }

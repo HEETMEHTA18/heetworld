@@ -7,6 +7,7 @@ import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
 import { GreetingTyping } from "@/components/greeting-typing";
 import { ProjectShowcase } from "@/components/project-scroll";
+import { PageFlow } from "@/components/page-flow";
 
 const journey = [
   ["01", "Started with electronics, IoT, and the joy of making things move."],
@@ -222,6 +223,8 @@ export default async function HomePage() {
           </div>
         </Container>
       </section>
+
+      <PageFlow currentPath="/" />
     </div>
   );
 }

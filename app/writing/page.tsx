@@ -3,6 +3,7 @@ import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { ArticleCard } from "@/components/content-cards";
 import { Pill } from "@/components/ui/pill";
+import { PageFlow } from "@/components/page-flow";
 
 export const metadata = {
   title: "Writing",
@@ -56,6 +57,8 @@ export default async function WritingPage() {
           </div>
         )}
       </Container>
+
+      <PageFlow currentPath="/writing" />
     </>
   );
 }
