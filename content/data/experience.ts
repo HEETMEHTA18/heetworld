@@ -18,17 +18,17 @@ export const experience: ExperienceItem[] = [
   },
   {
     period: "2025",
-    role: "AI Engineer Intern",
-    org: "Applied AI Lab",
+    role: "Machine Learning Intern",
+    org: "Charusat University",
     type: "Internship",
     description:
-      "Worked on production ML and LLM infrastructure — the first time my code ran in front of real users.",
+      "Worked on machine learning research and development at Charusat University, contributing to ML pipelines and data-driven solutions.",
     bullets: [
-      "Built an internal MLOps pipeline for a production product",
-      "Cut model-serving cold-start by packaging with ONNX",
-      "Wrote evaluation harnesses used in release sign-off",
+      "Developed and optimized ML models for real-world classification tasks",
+      "Built data preprocessing pipelines and evaluation frameworks",
+      "Collaborated with research faculty on applied ML projects",
     ],
-    tags: ["PyTorch", "ONNX", "MLOps"],
+    tags: ["Python", "TensorFlow", "Scikit-learn"],
   },
   {
     period: "2024 — 2025",
