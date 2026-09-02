@@ -57,7 +57,7 @@ export default function ResumePage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                linkedin.com/in/heetmehta
+                linkedin.com/in/heetmehta18
               </a>
             </span>
           </div>

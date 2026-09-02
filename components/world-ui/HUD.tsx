@@ -255,7 +255,7 @@ export default function HUD() {
     } else if (cmdLower.includes("contact") || cmdLower.includes("email") || cmdLower.includes("hire") || cmdLower.includes("message")) {
       addOutput("Direct transmission paths:\n" +
                 "  • Email: heetmehta18.work@gmail.com\n" +
-                "  • LinkedIn: linkedin.com/in/heetmehta\n" +
+                "  • LinkedIn: linkedin.com/in/heetmehta18\n" +
                 "  • Harbor: Send a direct message via the Communications Port panel!");
     } else if (cmdLower.includes("resume") || cmdLower.includes("cv") || cmdLower.includes("download")) {
       addOutput("Resume PDF transmission link: Click the 'Resume' button at the top header to download.");
@@ -518,7 +518,7 @@ export default function HUD() {
                 <GitHubIcon className="w-4 sm:w-5 h-4 sm:h-5" />
               </a>
               <a
-                href="https://linkedin.com/in/heetmehta"
+                href="https://linkedin.com/in/heetmehta18"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-black/40 backdrop-blur-md p-2 sm:p-3 rounded-full border border-[#00FFCC]/20 hover:border-[#00FFCC]/60 transition-all text-[#00FFCC]"

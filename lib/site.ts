@@ -17,7 +17,7 @@ export const site = {
   },
   socials: {
     github: "https://github.com/heetmehta18",
-    linkedin: "https://linkedin.com/in/heetmehta",
+    linkedin: "https://linkedin.com/in/heetmehta18",
     twitter: "https://x.com/heetmehta",
     email: "mailto:explore@heetworld.tech",
   },
