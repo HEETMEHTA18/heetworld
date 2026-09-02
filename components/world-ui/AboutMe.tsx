@@ -67,11 +67,11 @@ export default function AboutMe() {
                 </div>
                 heetmehta18.work@gmail.com
               </a>
-              <a href="https://linkedin.com/in/heetmehta18" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#1E0B9B] hover:text-[#FF4500] transition-colors group">
+              <a href="https://linkedin.com/in/heetmehta" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#1E0B9B] hover:text-[#FF4500] transition-colors group">
                 <div className="p-1.5 sm:p-2 bg-[#FF4500] text-white rounded-md group-hover:scale-110 transition-transform">
                   <LinkedInIcon className="w-4 h-4" />
                 </div>
-                linkedin.com/in/heetmehta18
+                linkedin.com/in/heetmehta
               </a>
               <a href="https://github.com/HEETMEHTA18" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#1E0B9B] hover:text-[#FF4500] transition-colors group">
                 <div className="p-1.5 sm:p-2 bg-[#FF4500] text-white rounded-md group-hover:scale-110 transition-transform">

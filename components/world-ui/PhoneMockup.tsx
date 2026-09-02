@@ -32,7 +32,7 @@ export default function PhoneMockup() {
     binarybattles: "https://binarybattles.dev",
     checkmate: "https://github.com/HEETMEHTA18/CheckMate",
     blog: "https://dev.to/heetmehta18",
-    linkedin: "https://www.linkedin.com/in/heetmehta18/recent-activity/all/",
+    linkedin: "https://www.linkedin.com/in/heetmehta",
   };
 
   const url = activePhoneProject ? PROJECT_URLS[activePhoneProject] || "https://github.com/HEETMEHTA18" : "";

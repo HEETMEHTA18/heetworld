@@ -619,13 +619,13 @@ function HarborPanel() {
           github.com/HEETMEHTA18
         </a>
         <a
-          href="https://linkedin.com/in/heetmehta18"
+          href="https://linkedin.com/in/heetmehta"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2.5 p-3.5 rounded-xl border border-[#F2E6C9]/10 bg-black/10 hover:border-[#3498DB]/35 transition-all text-[#F2E6C9]/95 hover:scale-[1.02] hover:shadow-[0_4px_15px_rgba(52,152,219,0.1)] active:scale-[0.98]"
         >
           <LinkedInIcon className="w-4 h-4 text-[#3498DB]" />
-          linkedin/in/heetmehta18
+          linkedin/in/heetmehta
         </a>
       </motion.div>
 
