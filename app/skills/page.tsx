@@ -36,6 +36,12 @@ export const metadata = {
   title: "Stack",
   description:
     "My tech stack as a literal stack — push, pop, and drag your way through the languages, frameworks, and tools I work with.",
+  openGraph: {
+    title: "Stack — Heet Mehta",
+    description:
+      "Interactive tech stack — languages, frameworks, and tools.",
+    url: "https://heetworld.tech/skills",
+  },
 };
 
 export default function SkillsPage() {

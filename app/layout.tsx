@@ -35,19 +35,33 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-touch-icon.png",
   },
-  authors: [{ name: site.name }],
+  authors: [{ name: site.name, url: site.url }],
   creator: site.name,
+  publisher: site.name,
   keywords: [
     "Heet Mehta",
     "AI Engineer",
     "ML Engineer",
-    "Machine Learning",
+    "Machine Learning Engineer",
     "Natural Language Processing",
     "LLM",
+    "Large Language Models",
     "Agentic AI",
     "Open Source",
     "Computer Engineering",
+    "Deep Learning",
+    "Neural Networks",
+    "Python Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Portfolio",
+    "heetworld.tech",
   ],
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     type: "website",
     locale: site.locale,
@@ -60,7 +74,8 @@ export const metadata: Metadata = {
         url: "/og",
         width: 1200,
         height: 630,
-        alt: site.name,
+        alt: `${site.name} — AI Engineer & Builder`,
+        type: "image/png",
       },
     ],
   },
@@ -77,8 +92,15 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: site.url,
+    types: {
+      "application/rss+xml": `${site.url}/rss.xml`,
     },
   },
 };
@@ -88,6 +110,9 @@ export const viewport = {
     { media: "(prefers-color-scheme: light)", color: "#fafaf8" },
     { media: "(prefers-color-scheme: dark)", color: "#0f0f0f" },
   ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 const personJsonLd = {
@@ -95,13 +120,37 @@ const personJsonLd = {
   "@type": "Person",
   name: site.name,
   url: site.url,
+  image: `${site.url}/og`,
   jobTitle: "AI Engineer & Builder",
   description: site.description,
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: site.location,
+  },
   sameAs: [
     site.socials.github,
     site.socials.linkedin,
     site.socials.twitter,
   ],
+  knowsAbout: [
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Natural Language Processing",
+    "Large Language Models",
+    "Deep Learning",
+    "Python",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Open Source Software",
+  ],
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "AI Engineer",
+    occupationalCategory: "15-1252.00",
+    skills: "Machine Learning, LLM, NLP, Python, TypeScript",
+  },
 };
 
 const websiteJsonLd = {
@@ -113,6 +162,30 @@ const websiteJsonLd = {
   author: {
     "@type": "Person",
     name: site.name,
+    url: site.url,
+  },
+  inLanguage: "en-US",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${site.url}/search?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
+
+const profileJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  mainEntity: {
+    "@type": "Person",
+    name: site.name,
+    url: site.url,
+    jobTitle: "AI Engineer & Builder",
+    description: site.description,
+    sameAs: [
+      site.socials.github,
+      site.socials.linkedin,
+      site.socials.twitter,
+    ],
   },
 };
 
@@ -127,6 +200,13 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://plausible.io" />
+        <meta name="theme-color" content="#fafaf8" />
+        <meta name="msapplication-TileColor" content="#fafaf8" />
+      </head>
       <body className="texture-noise">
         <script
           type="application/ld+json"
@@ -138,6 +218,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(profileJsonLd).replace(/</g, "\\u003c"),
           }}
         />
         <ThemeProvider
@@ -157,4 +243,3 @@ export default function RootLayout({
     </html>
   );
 }
-

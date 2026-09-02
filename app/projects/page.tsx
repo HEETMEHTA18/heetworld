@@ -10,6 +10,12 @@ export const metadata = {
   title: "Projects",
   description:
     "Things I've built — AI assistants, developer tools, and NLP systems. Each has an architecture write-up.",
+  openGraph: {
+    title: "Projects — Heet Mehta",
+    description:
+      "AI assistants, developer tools, and NLP systems with architecture write-ups.",
+    url: "https://heetworld.tech/projects",
+  },
 };
 
 function ProjectRow({

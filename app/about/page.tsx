@@ -12,6 +12,12 @@ export const metadata = {
   title: "About",
   description:
     "Heet Mehta — AI engineer and builder. Writing about how I think, what I build, and why.",
+  openGraph: {
+    title: "About — Heet Mehta",
+    description:
+      "AI engineer and builder. Writing about how I think, what I build, and why.",
+    url: "https://heetworld.tech/about",
+  },
 };
 
 const focus = [

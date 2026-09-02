@@ -19,7 +19,13 @@ import { cn } from "@/lib/utils";
 export const metadata = {
   title: "Experience",
   description:
-    "A vertical timeline of open source, research, projects, and learning.",
+    "My professional journey — internships, open-source work, and research in AI and machine learning.",
+  openGraph: {
+    title: "Experience — Heet Mehta",
+    description:
+      "Professional journey in AI, machine learning, and open-source development.",
+    url: "https://heetworld.tech/experience",
+  },
 };
 
 const typeMeta: Record<
