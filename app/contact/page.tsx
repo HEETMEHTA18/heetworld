@@ -16,6 +16,20 @@ const greetings = [
   "Bonjour",
 ];
 
+const subject = encodeURIComponent("Hello Heet — ");
+const body = encodeURIComponent(`Hi Heet,
+
+I'm reaching out regarding:
+
+[Brief description of your message — project, opportunity, question, etc.]
+
+
+Best regards,
+[Your Name]
+[Your Email / LinkedIn / Website]`);
+
+const emailHref = `mailto:${site.email}?subject=${subject}&body=${body}`;
+
 export default function ContactPage() {
   const [greetingIdx, setGreetingIdx] = useState(0);
 
@@ -80,13 +94,20 @@ export default function ContactPage() {
                 <p className="mt-1 text-[#71717a]">
                   Email is the fastest way to reach me. I reply within 24 hours.
                 </p>
+                <div className="mt-3 rounded-lg border border-white/5 bg-white/[0.02] p-3 text-[11px] leading-relaxed text-[#52525b]">
+                  <p><span className="text-[#71717a]">Subject:</span> Hello Heet — </p>
+                  <p className="mt-1"><span className="text-[#71717a]">Body:</span></p>
+                  <p className="ml-2 text-[#52525b]">Hi Heet,</p>
+                  <p className="ml-2 text-[#52525b]">I&apos;m reaching out regarding: [your message]</p>
+                  <p className="ml-2 text-[#52525b]">Best regards, [Your Name]</p>
+                </div>
               </div>
 
               <div className="h-px bg-white/5" />
 
               {/* Big email CTA */}
               <a
-                href={site.socials.email}
+                href={emailHref}
                 className="group flex items-center justify-between rounded-xl border border-[#4ade80]/20 bg-[#4ade80]/5 px-5 py-4 transition-all hover:border-[#4ade80]/40 hover:bg-[#4ade80]/10"
               >
                 <div className="flex items-center gap-3">
