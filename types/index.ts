@@ -14,6 +14,7 @@ export type ProjectMeta = {
   featured?: boolean;
   order: number;
   visual: "terminal" | "dashboard" | "diagram" | "laptop" | "architecture" | "mobile";
+  image?: string;
   accent?: string;
   problem?: string;
   solution?: string;

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { getContentSlugs, getProjectBySlug } from "@/lib/content";
 import { getTocFromSource } from "@/lib/toc";
 import { Container } from "@/components/container";
@@ -125,6 +126,27 @@ export default async function ProjectPage({
           </Reveal>
         </Container>
       </header>
+
+      {/* Hero image */}
+      {metadata.image && (
+        <Reveal>
+          <div className="border-b border-border">
+            <Container>
+              <div className="relative -mx-4 aspect-[21/9] overflow-hidden rounded-xl sm:-mx-6">
+                <Image
+                  src={metadata.image}
+                  alt={metadata.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                  priority
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+              </div>
+            </Container>
+          </div>
+        </Reveal>
+      )}
 
       {/* Content */}
       <Container className="py-12 sm:py-16">

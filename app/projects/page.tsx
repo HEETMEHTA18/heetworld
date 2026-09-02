@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { getAllProjects } from "@/lib/content";
 import { Container } from "@/components/container";
@@ -33,23 +34,36 @@ function ProjectRow({
     <Link
       href={`/projects/${project.slug}`}
       className={cn(
-        "group flex items-baseline justify-between border-b border-border py-4 transition-colors hover:border-foreground/30",
+        "group flex items-center gap-4 border-b border-border py-4 transition-colors hover:border-foreground/30",
         muted && "opacity-60 hover:opacity-100"
       )}
     >
-      <div className="flex items-baseline gap-4">
-        <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <div>
-          <h3 className="text-[15px] font-medium text-foreground transition-colors group-hover:text-muted-foreground">
-            {meta.title}
-          </h3>
-          <p className="mt-0.5 max-w-lg text-[13px] text-muted-foreground">
-            {meta.tagline}
-          </p>
+      {/* Thumbnail */}
+      {meta.image && (
+        <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg">
+          <Image
+            src={meta.image}
+            alt={meta.title}
+            fill
+            sizes="48px"
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
         </div>
+      )}
+
+      <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+
+      <div className="min-w-0 flex-1">
+        <h3 className="text-[15px] font-medium text-foreground transition-colors group-hover:text-muted-foreground">
+          {meta.title}
+        </h3>
+        <p className="mt-0.5 truncate text-[13px] text-muted-foreground">
+          {meta.tagline}
+        </p>
       </div>
+
       <div className="hidden items-center gap-4 sm:flex">
         <span className="font-mono text-[10px] text-muted-foreground">
           {meta.tags.slice(0, 3).join(" · ")}
