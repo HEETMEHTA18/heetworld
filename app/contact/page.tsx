@@ -58,15 +58,15 @@ export default function ContactPage() {
       <Container className="py-6 sm:py-10">
         {/* Hero: Terminal-style contact card */}
         <Reveal>
-          <div className="overflow-hidden rounded-2xl border border-border bg-[#0b0d11]">
+          <div className="overflow-hidden rounded-2xl border border-border bg-card">
             {/* Terminal bar */}
-            <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
+            <div className="flex items-center justify-between border-b border-border px-4 py-2.5 bg-muted/40">
               <div className="flex gap-1.5">
                 <span className="h-3 w-3 rounded-full bg-[#f87171]" />
                 <span className="h-3 w-3 rounded-full bg-[#fbbf24]" />
                 <span className="h-3 w-3 rounded-full bg-[#4ade80]" />
               </div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#71717a]">
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                 contact.sh
               </span>
               <div className="w-12" />
@@ -74,57 +74,57 @@ export default function ContactPage() {
 
             {/* Terminal content */}
             <div className="p-5 sm:p-7 space-y-5">
-              <div className="font-mono text-[13px] leading-relaxed text-[#d4d4d8]">
+              <div className="font-mono text-[13px] leading-relaxed text-foreground">
                 <p>
-                  <span className="text-[#4ade80]">$</span>{" "}
-                  <span className="text-[#a78bfa]">whoami</span>
+                  <span className="text-green-500">$</span>{" "}
+                  <span className="text-purple-500">whoami</span>
                 </p>
-                <p className="mt-1 text-[#71717a]">
+                <p className="mt-1 text-muted-foreground">
                   {site.name} — {site.title}
                 </p>
               </div>
 
-              <div className="h-px bg-white/5" />
+              <div className="h-px bg-border" />
 
-              <div className="font-mono text-[13px] leading-relaxed text-[#d4d4d8]">
+              <div className="font-mono text-[13px] leading-relaxed text-foreground">
                 <p>
-                  <span className="text-[#4ade80]">$</span>{" "}
-                  <span className="text-[#a78bfa]">cat</span>{" "}
-                  <span className="text-[#fbbf24]">preferred_channel.txt</span>
+                  <span className="text-green-500">$</span>{" "}
+                  <span className="text-purple-500">cat</span>{" "}
+                  <span className="text-amber-500">preferred_channel.txt</span>
                 </p>
-                <p className="mt-1 text-[#71717a]">
+                <p className="mt-1 text-muted-foreground">
                   Email is the fastest way to reach me. I reply within 24 hours.
                 </p>
-                <div className="mt-3 rounded-lg border border-white/5 bg-white/[0.02] p-3 text-[11px] leading-relaxed text-[#52525b]">
-                  <p><span className="text-[#71717a]">Subject:</span> Hello Heet — </p>
-                  <p className="mt-1"><span className="text-[#71717a]">Body:</span></p>
-                  <p className="ml-2 text-[#52525b]">Hi Heet,</p>
-                  <p className="ml-2 text-[#52525b]">I&apos;m reaching out regarding: [your message]</p>
-                  <p className="ml-2 text-[#52525b]">Best regards, [Your Name]</p>
+                <div className="mt-3 rounded-lg border border-border bg-muted/30 p-3 text-[11px] leading-relaxed text-muted-foreground">
+                  <p><span className="text-muted-foreground/70">Subject:</span> Hello Heet — </p>
+                  <p className="mt-1"><span className="text-muted-foreground/70">Body:</span></p>
+                  <p className="ml-2">Hi Heet,</p>
+                  <p className="ml-2">I&apos;m reaching out regarding: [your message]</p>
+                  <p className="ml-2">Best regards, [Your Name]</p>
                 </div>
               </div>
 
-              <div className="h-px bg-white/5" />
+              <div className="h-px bg-border" />
 
               {/* Big email CTA */}
               <a
                 href={emailHref}
-                className="group flex items-center justify-between rounded-xl border border-[#4ade80]/20 bg-[#4ade80]/5 px-5 py-4 transition-all hover:border-[#4ade80]/40 hover:bg-[#4ade80]/10"
+                className="group flex items-center justify-between rounded-xl border border-green-500/20 bg-green-500/5 px-5 py-4 transition-all hover:border-green-500/40 hover:bg-green-500/10"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#4ade80]/15 text-[#4ade80]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/15 text-green-500">
                     <MailIcon className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-[#d4d4d8]">
+                    <p className="text-sm font-medium text-foreground">
                       {site.email}
                     </p>
-                    <p className="font-mono text-[10px] text-[#71717a]">
+                    <p className="font-mono text-[10px] text-muted-foreground">
                       click to open mail client
                     </p>
                   </div>
                 </div>
-                <ArrowUpRight className="h-4 w-4 text-[#4ade80]/60 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="h-4 w-4 text-green-500/60 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
           </div>
