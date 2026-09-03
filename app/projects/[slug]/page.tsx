@@ -128,17 +128,17 @@ export default async function ProjectPage({
       </header>
 
       {/* Two-column: sticky image + scrolling content */}
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-0 px-5 py-10 sm:px-8 md:grid-cols-[1fr_420px] md:py-14 lg:grid-cols-[1fr_480px]">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-0 px-5 py-10 sm:px-8 md:grid-cols-[340px_1fr] md:py-14 lg:grid-cols-[400px_1fr]">
         {/* Left: sticky image */}
         {metadata.image && (
           <div className="relative order-1 mb-8 md:mb-0 md:sticky md:top-24 md:self-start">
             <Reveal>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl md:aspect-[3/4]">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
                 <Image
                   src={metadata.image}
                   alt={metadata.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 420px, 480px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 340px, 400px"
                   priority
                   className="object-cover"
                 />
