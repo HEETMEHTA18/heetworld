@@ -2,6 +2,15 @@ import type { ExperienceItem } from "@/types";
 
 export const experience: ExperienceItem[] = [
   {
+    period: "August 2026 — Present",
+    role: "Vice President",
+    org: "Machine Learning Club",
+    type: "Education",
+    description: "Vice President, Machine Learning Club at CHARUSAT University",
+    bullets: [],
+    tags: ["Leadership", "ML Club"],
+  },
+  {
     period: "2025 — Present",
     role: "Open Source Maintainer",
     org: "Tatvik & AutoDevs",
@@ -14,7 +23,6 @@ export const experience: ExperienceItem[] = [
       "Turned contributor feedback into a roadmap",
     ],
     tags: ["LLM", "MCP", "Developer Tools"],
-    link: "https://github.com/heetmehta",
   },
   {
     period: "2025",
