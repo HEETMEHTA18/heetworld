@@ -101,7 +101,7 @@ export default function SkillsPage() {
                       {group.skills.map((sk) => (
                         <div
                           key={sk.name}
-                          className="group/skill flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 transition-all hover:-translate-y-0.5 hover:shadow-md hover:border-accent/30"
+                          className="group/skill flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-accent/20"
                         >
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between mb-1.5">
