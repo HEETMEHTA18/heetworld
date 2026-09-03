@@ -49,15 +49,20 @@ Rewriting these per project is cargo-cult MLOps. A shared scaffold makes every s
 
 ## Architecture
 
+Nine CLI stages, each with a clear input and output contract:
+
 ```
- dataset ─▶ validate ─▶ version(DVC) ─▶ train(config) ─▶ track(MLflow)
-                                                              │
-                                          export(ONNX) ──▶  serve
-                                                              │
-                                                          /infer
+dataset → validate → version → train → track → export → serve → /infer
 ```
 
-One CLI, distinct stages, each with a clear input and output contract — so the whole thing is scriptable and, crucially, *replayable*.
+1. **Validate** — Check data integrity before anything runs.
+2. **Version** — DVC-style tagging so every run is reproducible.
+3. **Train** — YAML-configured runs with seed control.
+4. **Track** — MLflow logging for search and comparison.
+5. **Export** — Torch → ONNX as a first-class step, not an afterthought.
+6. **Serve** — Containerised ONNX endpoint, ready to curl.
+
+One CLI, distinct stages, scriptable and replayable.
 
 ## Engineering decisions
 

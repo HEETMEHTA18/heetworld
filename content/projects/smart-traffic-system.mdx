@@ -44,16 +44,15 @@ Fixed-cycle signals optimize for *nothing in particular*. In low-traffic hours t
 
 ## Architecture
 
+The pipeline has three stages: detect, count, and decide.
+
 ```
- ┌────────────┐  detections  ┌──────────┐  queue  ┌──────────────┐
- │ edge cam   │─────────────▶│ counter  │───────▶│  controller  │
- │ (RPi+YOLO) │              │  MQTT    │        │  (green-time) │
- └────────────┘              └──────────┘        └──────┬───────┘
-                                                        │ timing
-                                               ┌────────▼────────┐
-                                               │   signal head   │
-                                               └─────────────────┘
+Edge Camera → Vehicle Counter → Controller → Signal Head
 ```
+
+1. **Detect** — A Raspberry Pi runs YOLO on the camera feed, detecting vehicles per lane.
+2. **Count** — Queue lengths publish over MQTT to a central controller.
+3. **Decide** — The controller computes green-times proportionally and updates the signal head.
 
 ## Engineering decisions
 

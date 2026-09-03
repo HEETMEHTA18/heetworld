@@ -63,25 +63,16 @@ The obvious trade-off is compute. Consumer laptops can run small LLMs comfortabl
 
 ## Architecture
 
+The system runs in four layers, each owning a single responsibility:
+
 ```
- ┌─────────────┐   audio frames   ┌──────────────┐
- │  Audio API  │ ───────────────▶ │  Rust core   │
- │ (mic, ALSA) │                  │  hotword DSP │
- └─────────────┘                  └──────┬───────┘
-                                         │ wake
-                                ┌────────▼────────┐
-                                │  Whisper STT    │
-                                │ (Python worker) │
-                                └────────┬────────┘
-                                         │ text
-                                ┌────────▼────────┐
-                                │  Intent router  │
-                                └───┬────┬────────┘
-                           skills │    │ LLM
-                          ┌───────▼┐  ┌▼─────────┐
-                          │ tools  │  │ llama.cpp │
-                          └────────┘  └──────────┘
+Audio API → Rust Core (hotword) → Whisper STT → Intent Router → LLM / Tools
 ```
+
+1. **Audio capture** — Rust owns the mic, pushes frames through a lock-free channel. No GC pauses.
+2. **Hotword detection** — DSP runs in the Rust core for sub-300ms wake latency.
+3. **Speech-to-text** — Whisper runs in a Python worker, streaming partial transcripts.
+4. **Intent routing** — Low-confidence utterances go to the LLM; high-confidence ones hit matched tools directly.
 
 Key decisions:
 
