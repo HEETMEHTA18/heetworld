@@ -166,15 +166,11 @@ export default async function ProjectPage({
             </div>
           )}
 
-          {/* Project navigation arrows */}
+          {/* Project navigation arrows - continuous in right section */}
           <div className="mt-8 pointer-events-auto">
-            <div className="flex flex-col gap-2 md:flex-row md:items-center">
-              {/* Prev project link */}
-              <a
-                href="/projects"
-                className="relative flex-1 rounded-xl border border-border bg-card p-4 sm:p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-foreground/20 group flex items-center justify-center gap-3"
-                style={{ pointerEvents: 'auto' }}
-              >
+            <div className="flex flex-col md:flex-row items-start gap-2">
+              {/* Prev project arrow - continuous visual */}
+              <div className="relative flex-shrink-0 w-10 h-10 rounded-xl border border-border bg-card p-2 flex items-center justify-center hover:bg-muted hover:scale-105 transition-colors">
                 <svg
                   className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-foreground"
                   viewBox="0 0 24 24"
@@ -186,16 +182,10 @@ export default async function ProjectPage({
                 >
                   <path d="M15 18l-6-6l6-6" />
                 </svg>
-                <span className="hidden md:inline">Prev</span>
-              </a>
+              </div>
 
-              {/* Next project link */}
-              <a
-                href="/projects"
-                className="relative flex-1 rounded-xl border border-border bg-card p-4 sm:p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-foreground/20 group flex items-center justify-center gap-3"
-                style={{ pointerEvents: 'auto' }}
-              >
-                <span className="hidden md:inline">Next</span>
+              {/* Next project arrow - continuous visual */}
+              <div className="relative flex-shrink-0 w-10 h-10 rounded-xl border border-border bg-card p-2 flex items-center justify-center hover:bg-muted hover:scale-105 transition-colors">
                 <svg
                   className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-foreground"
                   viewBox="0 0 24 24"
@@ -207,7 +197,7 @@ export default async function ProjectPage({
                 >
                   <path d="M9 18l6-6l-6-6" />
                 </svg>
-              </a>
+              </div>
             </div>
           </div>
         </div>
