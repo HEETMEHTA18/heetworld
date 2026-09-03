@@ -6,8 +6,8 @@ import { getContentSlugs, getProjectBySlug } from "@/lib/content";
 import { getTocFromSource } from "@/lib/toc";
 import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
-import { MdxContentLayout } from "@/components/mdx/mdx-content-layout";
 import { GitHubIcon } from "@/components/icons";
+import { TocList } from "@/lib/toc";
 
 type Params = { slug: string };
 
@@ -55,9 +55,9 @@ export default async function ProjectPage({
     <>
       {/* Project Header */}
       <header className="border-b border-border">
-        <Container className="pb-12 pt-24 sm:pb-16 sm:pt-28">
+        <Container className="pb-8 pt-24 sm:pb-10 sm:pt-28">
           <Reveal>
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4">
               <div className="flex items-center gap-3">
                 <Link
                   href="/projects"
@@ -127,33 +127,46 @@ export default async function ProjectPage({
         </Container>
       </header>
 
-      {/* Hero image */}
-      {metadata.image && (
-        <Reveal>
-          <div className="border-b border-border">
-            <Container>
-              <div className="relative -mx-4 aspect-[21/9] overflow-hidden rounded-xl sm:-mx-6">
+      {/* Two-column: sticky image + scrolling content */}
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-0 px-5 py-10 sm:px-8 md:grid-cols-[1fr_420px] md:py-14 lg:grid-cols-[1fr_480px]">
+        {/* Left: sticky image */}
+        {metadata.image && (
+          <div className="relative order-1 mb-8 md:mb-0 md:sticky md:top-24 md:self-start">
+            <Reveal>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl md:aspect-[3/4]">
                 <Image
                   src={metadata.image}
                   alt={metadata.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 1200px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 420px, 480px"
                   priority
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
               </div>
-            </Container>
+            </Reveal>
           </div>
-        </Reveal>
-      )}
+        )}
 
-      {/* Content */}
-      <Container className="py-12 sm:py-16">
-        <MdxContentLayout toc={toc}>
-          <Content />
-        </MdxContentLayout>
-      </Container>
+        {/* Right: scrolling content */}
+        <div className="order-2 min-w-0 md:pl-10 lg:pl-14">
+          <div className="prose-content">
+            <div className="prose lg:prose-lg max-w-none">
+              <Content />
+            </div>
+          </div>
+
+          {/* TOC below content */}
+          {toc && toc.length > 0 && (
+            <div className="mt-12 border-t border-border pt-8">
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                On this page
+              </p>
+              <TocList items={toc} />
+            </div>
+          )}
+        </div>
+      </div>
     </>
   );
 }
