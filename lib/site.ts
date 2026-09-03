@@ -10,7 +10,7 @@ export const site = {
   locale: "en_US",
   location: "India",
   email: "explore@heetworld.tech",
-  twitter: "@heetmehta",
+  twitter: "@heetmehta33176",
   author: {
     name: "Heet Mehta",
     rss: "/rss.xml",
@@ -18,7 +18,7 @@ export const site = {
   socials: {
     github: "https://github.com/heetmehta18",
     linkedin: "https://linkedin.com/in/heetmehta18",
-    twitter: "https://x.com/heetmehta",
+    twitter: "https://x.com/heetmehta33176",
     email: "mailto:explore@heetworld.tech",
   },
   spotify: {
