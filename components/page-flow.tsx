@@ -18,7 +18,7 @@ const PAGE_FLOW: PageFlowItem[] = [
   { href: "/skills", label: "Skills", description: "What I know" },
   { href: "/writing", label: "Writing", description: "What I think" },
   { href: "/research", label: "Research", description: "What I explore" },
-  { href: "/uses", label: "Uses", description: "What I use" },
+  { href: "/stack", label: "Stack", description: "My tech stack" },
   { href: "/now", label: "Now", description: "What's next" },
   { href: "/contact", label: "Contact", description: "Let's connect" },
 ];

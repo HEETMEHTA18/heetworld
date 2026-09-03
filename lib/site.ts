@@ -42,19 +42,18 @@ export const NAV_LINKS: NavLink[] = [
 ];
 
 export const MORE_LINKS: NavLink[] = [
-  { href: "/writing", label: "Writing" },
-  { href: "/research", label: "Research" },
+  { href: "/now", label: "Now" },
   { href: "/experience", label: "Experience" },
   { href: "/skills", label: "Skills" },
-  { href: "/uses", label: "Uses" },
-  { href: "/bookmarks", label: "Bookmarks" },
-  { href: "/thoughts", label: "Thoughts" },
-  { href: "/now", label: "Now" },
+  { href: "/writing", label: "Writing" },
   { href: "/resume", label: "Resume" },
+  { href: "/thoughts", label: "Thoughts" },
+  { href: "/bookmarks", label: "Bookmarks" },
+  { href: "/stack", label: "Stack" },
 ];
 
 export const FOOTER_LINKS = [
-  { href: "/skills", label: "Stack" },
+  { href: "/stack", label: "Stack" },
   { href: "/now", label: "Now" },
   { href: "/resume", label: "Resume" },
   { href: "/uses", label: "Uses" },

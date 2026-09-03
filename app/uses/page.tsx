@@ -5,17 +5,17 @@ import { UsesNotebookClient } from "./uses-client";
 import { PageFlow } from "@/components/page-flow";
 
 export const metadata = {
-  title: "Uses — Heet Mehta",
-  description: "My Pop!_OS + RTX 4050 Linux-first development environment, rendered as an interactive Jupyter notebook.",
+  title: "Stack — Heet Mehta",
+  description: "My tech stack and tools configuration, rendered as an interactive Jupyter notebook.",
 };
 
 export default function UsesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Uses"
-        title="My environment & setup"
-        description="My setup is built around one thing: making it easy to learn, experiment, and build. Rendered below as an interactive notebook."
+        eyebrow="Stack"
+        title="My tech stack"
+        description="My tech stack and tools configuration, rendered as an interactive notebook."
       />
 
       <Container className="py-10 sm:py-14">
@@ -24,7 +24,7 @@ export default function UsesPage() {
         </Reveal>
       </Container>
 
-      <PageFlow currentPath="/uses" />
+      <PageFlow currentPath="/stack" />
     </>
   );
 }
