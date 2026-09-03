@@ -103,6 +103,16 @@
     outline-offset: 2px;
     border-radius: 4px;
   }
+
+  /* Make images and iframes scale nicely */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 @layer utilities {
