@@ -327,3 +327,12 @@
 .heading-anchor-visible {
   opacity: 1;
 }
+
+/* Scroll arrow float animation */
+@keyframes float-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+svg[class*="text-foreground/10"] {
+  animation: float-down 2.5s ease-in-out infinite;
+}
