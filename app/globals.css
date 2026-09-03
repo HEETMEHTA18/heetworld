@@ -266,6 +266,22 @@
 .prose code {
   font-family: var(--font-geist-mono), ui-monospace, Menlo, monospace;
 }
+.prose pre {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  margin: 1.5rem 0;
+}
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
 .prose figcaption {
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.75rem;

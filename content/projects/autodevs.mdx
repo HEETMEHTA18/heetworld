@@ -51,17 +51,16 @@ Older approaches either read everything (too slow, too much noise) or read nothi
 
 ## Architecture
 
+The system runs three loops in sequence: **read** the codebase, **plan** the change, **execute** and **verify** it.
+
 ```
- ┌────────────┐    ┌─────────────────────────────┐    ┌───────────┐
- │   user     │──▶│      plan-authenticated      │──▶│   MCP    │
- │   task     │   │      agent loop               │   │  tools   │
- └────────────┘    └───┬─────────────────────┬───┘   └───────────┘
-                       │ read                │ edit        │ verify
-                   discovered           +──────────┐  ┌────────────┐
-                   context             │  diffs    │  │ test runner│
-                        └──────────────▶│ staging   │  └────────────┘
-                                        └──────────┘
+User Task → Repository Index → Plan Agent → MCP Tools → Test Runner → PR
 ```
+
+1. **Read** — A cheap static pass builds a map of entry points, tests, and modules.
+2. **Plan** — The model sees the index and produces an explicit, approvable plan.
+3. **Execute** — Narrow MCP tools apply edits against a file snapshot.
+4. **Verify** — The test runner gates the PR; failures roll back cleanly.
 
 The loops are separated on purpose: **plan** first on discovered context, then **execute** against a file snapshot and **verify** with the actual test suite.
 
