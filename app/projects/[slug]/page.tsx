@@ -170,13 +170,13 @@ export default async function ProjectPage({
           <div className="mt-8 pointer-events-auto">
             <div className="flex flex-col md:flex-row items-start gap-2">
               {/* Prev project arrow - continuous visual */}
-              <div className="relative flex-shrink-0 w-10 h-10 rounded-xl border border-border bg-card p-2 flex items-center justify-center hover:bg-muted hover:scale-105 transition-colors">
+              <div className="relative flex-shrink-0 w-14 h-10 rounded-xl border border-border bg-card p-3 flex items-center justify-center hover:bg-muted hover:scale-110 transition-colors">
                 <svg
-                  className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-foreground"
+                  className="h-6 w-6 text-foreground transition-colors group-hover:text-background"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="1.5"
+                  strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
@@ -185,13 +185,13 @@ export default async function ProjectPage({
               </div>
 
               {/* Next project arrow - continuous visual */}
-              <div className="relative flex-shrink-0 w-10 h-10 rounded-xl border border-border bg-card p-2 flex items-center justify-center hover:bg-muted hover:scale-105 transition-colors">
+              <div className="relative flex-shrink-0 w-14 h-10 rounded-xl border border-border bg-card p-3 flex items-center justify-center hover:bg-muted hover:scale-110 transition-colors">
                 <svg
-                  className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-foreground"
+                  className="h-6 w-6 text-foreground transition-colors group-hover:text-background"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="1.5"
+                  strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
