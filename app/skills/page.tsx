@@ -1,4 +1,4 @@
-import { skillGroups } from "@/content/data/skills";
+import { archivedSkillGroups, skillGroups } from "@/content/data/skills";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
@@ -8,6 +8,10 @@ import { StackPlayground } from "@/components/stack-playground";
 
 export default function SkillsPage() {
   const totalSkills = skillGroups.reduce((acc, g) => acc + g.skills.length, 0);
+  const archivedSkills = archivedSkillGroups.reduce(
+    (acc, g) => acc + g.skills.length,
+    0
+  );
 
   return (
     <>
@@ -80,6 +84,64 @@ export default function SkillsPage() {
                         icon={skill.icon}
                         color={skill.color}
                         className="h-3.5 w-3.5 shrink-0"
+                      />
+                      <span className="truncate">{skill.name}</span>
+                    </span>
+                  ))}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* 03 — Archived */}
+        <section className="mt-20">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="font-mono text-[11px] text-muted-foreground">03</span>
+            <h2 className="font-mono text-sm uppercase tracking-[0.2em] text-foreground">
+              archive
+            </h2>
+            <span className="font-mono text-[10px] text-muted-foreground">
+              {archivedSkills} skills · explored or set aside
+            </span>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+
+          <p className="max-w-xl text-pretty text-[13px] leading-relaxed text-muted-foreground">
+            Tools and frameworks I&apos;ve explored or evaluated but don&apos;t
+            actively use — kept here as a reference, not part of my stack.
+          </p>
+
+          <div className="mt-8 space-y-12">
+            {archivedSkillGroups.map((group, index) => (
+              <Reveal key={`archive-${group.key}`} delay={index * 0.03}>
+                <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <span
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border bg-muted opacity-70"
+                    style={{ color: group.color }}
+                    aria-hidden="true"
+                  >
+                    <group.icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="font-mono text-sm uppercase tracking-[0.18em] text-muted-foreground">
+                    {group.label}
+                  </h3>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground/60">
+                    {group.skills.length} archived
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+                  {group.skills.map((skill) => (
+                    <span
+                      key={skill.name}
+                      title={`${skill.name} — archived`}
+                      className="inline-flex items-center gap-1.5 rounded-md border border-border/40 bg-card px-2 py-1.5 text-[12px] text-muted-foreground/70"
+                    >
+                      <SkillIcon
+                        name={skill.name}
+                        icon={skill.icon}
+                        color={skill.color}
+                        className="h-3.5 w-3.5 shrink-0 grayscale"
                       />
                       <span className="truncate">{skill.name}</span>
                     </span>

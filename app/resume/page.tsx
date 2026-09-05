@@ -1,7 +1,6 @@
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
-import { PrintButton } from "@/components/print-button";
-import { Download, MapPin, FileText } from "lucide-react";
+import { MapPin, FileText } from "lucide-react";
 import { GitHubIcon, LinkedInIcon, MailIcon } from "@/components/icons";
 import { site } from "@/lib/site";
 
@@ -17,45 +16,37 @@ export default function ResumePage() {
         eyebrow="Resume"
         title="Heet Mehta"
         description={site.title}
-      >
-        <div className="flex gap-2">
-          <PrintButton className="rounded-xl border border-border bg-card px-4 py-2 text-sm text-muted-foreground transition hover:bg-muted hover:text-foreground" />
-          <a
-            href="/resume.pdf"
-            download
-            className="inline-flex items-center gap-2 rounded-xl border border-border bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition hover:opacity-90"
-          >
-            <Download className="h-4 w-4" />
-            <span>Download PDF</span>
-          </a>
-        </div>
-      </PageHeader>
+      />
 
       <Container className="py-4">
-        <div className="not-prose flex items-center justify-between rounded-2xl border border-border bg-card p-6">
-          <div className="flex items-center gap-6 text-sm">
+        <div className="not-prose flex flex-col gap-4 rounded-2xl border border-border bg-card p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
             <span className="flex items-center gap-2">
               <MailIcon className="h-4 w-4 text-accent" />
-              <a href={site.socials.email}>{site.email}</a>
+              <a href={site.socials.email} className="break-all">
+                {site.email}
+              </a>
             </span>
-            <span className="text-border">/</span>
+            <span className="hidden text-border sm:inline">/</span>
             <span className="flex items-center gap-2">
               <GitHubIcon className="h-4 w-4 text-accent" />
               <a
                 href={site.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="break-all"
               >
-                github.com/heetmehta
+                github.com/heetmehta18
               </a>
             </span>
-            <span className="text-border">/</span>
+            <span className="hidden text-border sm:inline">/</span>
             <span className="flex items-center gap-2">
               <LinkedInIcon className="h-4 w-4 text-accent" />
               <a
                 href={site.socials.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="break-all"
               >
                 linkedin.com/in/heetmehta18
               </a>
