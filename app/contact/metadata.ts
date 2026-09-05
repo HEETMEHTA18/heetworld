@@ -1,11 +1,12 @@
-export const metadata = {
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch — about a project, a role, or a shared interest in AI and developer tools.",
+    "Get in touch with Heet Mehta — AI engineer, ML engineer, and builder.",
   openGraph: {
     title: "Contact — Heet Mehta",
-    description:
-      "Get in touch about projects, roles, or AI and developer tools.",
+    description: "Get in touch with Heet Mehta — AI engineer and builder.",
     url: "https://heetworld.tech/contact",
   },
 };

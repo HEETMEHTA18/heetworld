@@ -26,16 +26,16 @@ export default function PhoneMockup() {
   }, []);
 
   const PROJECT_URLS: Record<string, string> = {
-    autodevs: "https://github.com/HEETMEHTA18/autodev",
-    devmentor: "https://github.com/HEETMEHTA18/devmentor",
-    coastalguardian: "https://github.com/HEETMEHTA18/Coastal-Guardian",
+    autodevs: "https://github.com/heetmehta18/autodev",
+    devmentor: "https://github.com/heetmehta18/devmentor",
+    coastalguardian: "https://github.com/heetmehta18/Coastal-Guardian",
     binarybattles: "https://binarybattles.dev",
-    checkmate: "https://github.com/HEETMEHTA18/CheckMate",
+    checkmate: "https://github.com/heetmehta18/CheckMate",
     blog: "https://dev.to/heetmehta18",
     linkedin: "https://www.linkedin.com/in/heetmehta18",
   };
 
-  const url = activePhoneProject ? PROJECT_URLS[activePhoneProject] || "https://github.com/HEETMEHTA18" : "";
+  const url = activePhoneProject ? PROJECT_URLS[activePhoneProject] || "https://github.com/heetmehta18" : "";
 
   // Fetch website HTML via proxy list to bypass X-Frame-Options dynamically
   useEffect(() => {

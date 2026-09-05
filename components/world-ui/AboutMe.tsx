@@ -61,11 +61,11 @@ export default function AboutMe() {
 
             {/* Social Links */}
             <div className="mt-8 md:mt-12 space-y-3 font-mono text-xs sm:text-sm font-bold flex flex-col items-start">
-              <a href="mailto:heetmehta18.work@gmail.com" className="flex items-center gap-3 text-[#1E0B9B] hover:text-[#FF4500] transition-colors group">
+              <a href="mailto:explore@heetworld.tech" className="flex items-center gap-3 text-[#1E0B9B] hover:text-[#FF4500] transition-colors group">
                 <div className="p-1.5 sm:p-2 bg-[#FF4500] text-white rounded-md group-hover:scale-110 transition-transform">
                   <Mail className="w-4 h-4" />
                 </div>
-                heetmehta18.work@gmail.com
+                explore@heetworld.tech
               </a>
               <a href="https://linkedin.com/in/heetmehta18" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#1E0B9B] hover:text-[#FF4500] transition-colors group">
                 <div className="p-1.5 sm:p-2 bg-[#FF4500] text-white rounded-md group-hover:scale-110 transition-transform">
@@ -73,11 +73,11 @@ export default function AboutMe() {
                 </div>
                 linkedin.com/in/heetmehta18
               </a>
-              <a href="https://github.com/HEETMEHTA18" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#1E0B9B] hover:text-[#FF4500] transition-colors group">
+              <a href="https://github.com/heetmehta18" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#1E0B9B] hover:text-[#FF4500] transition-colors group">
                 <div className="p-1.5 sm:p-2 bg-[#FF4500] text-white rounded-md group-hover:scale-110 transition-transform">
                   <GitHubIcon className="w-4 h-4" />
                 </div>
-                github.com/HEETMEHTA18
+                github.com/heetmehta18
               </a>
             </div>
           </div>

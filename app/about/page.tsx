@@ -51,7 +51,7 @@ export default function AboutPage() {
         <Reveal>
           <div className="mb-14 overflow-hidden rounded-2xl border border-border bg-card shadow-card">
             <Image
-              src="/images/Blue Modern Motivational LinkedIn Banner (1).png"
+              src="/images/linkedin-banner.png"
               alt="Personal banner — Heet Mehta, NLP engineer and builder"
               width={2000}
               height={600}

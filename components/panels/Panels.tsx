@@ -274,7 +274,7 @@ function ForgePanel() {
 
       <motion.div variants={fadeUp} className="flex gap-4 pt-4">
         <a
-          href="https://github.com/HEETMEHTA18/autodev"
+          href="https://github.com/heetmehta18/autodev"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-5 py-2.5 bg-[#C0392B]/10 hover:bg-[#C0392B]/20 border border-[#C0392B]/40 rounded-lg text-sm font-mono text-[#F9F7F3] transition-all hover:scale-[1.02] hover:shadow-[0_4px_15px_rgba(192,57,43,0.15)] active:scale-[0.98]"
@@ -343,7 +343,7 @@ function AcademyPanel() {
 
       <motion.div variants={fadeUp} className="flex gap-4 pt-4">
         <a
-          href="https://github.com/HEETMEHTA18/devmentor"
+          href="https://github.com/heetmehta18/devmentor"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-5 py-2.5 bg-[#2C3E6B]/20 hover:bg-[#2C3E6B]/30 border border-[#2C3E6B]/50 rounded-lg text-sm font-mono text-[#F9F7F3] transition-all hover:scale-[1.02] hover:shadow-[0_4px_15px_rgba(44,62,107,0.15)] active:scale-[0.98]"
@@ -593,7 +593,7 @@ function HarborPanel() {
       // Build realistic mailto — works without backend, proper workflow
       const subject = encodeURIComponent(`Portfolio inquiry from ${formData.name}`);
       const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n`);
-      const mailto = `mailto:heetmehta18.work@gmail.com?subject=${subject}&body=${body}`;
+      const mailto = `mailto:explore@heetworld.tech?subject=${subject}&body=${body}`;
       // Open mail client
       window.location.href = mailto;
       // Small delay to show feedback even though mailto is instant
@@ -602,7 +602,7 @@ function HarborPanel() {
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
       setFormStatus("error");
-      setFormError(err instanceof Error ? err.message : "Failed to send. Try emailing heetmehta18.work@gmail.com directly.");
+      setFormError(err instanceof Error ? err.message : "Failed to send. Try emailing explore@heetworld.tech directly.");
     }
   };
 
@@ -610,13 +610,13 @@ function HarborPanel() {
     <div className="space-y-6">
       <motion.div variants={fadeUp} className="grid grid-cols-2 gap-3 font-mono text-xs">
         <a
-          href="https://github.com/HEETMEHTA18"
+          href="https://github.com/heetmehta18"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2.5 p-3.5 rounded-xl border border-[#F2E6C9]/10 bg-black/10 hover:border-[#3498DB]/35 transition-all text-[#F2E6C9]/95 hover:scale-[1.02] hover:shadow-[0_4px_15px_rgba(52,152,219,0.1)] active:scale-[0.98]"
         >
           <GitHubIcon className="w-4 h-4 text-[#3498DB]" />
-          github.com/HEETMEHTA18
+          github.com/heetmehta18
         </a>
         <a
           href="https://linkedin.com/in/heetmehta18"
@@ -698,7 +698,7 @@ function HarborPanel() {
               <p className="text-[11px] text-[#C0392B] mt-2">{formError}</p>
             )}
             <p className="text-[10px] text-[#F2E6C9]/30 mt-2 text-center">
-              Or email directly: <a href="mailto:heetmehta18.work@gmail.com" className="text-[#3498DB] hover:underline">heetmehta18.work@gmail.com</a>
+              Or email directly: <a href="mailto:explore@heetworld.tech" className="text-[#3498DB] hover:underline">explore@heetworld.tech</a>
             </p>
           </form>
         )}
