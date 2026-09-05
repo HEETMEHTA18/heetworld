@@ -6,6 +6,7 @@ import {
   ArrowDownToLine,
   ArrowUpFromLine,
   Eye,
+  TerminalSquare,
   Trash2,
   type LucideIcon,
 } from "lucide-react";
@@ -13,28 +14,31 @@ import {
 import { skillGroups } from "@/content/data/skills";
 import { cn } from "@/lib/utils";
 
-type LogEntry = { id: number; text: string };
-
 const spring = { type: "spring", stiffness: 420, damping: 26 } as const;
+
+type LogEntry = {
+  id: number;
+  text: string;
+  tone?: "dim" | "ok";
+};
+
+let logId = 0;
 
 export function StackPlayground() {
   const groups = skillGroups;
   const [stack, setStack] = useState<string[]>([]);
-  const [logs, setLogs] = useState<LogEntry[]>([]);
   const [overTray, setOverTray] = useState(false);
+  const [log, setLog] = useState<LogEntry[]>([]);
   const trayRef = useRef<HTMLDivElement>(null);
   const dropRef = useRef(false);
-  const logId = useRef(0);
   const reduceMotion = useReducedMotion();
 
   const byKey = useMemo(() => new Map(groups.map((g) => [g.key, g])), [groups]);
   const topKey = stack.length > 0 ? stack[stack.length - 1] : null;
-  const top = topKey ? byKey.get(topKey) : undefined;
 
-  const log = (text: string) =>
-    setLogs((prev) =>
-      [{ id: ++logId.current, text }, ...prev].slice(0, 6)
-    );
+  const print = (text: string, tone: LogEntry["tone"] = "ok") => {
+    setLog((prev) => [...prev.slice(-5), { id: ++logId, text, tone }]);
+  };
 
   const pointInTray = (x: number, y: number) => {
     const el = trayRef.current;
@@ -47,42 +51,46 @@ export function StackPlayground() {
     const group = byKey.get(key);
     if (!group) return;
     if (stack.includes(key)) {
-      log(`stack.push("${group.label}")  # already on the stack`);
+      print(`push(${group.label}) → already on the stack`);
       return;
     }
     setStack((s) => [...s, key]);
-    log(`stack.push("${group.label}")`);
+    print(`push(${group.label}) → ${group.skills.length} items`);
   };
 
   const pop = () => {
     if (!topKey) {
-      log("stack.pop()  # underflow — the stack is empty");
+      print("pop() → stack is empty", "dim");
       return;
     }
-    const group = byKey.get(topKey);
+    const g = byKey.get(topKey);
     setStack((s) => s.slice(0, -1));
-    log(`stack.pop()  # removed "${group?.label}"`);
+    print(`pop() → removed ${g ? g.label : topKey}`);
+  };
+
+  const peek = () => {
+    if (!topKey) {
+      print("peek() → stack is empty", "dim");
+      return;
+    }
+    const g = byKey.get(topKey);
+    print(`peek() → top is ${g ? g.label : topKey}`);
   };
 
   const removeAny = (key: string) => {
     const group = byKey.get(key);
     if (!group || !stack.includes(key)) return;
     setStack((s) => s.filter((k) => k !== key));
-    log(`stack.remove("${group.label}")  # direct removal`);
+    print(`remove(${group.label}) → removed from the middle`);
   };
 
   const popAll = () => {
-    if (!stack.length) return;
+    if (!stack.length) {
+      print("clear() → nothing to clear", "dim");
+      return;
+    }
     setStack([]);
-    log("while not stack.is_empty(): stack.pop()");
-  };
-
-  const peek = () => {
-    log(
-      top
-        ? `stack.peek()  # "${top.label}"`
-        : "stack.peek()  # empty (returns None)"
-    );
+    print(`clear() → popped ${stack.length} item${stack.length > 1 ? "s" : ""}`);
   };
 
   return (
@@ -250,7 +258,7 @@ export function StackPlayground() {
             label="peek"
             icon={Eye}
             onClick={peek}
-            disabled={false}
+            disabled={stack.length === 0}
           />
           <StackControl
             label="clear"
@@ -266,28 +274,37 @@ export function StackPlayground() {
                 : `${stack.length} items`}
           </span>
         </div>
+      </div>
 
-        {/* Operation console */}
-        <div className="overflow-hidden rounded-xl border border-border bg-[#0b0d11] font-mono text-[11px] leading-relaxed text-[#d4d4d8]">
-          <div className="flex items-center justify-between border-b border-white/10 px-3 py-1.5">
-            <span className="text-[9px] uppercase tracking-[0.2em] text-[#71717a]">
-              console — stack.cpp
-            </span>
-            <span className="flex gap-1">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#4ade80]" />
-              <span className="h-1.5 w-1.5 rounded-full bg-[#fbbf24]" />
-              <span className="h-1.5 w-1.5 rounded-full bg-[#f87171]" />
-            </span>
-          </div>
-          <div aria-live="polite" className="max-h-36 space-y-0.5 overflow-y-auto px-3 py-2">
-            {logs.length === 0 ? (
-              <p className="text-[#52525b]">
-                {"// operations will print here"}
+      {/* Console */}
+      <div className="overflow-hidden rounded-xl border border-border bg-[#0d0f12] lg:col-span-2">
+        <div className="flex items-center gap-2 border-b border-white/10 px-3.5 py-2.5">
+          <TerminalSquare className="h-3.5 w-3.5 text-emerald-400" />
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-300">
+            console — stack.cpp
+          </span>
+          <span className="ml-auto flex gap-1.5">
+            <span className="h-2 w-2 rounded-full bg-emerald-400/70" />
+            <span className="h-2 w-2 rounded-full bg-amber-400/70" />
+            <span className="h-2 w-2 rounded-full bg-rose-400/70" />
+          </span>
+        </div>
+        <div className="min-h-[120px] space-y-1 p-3.5 font-mono text-[11px] leading-relaxed">
+          {log.length === 0 ? (
+            <p className="text-slate-500">{"// operations will print here"}</p>
+          ) : (
+            log.map((entry) => (
+              <p
+                key={entry.id}
+                className={cn(
+                  "tabular-nums",
+                  entry.tone === "dim" ? "text-slate-500" : "text-emerald-300"
+                )}
+              >
+                {entry.text}
               </p>
-            ) : (
-              logs.map((l) => <p key={l.id}>{l.text}</p>)
-            )}
-          </div>
+            ))
+          )}
         </div>
       </div>
     </div>

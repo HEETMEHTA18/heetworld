@@ -9,10 +9,12 @@ import { metadata as squadMeta } from "@/content/projects/squad-qa.mdx";
 import { metadata as sastaMeta } from "@/content/projects/sasta-shark-tank.mdx";
 import { metadata as cvMeta } from "@/content/projects/cv-experiments.mdx";
 import { metadata as mlMeta } from "@/content/projects/ml-experiments.mdx";
+import { metadata as invonotifyMeta } from "@/content/projects/invonotify.mdx";
 
 export const projectsMeta: ProjectMeta[] = [
   tatvikMeta,
   autodevsMeta,
+  invonotifyMeta,
   trafficMeta,
   aipipelineMeta,
   coastalMeta,

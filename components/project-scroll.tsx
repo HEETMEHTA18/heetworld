@@ -10,15 +10,12 @@ const IMAGE_MAP: Record<string, string> = {
   autodevs: "/images/projects/aaron-burden-aRya3uMiNIA-unsplash.jpg",
   tatvik: "/images/projects/alice-triquet-HeEJU3nrg_0-unsplash.jpg",
   "squad-qa": "/images/projects/casey-horner-4rDCa5hBlCs-unsplash.jpg",
-  "ai-pipeline": "/images/projects/daniel-gomez-eKegp5f2PPk-unsplash.jpg",
 };
 
-const SLUGS = ["autodevs", "tatvik", "squad-qa", "ai-pipeline"] as const;
-
 export function ProjectShowcase({ projects }: { projects: ProjectMeta[] }) {
-  const ordered = SLUGS.map((slug) =>
-    projects.find((p) => p.slug === slug)
-  ).filter((p): p is ProjectMeta => Boolean(p));
+  const ordered = projects
+    .filter((p) => p.featured)
+    .sort((a, b) => a.order - b.order);
 
   if (ordered.length === 0) return null;
 
@@ -26,6 +23,7 @@ export function ProjectShowcase({ projects }: { projects: ProjectMeta[] }) {
     <div className="space-y-16 sm:space-y-24">
       {ordered.map((project, i) => {
         const imageFirst = i % 2 === 1;
+        const imageSrc = IMAGE_MAP[project.slug];
         return (
           <Reveal key={project.slug}>
             <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-14">
@@ -37,14 +35,22 @@ export function ProjectShowcase({ projects }: { projects: ProjectMeta[] }) {
                 )}
               >
                 <div className="aspect-[16/11] w-full">
-                  <Image
-                    src={IMAGE_MAP[project.slug]}
-                    alt={`${project.title} — ${project.category}`}
-                    fill
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    loading="lazy"
-                    className="object-cover"
-                  />
+                  {imageSrc ? (
+                    <Image
+                      src={imageSrc}
+                      alt={`${project.title} — ${project.category}`}
+                      fill
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      loading="lazy"
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                        {project.category}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
 

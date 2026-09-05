@@ -30,7 +30,7 @@ export const now = {
   working: [
     "Tatvik — adding tool calling and multi-language wake word",
     "AutoDevs — building persistent repo memory",
-    "Retail Shelf Intelligence — expanding the dataset to new store layouts",
+    "InvoNotify — AI recovery engine, WhatsApp channel, and production hardening",
   ],
   studying: [
     "Rust systems programming for low-latency audio",

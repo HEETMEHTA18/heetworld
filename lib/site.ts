@@ -49,11 +49,10 @@ export const MORE_LINKS: NavLink[] = [
   { href: "/resume", label: "Resume" },
   { href: "/thoughts", label: "Thoughts" },
   { href: "/bookmarks", label: "Bookmarks" },
-  { href: "/stack", label: "Stack" },
 ];
 
 export const FOOTER_LINKS = [
-  { href: "/stack", label: "Stack" },
+  { href: "/skills", label: "Stack" },
   { href: "/now", label: "Now" },
   { href: "/resume", label: "Resume" },
   { href: "/uses", label: "Uses" },

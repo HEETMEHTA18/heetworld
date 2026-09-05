@@ -1,0 +1,112 @@
+export const metadata = {
+  slug: "invonotify",
+  title: "InvoNotify",
+  tagline: "AI-powered invoice revenue recovery — detects overdue invoices, scores collection risk, and pursues payments across email and WhatsApp.",
+  description:
+    "InvoNotify is an AI platform for invoice revenue recovery. It detects overdue invoices, scores collection risk with a logistic-regression model, gates every action through a policy engine, and executes recovery across email and WhatsApp using Razorpay payment links.",
+  year: "2026",
+  status: "Active",
+  category: "AI · FinTech",
+  tags: ["AI", "ML", "FinTech", "Payments"],
+  stack: [
+    "Next.js",
+    "TypeScript",
+    "PostgreSQL",
+    "Prisma",
+    "Razorpay",
+    "WhatsApp API",
+    "GPT-4o-mini",
+  ],
+  github: "https://github.com/heetmehta18/InvoNotify",
+  demo: "https://invonotify.vercel.app",
+  featured: true,
+  order: 3,
+  visual: "architecture",
+  accent: "#10B981",
+  problem:
+    "Late payments get noticed too late. Following up is manual, inconsistent, and risk-blind — every overdue invoice gets the same gentle reminder, regardless of who owes what and how likely they are to actually pay.",
+  solution:
+    "InvoNotify turns recovery into a decision pipeline: an ML model scores each overdue invoice's collection risk, a policy engine pins every action to guardrails, and recovery runs across email and WhatsApp with Razorpay payment links. Webhooks settle the invoice the moment the customer pays.",
+  timeline: [
+    { period: "Jan 2026", label: "Requirements, SRS & architecture design" },
+    { period: "Feb 2026", label: "Core invoicing — Prisma schema, user management, Razorpay payment links" },
+    { period: "2026", label: "AI recovery engine — ML risk scoring, policy guardrails, webhook settlement" },
+    { period: "Next", label: "WhatsApp rollout, diagnosis analytics, production hardening" },
+  ],
+};
+
+# InvoNotify
+
+InvoNotify is an AI-powered invoice revenue recovery platform. Instead of sending the same late-payment email to everyone, it detects overdue invoices, assigns each one a collection-risk score, and runs the recovery through a policy engine before acting — with Razorpay payment links and webhook settlement completing the loop.
+
+The system was designed end-to-end first (see [`proposed.md`](https://github.com/heetmehta18/InvoNotify/blob/main/proposed.md)), then built out as a working platform: invoicing, customers, dashboard, and the AI recovery engine.
+
+## The Problem
+
+Collections fail quietly:
+
+- **Late payments go unnoticed** — nothing flags the invoice that just crossed its due date.
+- **Follow-up is risk-blind** — a steady customer one week late gets treated the same as a repeat offender months overdue.
+- **There's no payment path** — reminders without a way to pay inline turn a nudge into a chore.
+
+## How recovery works
+
+```
+Invoice created → due date passes → AI detects overdue → ML risk score
+      → Policy engine (9 guardrails) → Email / WhatsApp → Razorpay link
+      → Customer pays → Webhook → invoice settled, case closed
+```
+
+1. **Detect** — the AI engine sweeps for invoices past due.
+2. **Score** — a logistic-regression model predicts collection risk on a 0–1 scale from eleven features: balance, days overdue, payment history, success rate, prior reminders, CIBIL score, VIP flag, and whether a human is already engaged.
+3. **Decide** — an LLM decision agent proposes an action; the policy engine approves or blocks it.
+4. **Act** — recovery runs through the channel the decision allows: a gentle email, a Razorpay payment link, or a WhatsApp reminder via the Meta Cloud API.
+5. **Settle** — a Razorpay webhook records the payment, marks the invoice paid, and closes the recovery case.
+
+## ML risk scoring
+
+| Score | Level | Action |
+| --- | --- | --- |
+| ≥ 0.85 | CRITICAL | Escalate to a human immediately |
+| ≥ 0.70 | HIGH | Aggressive follow-up |
+| ≥ 0.40 | MEDIUM | Payment link + reminders |
+| &lt; 0.40 | LOW | Gentle nudge |
+
+The model is custom logistic regression trained on invoice and customer history — no closed platform, no black box. Every score is explainable back to its feature weights.
+
+## Policy engine guardrails
+
+No recovery action fires unchecked. Every decision is gated by nine rules: skip already-paid invoices, respect opt-outs, hold disputes, route VIPs to humans, drop balances too small to recover, require approval above a money limit, enforce contact cooldowns, cap daily escalations, and only contact within business hours.
+
+If an action is blocked, the case still gets a decision record — the audit trail keeps the full history for every invoice.
+
+## Architecture
+
+```
+Dashboard (Next.js) → AI Engine (ML + LLM) → Providers (Razorpay)
+        │                    │                     │
+        ▼                    ▼                     ▼
+   PostgreSQL           Policy Engine          Channels
+   (Neon + Prisma)      (9 guardrails)         (Email / WhatsApp)
+```
+
+- **Next.js 16, React 19, Tailwind** on the frontend; Next.js API Routes for the backend.
+- **PostgreSQL (Neon) with Prisma ORM** — users, invoices, recovery cases, agent actions, promises-to-pay, and payment events are first-class models with real migrations.
+- **Razorpay** payment links do the collecting; the webhook endpoint verifies signatures before recording payment.
+- **Email via Gmail SMTP (nodemailer), WhatsApp via the Meta Cloud API** — the two recovery channels.
+- **NextAuth v5** for session auth, with user-scoped database queries.
+- **CI/CD** — GitHub Actions workflows run CI, a scheduled AI recovery sweep, and automated reminders.
+
+## Security
+
+Session-based auth, user-scoped queries everywhere, `CRON_SECRET` protected endpoints, Razorpay webhook signature verification, and a policy engine that blocks unauthorized actions — with an audit trail for every decision.
+
+## Roadmap
+
+- WhatsApp channel rollout and configuration polish.
+- Recovery analytics and ML failure diagnosis in the dashboard.
+- Multi-merchant support and production hardening.
+
+<Callout type="info" title="Status">
+Active. A working invoice, recovery, and payment platform — designed before it was built, and shipped to production.
+</Callout>

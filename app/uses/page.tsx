@@ -24,7 +24,7 @@ export default function UsesPage() {
         </Reveal>
       </Container>
 
-      <PageFlow currentPath="/stack" />
+      <PageFlow currentPath="/uses" />
     </>
   );
 }
