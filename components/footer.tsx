@@ -19,7 +19,7 @@ export function Footer() {
       {/* Background image */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <Image
-          src="/images/projects/daniel-gomez-eKegp5f2PPk-unsplash.jpg"
+          src="/images/projects/casey-horner-4rDCa5hBlCs-unsplash.jpg"
           alt=""
           fill
           sizes="100vw"

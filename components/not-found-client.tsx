@@ -28,7 +28,7 @@ export function NotFoundClient() {
     <div className="relative h-dvh w-full overflow-hidden">
       {/* Full-screen mountain background */}
       <Image
-        src="/images/projects/daniel-gomez-eKegp5f2PPk-unsplash.jpg"
+        src="/images/projects/casey-horner-4rDCa5hBlCs-unsplash.jpg"
         alt="Mountain landscape"
         fill
         sizes="100vw"
