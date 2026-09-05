@@ -44,7 +44,7 @@ export function Footer() {
           <div className="flex flex-col gap-3 sm:col-span-2 lg:col-span-1">
             <Link
               href="/"
-              className="font-display text-lg tracking-[0.12em] text-foreground transition-opacity hover:opacity-60"
+              className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-foreground"
             >
               {site.initials}
             </Link>

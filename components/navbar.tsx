@@ -81,7 +81,7 @@ export function Navbar() {
 
           <Link
             href="/"
-            className="relative z-10 flex items-center gap-1.5 font-display text-lg tracking-[0.12em] text-foreground transition-opacity hover:opacity-60"
+            className="relative z-10 flex items-center gap-1.5 font-decolmax text-2xl tracking-[0.12em] text-foreground transition-opacity hover:opacity-60"
             aria-label="Home — Heet Mehta"
           >
             {site.initials}

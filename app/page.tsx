@@ -108,7 +108,7 @@ export default async function HomePage() {
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
                   selected work
                 </p>
-                <h2 className="mt-4 font-display text-3xl leading-[1.08] text-foreground sm:text-4xl">
+                <h2 className="mt-4 text-3xl font-medium tracking-[-0.04em] text-foreground sm:text-4xl">
                   Systems I build, and the thinking underneath.
                 </h2>
                 <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
@@ -138,7 +138,7 @@ export default async function HomePage() {
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
                   the journey
                 </p>
-                <h2 className="mt-4 font-display text-3xl leading-[1.08] text-foreground sm:text-4xl">
+                <h2 className="mt-4 text-3xl font-medium tracking-[-0.04em] text-foreground sm:text-4xl">
                   still learning,<br />still making.
                 </h2>
               </div>

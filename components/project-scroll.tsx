@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 const IMAGE_MAP: Record<string, string> = {
   autodevs: "/images/projects/aaron-burden-aRya3uMiNIA-unsplash.jpg",
   tatvik: "/images/projects/alice-triquet-HeEJU3nrg_0-unsplash.jpg",
+  invonotify: "/images/projects/daniel-gomez-eKegp5f2PPk-unsplash.jpg",
   "squad-qa": "/images/projects/casey-horner-4rDCa5hBlCs-unsplash.jpg",
 };
 

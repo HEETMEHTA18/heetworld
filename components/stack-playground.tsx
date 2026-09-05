@@ -31,8 +31,7 @@ export function StackPlayground() {
   const push = (key: string) => {
     const group = byKey.get(key);
     if (!group) return;
-    if (stack.includes(key)) return;
-    setStack((s) => [...s, key]);
+    setStack((s) => (s.includes(key) ? s : [...s, key]));
   };
 
   const pop = () => {
