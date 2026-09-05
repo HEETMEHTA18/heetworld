@@ -3,6 +3,7 @@ import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 import { PageFlow } from "@/components/page-flow";
+import { SkillIcon } from "@/components/skill-icon";
 import { StackPlayground } from "@/components/stack-playground";
 
 export default function SkillsPage() {
@@ -67,18 +68,20 @@ export default function SkillsPage() {
                     — {group.description}
                   </span>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
                   {group.skills.map((skill) => (
                     <span
                       key={skill.name}
-                      className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card px-3.5 py-1.5 text-[13px] font-medium text-foreground transition-colors hover:border-foreground/30 hover:bg-muted"
+                      title={`${skill.name} — ${skill.proficiency}`}
+                      className="inline-flex items-center gap-1.5 rounded-md border border-border/70 bg-card px-2 py-1.5 text-[12px] font-medium text-foreground transition-colors hover:border-foreground/30 hover:bg-muted"
                     >
-                      <span
-                        aria-hidden="true"
-                        className="h-2 w-2 shrink-0 rounded-full"
-                        style={{ backgroundColor: skill.color ?? "#6366F1" }}
+                      <SkillIcon
+                        name={skill.name}
+                        icon={skill.icon}
+                        color={skill.color}
+                        className="h-3.5 w-3.5 shrink-0"
                       />
-                      {skill.name}
+                      <span className="truncate">{skill.name}</span>
                     </span>
                   ))}
                 </div>

@@ -19,7 +19,7 @@ export function Footer() {
       {/* Background image */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <Image
-          src="/images/projects/casey-horner-4rDCa5hBlCs-unsplash.jpg"
+          src="/images/projects/daniel-gomez-eKegp5f2PPk-unsplash.jpg"
           alt=""
           fill
           sizes="100vw"
@@ -44,7 +44,7 @@ export function Footer() {
           <div className="flex flex-col gap-3 sm:col-span-2 lg:col-span-1">
             <Link
               href="/"
-              className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-foreground"
+              className="font-display text-lg tracking-[0.12em] text-foreground transition-opacity hover:opacity-60"
             >
               {site.initials}
             </Link>

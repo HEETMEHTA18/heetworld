@@ -2,43 +2,24 @@
 
 import { useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import {
-  ArrowDownToLine,
-  ArrowUpFromLine,
-  Eye,
-  TerminalSquare,
-  Trash2,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowDownToLine, ArrowUpFromLine, Eye, Trash2 } from "lucide-react";
 
 import { skillGroups } from "@/content/data/skills";
 import { cn } from "@/lib/utils";
 
 const spring = { type: "spring", stiffness: 420, damping: 26 } as const;
 
-type LogEntry = {
-  id: number;
-  text: string;
-  tone?: "dim" | "ok";
-};
-
-let logId = 0;
-
 export function StackPlayground() {
   const groups = skillGroups;
   const [stack, setStack] = useState<string[]>([]);
   const [overTray, setOverTray] = useState(false);
-  const [log, setLog] = useState<LogEntry[]>([]);
+  const [isPeeking, setIsPeeking] = useState(false);
   const trayRef = useRef<HTMLDivElement>(null);
   const dropRef = useRef(false);
   const reduceMotion = useReducedMotion();
 
   const byKey = useMemo(() => new Map(groups.map((g) => [g.key, g])), [groups]);
   const topKey = stack.length > 0 ? stack[stack.length - 1] : null;
-
-  const print = (text: string, tone: LogEntry["tone"] = "ok") => {
-    setLog((prev) => [...prev.slice(-5), { id: ++logId, text, tone }]);
-  };
 
   const pointInTray = (x: number, y: number) => {
     const el = trayRef.current;
@@ -50,47 +31,30 @@ export function StackPlayground() {
   const push = (key: string) => {
     const group = byKey.get(key);
     if (!group) return;
-    if (stack.includes(key)) {
-      print(`push(${group.label}) → already on the stack`);
-      return;
-    }
+    if (stack.includes(key)) return;
     setStack((s) => [...s, key]);
-    print(`push(${group.label}) → ${group.skills.length} items`);
   };
 
   const pop = () => {
-    if (!topKey) {
-      print("pop() → stack is empty", "dim");
-      return;
-    }
-    const g = byKey.get(topKey);
+    if (!topKey) return;
     setStack((s) => s.slice(0, -1));
-    print(`pop() → removed ${g ? g.label : topKey}`);
-  };
-
-  const peek = () => {
-    if (!topKey) {
-      print("peek() → stack is empty", "dim");
-      return;
-    }
-    const g = byKey.get(topKey);
-    print(`peek() → top is ${g ? g.label : topKey}`);
   };
 
   const removeAny = (key: string) => {
     const group = byKey.get(key);
     if (!group || !stack.includes(key)) return;
     setStack((s) => s.filter((k) => k !== key));
-    print(`remove(${group.label}) → removed from the middle`);
   };
 
   const popAll = () => {
-    if (!stack.length) {
-      print("clear() → nothing to clear", "dim");
-      return;
-    }
+    if (!stack.length) return;
     setStack([]);
-    print(`clear() → popped ${stack.length} item${stack.length > 1 ? "s" : ""}`);
+  };
+
+  const peek = () => {
+    if (!topKey) return;
+    setIsPeeking(true);
+    window.setTimeout(() => setIsPeeking(false), 700);
   };
 
   return (
@@ -211,7 +175,10 @@ export function StackPlayground() {
                     "relative z-10 mb-2 flex w-full items-center justify-between gap-3 rounded-xl border px-3.5 py-3 text-left shadow-card",
                     isTop
                       ? "border-accent/50 bg-accent text-accent-foreground"
-                      : "border-border bg-card text-foreground"
+                      : "border-border bg-card text-foreground",
+                    isTop &&
+                      isPeeking &&
+                      "ring-2 ring-accent-foreground/60 shadow-lg"
                   )}
                 >
                   <span className="flex items-center gap-2.5">
@@ -247,7 +214,7 @@ export function StackPlayground() {
         </div>
 
         {/* Stack controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <StackControl
             label="pop"
             icon={ArrowUpFromLine}
@@ -275,50 +242,16 @@ export function StackPlayground() {
           </span>
         </div>
       </div>
-
-      {/* Console */}
-      <div className="overflow-hidden rounded-xl border border-border bg-[#0d0f12] lg:col-span-2">
-        <div className="flex items-center gap-2 border-b border-white/10 px-3.5 py-2.5">
-          <TerminalSquare className="h-3.5 w-3.5 text-emerald-400" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-300">
-            console — stack.cpp
-          </span>
-          <span className="ml-auto flex gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-emerald-400/70" />
-            <span className="h-2 w-2 rounded-full bg-amber-400/70" />
-            <span className="h-2 w-2 rounded-full bg-rose-400/70" />
-          </span>
-        </div>
-        <div className="min-h-[120px] space-y-1 p-3.5 font-mono text-[11px] leading-relaxed">
-          {log.length === 0 ? (
-            <p className="text-slate-500">{"// operations will print here"}</p>
-          ) : (
-            log.map((entry) => (
-              <p
-                key={entry.id}
-                className={cn(
-                  "tabular-nums",
-                  entry.tone === "dim" ? "text-slate-500" : "text-emerald-300"
-                )}
-              >
-                {entry.text}
-              </p>
-            ))
-          )}
-        </div>
-      </div>
     </div>
   );
-}
-
-function StackControl({
+}function StackControl({
   label,
   icon: Icon,
   onClick,
   disabled,
 }: {
   label: string;
-  icon: LucideIcon;
+  icon: typeof ArrowUpFromLine;
   onClick: () => void;
   disabled?: boolean;
 }) {
