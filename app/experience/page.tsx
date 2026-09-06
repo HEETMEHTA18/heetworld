@@ -81,8 +81,9 @@ function Timeline({ items, muted = false }: { items: ExperienceItem[]; muted?: b
           const IconComponent = meta.icon;
           return (
             <Reveal key={`${item.org}-${i}`} delay={i * 0.06} className="relative">
-              <div className="absolute -left-[33px] top-6 h-full w-px bg-border" />
-              <div className="mb-16 flex gap-5 pl-2">
+              {/* Vertical line — hidden on mobile to avoid overflow */}
+              <div className="absolute left-[17px] top-6 hidden h-full w-px bg-border sm:block" />
+              <div className="mb-12 flex gap-4 sm:mb-16 sm:gap-5 sm:pl-2">
                 <div className="relative z-10 flex flex-col items-center">
                   <div
                     className={cn(
@@ -101,7 +102,7 @@ function Timeline({ items, muted = false }: { items: ExperienceItem[]; muted?: b
                     {item.type}
                   </span>
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <h3 className="font-medium text-foreground">{item.role}</h3>
                     <Pill variant="soft" size="sm">{item.period}</Pill>

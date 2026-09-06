@@ -46,17 +46,17 @@ export default function AboutPage() {
         description="I'm Heet — an AI engineer and builder. I design systems that run on-device, ship developer tools, and document what I learn."
       />
 
-      <Container className="py-12 sm:py-16">
+      <Container className="py-10 sm:py-16">
         {/* Banner */}
         <Reveal>
-          <div className="mb-14 overflow-hidden rounded-2xl border border-border bg-card shadow-card">
+          <div className="mb-10 overflow-hidden rounded-2xl border border-border bg-card shadow-card sm:mb-14">
             <Image
               src="/images/linkedin-banner.png"
               alt="Personal banner — Heet Mehta, NLP engineer and builder"
               width={2000}
               height={600}
               priority
-              sizes="(max-width: 640px) 100vw, 672px"
+              sizes="100vw"
               className="h-auto w-full object-cover"
             />
           </div>
@@ -66,7 +66,7 @@ export default function AboutPage() {
         <div className="max-w-2xl">
           {about.slice(0, 3).map((section, i) => (
             <Reveal key={section.id} delay={i * 0.06}>
-              <div className="mt-12 first:mt-0">
+              <div className="mt-10 first:mt-0 sm:mt-12">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                   {section.label}
                 </p>
@@ -92,7 +92,7 @@ export default function AboutPage() {
       <SectionDivider />
 
       {/* Current Focus */}
-      <Container className="py-12 sm:py-16">
+      <Container className="py-10 sm:py-16">
         <Reveal>
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
             Current Focus
@@ -103,15 +103,30 @@ export default function AboutPage() {
         <div className="mt-6 space-y-0">
           {focus.map((f, i) => (
             <Reveal key={f.id} delay={i * 0.05}>
-              <div className="flex items-start gap-4 border-b border-border py-4 sm:items-center sm:gap-6">
-                <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
-                  {f.id}
-                </span>
-                <div className="flex flex-1 flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-4">
-                  <span className="min-w-[140px] text-[15px] font-medium text-foreground">
+              <div className="border-b border-border py-4">
+                {/* Desktop: single row */}
+                <div className="hidden items-center gap-6 sm:flex">
+                  <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
+                    {f.id}
+                  </span>
+                  <span className="w-[160px] shrink-0 text-[15px] font-medium text-foreground">
                     {f.label}
                   </span>
                   <span className="font-mono text-[12px] text-muted-foreground">
+                    {f.detail}
+                  </span>
+                </div>
+                {/* Mobile: stacked */}
+                <div className="flex flex-col gap-1 sm:hidden">
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
+                      {f.id}
+                    </span>
+                    <span className="text-[15px] font-medium text-foreground">
+                      {f.label}
+                    </span>
+                  </div>
+                  <span className="pl-7 font-mono text-[12px] text-muted-foreground">
                     {f.detail}
                   </span>
                 </div>
@@ -124,7 +139,7 @@ export default function AboutPage() {
       <SectionDivider />
 
       {/* Philosophy */}
-      <Container className="py-12 sm:py-16">
+      <Container className="py-10 sm:py-16">
         <Reveal>
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
             Philosophy
@@ -151,11 +166,11 @@ export default function AboutPage() {
       <SectionDivider />
 
       {/* Remaining about sections */}
-      <Container className="py-12 sm:py-16">
+      <Container className="py-10 sm:py-16">
         <div className="max-w-2xl">
           {about.slice(3).map((section, i) => (
             <Reveal key={section.id} delay={i * 0.06}>
-              <div className="mt-12 first:mt-0">
+              <div className="mt-10 first:mt-0 sm:mt-12">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
                   {section.label}
                 </p>
@@ -181,9 +196,9 @@ export default function AboutPage() {
       <SectionDivider />
 
       {/* Where I've been */}
-      <Container className="py-12 sm:py-16">
+      <Container className="py-10 sm:py-16">
         <Reveal>
-          <div className="flex items-baseline justify-between">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
               Where I&apos;ve Been
             </p>
@@ -201,8 +216,8 @@ export default function AboutPage() {
               .filter((item) => !item.legacy)
               .slice(0, 3)
               .map((item, i) => (
-              <div key={`${item.org}-${i}`} className="flex items-start gap-4 sm:gap-6">
-                <span className="min-w-[100px] font-mono text-[11px] text-muted-foreground">
+              <div key={`${item.org}-${i}`} className="flex flex-col gap-1 sm:flex-row sm:items-start sm:gap-6">
+                <span className="shrink-0 font-mono text-[11px] text-muted-foreground sm:min-w-[100px]">
                   {item.period}
                 </span>
                 <div>

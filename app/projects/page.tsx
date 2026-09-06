@@ -183,9 +183,9 @@ export default async function ProjectsPage() {
       <PageFlow currentPath="/projects" />
 
       {/* Decorative scroll arrow */}
-      <div className="pointer-events-none fixed bottom-6 right-6 z-40 sm:right-8 md:right-10 lg:right-12 max-w-none">
+      <div className="pointer-events-none fixed bottom-6 right-6 z-40 sm:right-8 md:right-10 lg:right-12">
         <svg
-          className="h-14 w-14 text-foreground/10 sm:h-18 sm:w-18 lg:h-24 lg:w-24 hover:text-foreground transition-colors duration-200"
+          className="h-10 w-10 text-foreground/10 transition-colors duration-200 hover:text-foreground sm:h-14 sm:w-14 lg:h-20 lg:w-20"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"

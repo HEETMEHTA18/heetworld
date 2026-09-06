@@ -128,7 +128,8 @@ export default async function ProjectPage({
       </header>
 
       {/* Two-column: sticky image + scrolling content */}
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-0 px-5 py-10 sm:px-8 md:grid-cols-[340px_1fr] md:py-14 lg:grid-cols-[400px_1fr]">
+      <Container className="py-10 md:py-14">
+        <div className="grid w-full grid-cols-1 gap-0 md:grid-cols-[minmax(0,0.6fr)_1fr] lg:grid-cols-[minmax(0,0.55fr)_1fr]">
         {/* Left: sticky image */}
         {metadata.image && (
           <div className="relative order-1 mb-8 md:mb-0 md:sticky md:top-24 md:self-start">
@@ -201,7 +202,8 @@ export default async function ProjectPage({
             </div>
           </div>
         </div>
-      </div>
+        </div>
+      </Container>
     </>
   );
 }
