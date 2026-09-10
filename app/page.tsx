@@ -71,13 +71,13 @@ export default async function HomePage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/projects"
-                  className="inline-flex items-center gap-2 border border-foreground bg-foreground px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-background transition-colors hover:bg-background hover:text-foreground"
+                  className="inline-flex items-center gap-2 border border-foreground bg-foreground px-4 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-background transition-colors hover:bg-background hover:text-foreground"
                 >
                   See my work <span aria-hidden="true">↗</span>
                 </Link>
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2 border border-border bg-background px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground transition-colors hover:border-foreground"
+                  className="inline-flex items-center gap-2 border border-border bg-background px-4 py-3 font-mono text-[10px] uppercase tracking-[0.18em] text-foreground transition-colors hover:border-foreground"
                 >
                   About me
                 </Link>

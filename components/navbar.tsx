@@ -184,10 +184,10 @@ export function Navbar() {
             <ThemeToggle />
             <button
               aria-label="Toggle menu"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-md text-foreground lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-md text-foreground lg:hidden"
               onClick={() => setOpen((v) => !v)}
             >
-              {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>

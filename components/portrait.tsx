@@ -32,7 +32,7 @@ export function Portrait({ className }: { className?: string }) {
 
         <div className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-foreground/5" />
 
-        <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-2xl border border-border/80 bg-background/70 px-4 py-3 backdrop-blur-md">
+        <div className="absolute inset-x-4 bottom-4 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-border/80 bg-background/70 px-4 py-3 backdrop-blur-md">
           <div className="flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-soft font-mono text-xs text-accent">
               HM

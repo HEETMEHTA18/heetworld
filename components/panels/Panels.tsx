@@ -700,6 +700,9 @@ function HarborPanel() {
             <p className="text-[10px] text-[#F2E6C9]/30 mt-2 text-center">
               Or email directly: <a href="mailto:explore@heetworld.tech" className="text-[#3498DB] hover:underline">explore@heetworld.tech</a>
             </p>
+            <p className="text-[9px] text-[#F2E6C9]/20 mt-1 text-center leading-relaxed">
+              This is a contact form for Heet Mehta&apos;s portfolio. Your name and email are used only to reply to your message. No data is stored or shared.
+            </p>
           </form>
         )}
       </motion.div>
