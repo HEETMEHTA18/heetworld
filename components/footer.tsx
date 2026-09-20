@@ -20,20 +20,20 @@ export function Footer() {
       {/* Background image */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <Image
-          src="/images/shifaaz-shamoon-sLAk1guBG90-unsplash.jpg"
+          src="/images/projects/daniel-gomez-eKegp5f2PPk-unsplash.jpg"
           alt=""
           fill
           sizes="100vw"
           loading="lazy"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-background/90" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+        <div className="absolute inset-0 bg-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background/80" />
       </div>
 
       {/* Subtle gradient texture */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-b from-accent-soft via-transparent to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-accent-soft via-transparent to-transparent opacity-40" />
         <div className="absolute -top-20 left-1/4 h-72 w-72 rounded-full bg-accent-soft blur-3xl" />
         <div className="absolute -right-16 bottom-10 h-80 w-80 rounded-full bg-accent-soft blur-3xl" />
         <div className="absolute -left-16 bottom-24 h-72 w-72 rounded-full bg-accent-soft blur-3xl" />
