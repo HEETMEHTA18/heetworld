@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { ScrollToTop } from "@/components/scroll-to-top";
 import { SpotifyFloatWidget } from "@/components/spotify-float";
 
 import { site } from "@/lib/site";
@@ -26,6 +27,14 @@ const geistMono = Geist_Mono({
 const decolmax = localFont({
   src: "../fonts/Decolmax-Regular.ttf",
   variable: "--font-decolmax",
+  weight: "400",
+  style: "normal",
+  display: "swap",
+});
+
+const pixelcode = localFont({
+  src: "../fonts/PixelCode-Regular.ttf",
+  variable: "--font-pixelcode",
   weight: "400",
   style: "normal",
   display: "swap",
@@ -202,7 +211,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${decolmax.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${decolmax.variable} ${pixelcode.variable} antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -238,6 +247,7 @@ export default function RootLayout({
         >
           <div className="flex min-h-dvh flex-col">
             <Navbar />
+            <ScrollToTop />
             <main className="flex-1">{children}</main>
             <Footer />
           </div>

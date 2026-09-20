@@ -10,6 +10,7 @@ import {
 
 import { FOOTER_LINKS, NAV_LINKS, site } from "@/lib/site";
 import { Container } from "@/components/container";
+import { NewsletterForm } from "@/components/newsletter-form";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -19,7 +20,7 @@ export function Footer() {
       {/* Background image */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <Image
-          src="/images/projects/daniel-gomez-eKegp5f2PPk-unsplash.jpg"
+          src="/images/shifaaz-shamoon-sLAk1guBG90-unsplash.jpg"
           alt=""
           fill
           sizes="100vw"
@@ -113,9 +114,14 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+        {/* Newsletter */}
+        <div className="mt-12 max-w-md">
+          <NewsletterForm />
+        </div>
+
+        <div className="mt-12 flex flex-col gap-3 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-            © {year} {site.name}
+            &copy; {year} {site.name}
           </p>
           <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
             Built with code + curiosity
