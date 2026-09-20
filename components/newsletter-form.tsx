@@ -22,12 +22,18 @@ export function NewsletterForm() {
         body: JSON.stringify({ email: email.trim() }),
       });
 
-      const data = await res.json();
+      const text = await res.text();
+      let data: Record<string, unknown>;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error("Server returned an invalid response. Please try again.");
+      }
 
-      if (!res.ok) throw new Error(data.error || "Failed to subscribe");
+      if (!res.ok) throw new Error((data.error as string) || "Failed to subscribe");
 
       setStatus("success");
-      setMessage(data.message || "Subscribed successfully!");
+      setMessage((data.message as string) || "Subscribed successfully!");
       setEmail("");
     } catch (err) {
       setStatus("error");

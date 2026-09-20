@@ -1,10 +1,11 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "heetworld",
+  "main": "src/index.ts",
   "compatibility_date": "2026-08-28",
   "assets": {
     "directory": "./out",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS"
   },
   "observability": {
     "enabled": true
