@@ -25,27 +25,27 @@ const focus = [
   {
     id: "01",
     label: "Machine Learning",
-    detail: "supervised learning · deep learning · transformers",
+    detail: "supervised learning, deep learning, transformers",
   },
   {
     id: "02",
     label: "LLM Systems",
-    detail: "RAG · agents · fine-tuning · inference",
+    detail: "RAG, agents, fine-tuning, inference",
   },
   {
     id: "03",
     label: "NLP",
-    detail: "tokenization · embeddings · retrieval · language models",
+    detail: "tokenization, embeddings, retrieval, language models",
   },
   {
     id: "04",
     label: "Developer Tools",
-    detail: "MCP · CLI · AI coding workflows",
+    detail: "MCP, CLI, AI coding workflows",
   },
   {
     id: "05",
     label: "Product Engineering",
-    detail: "React · Node.js · Firebase · full-stack systems",
+    detail: "React, Node.js, Firebase, full-stack systems",
   },
 ];
 
@@ -82,7 +82,7 @@ export default function AboutPage() {
           </div>
         </Reveal>
 
-        {/* Introduction */}
+        {/* Introduction — Who I Am, Philosophy, How I Think */}
         <div className="max-w-2xl">
           {about.slice(0, 3).map((section, i) => (
             <Reveal key={section.id} delay={i * 0.06}>
@@ -129,7 +129,7 @@ export default function AboutPage() {
               <div className="border-b border-border py-5">
                 {/* Desktop: single row */}
                 <div className="hidden items-center gap-6 sm:flex">
-                  <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
+                  <span className="w-6 shrink-0 font-mono text-[11px] tabular-nums text-muted-foreground/50">
                     {f.id}
                   </span>
                   <span className="w-[180px] shrink-0 text-base font-medium text-foreground">
@@ -142,7 +142,7 @@ export default function AboutPage() {
                 {/* Mobile: stacked */}
                 <div className="flex flex-col gap-2 sm:hidden">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
+                    <span className="font-mono text-[11px] tabular-nums text-muted-foreground/50">
                       {f.id}
                     </span>
                     <span className="text-base font-medium text-foreground">
@@ -161,7 +161,7 @@ export default function AboutPage() {
 
       <SectionDivider />
 
-      {/* Philosophy */}
+      {/* Philosophy in Four Words */}
       <Container className="py-12 sm:py-20">
         <Reveal>
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
@@ -188,10 +188,43 @@ export default function AboutPage() {
 
       <SectionDivider />
 
-      {/* Remaining about sections */}
+      {/* Why I Build + What I'm Learning + Current Focus */}
       <Container className="py-12 sm:py-20">
         <div className="max-w-2xl">
-          {about.slice(3).map((section, i) => (
+          {about.slice(3, 6).map((section, i) => (
+            <Reveal key={section.id} delay={i * 0.06}>
+              <div className="mt-12 first:mt-0 sm:mt-16">
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  {section.label}
+                </p>
+                <h2
+                  id={section.id}
+                  className="mt-4 text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-3xl"
+                >
+                  {section.title}
+                </h2>
+                <div className="mt-5 space-y-4">
+                  {section.body.map((p, j) => (
+                    <p
+                      key={j}
+                      className="text-pretty text-base leading-relaxed text-muted-foreground"
+                    >
+                      {p}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Container>
+
+      <SectionDivider />
+
+      {/* My Journey + Technical Focus + Roadmap + Where I'm Headed */}
+      <Container className="py-12 sm:py-20">
+        <div className="max-w-2xl">
+          {about.slice(6).map((section, i) => (
             <Reveal key={section.id} delay={i * 0.06}>
               <div className="mt-12 first:mt-0 sm:mt-16">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
