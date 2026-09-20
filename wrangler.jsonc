@@ -2,10 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "heetworld",
   "compatibility_date": "2026-08-28",
-  "assets": {
-    "directory": "./out",
-    "not_found_handling": "404-page"
-  },
+  "pages_build_output_dir": ".vercel/output/static",
   "observability": {
     "enabled": true
   }
