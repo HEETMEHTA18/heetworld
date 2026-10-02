@@ -8,7 +8,7 @@ export const metadata = {
   openGraph: {
     title: "World — Heet Mehta",
     description: "Interactive developer portfolio world experience.",
-    url: "https://heetworld.tech/world",
+    url: `${site.url}/world`,
   },
   robots: {
     index: false,

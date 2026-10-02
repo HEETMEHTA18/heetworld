@@ -134,7 +134,7 @@ export default async function ProjectPage({
         {metadata.image && (
           <div className="relative order-1 mb-8 md:mb-0 md:sticky md:top-24 md:self-start">
             <Reveal>
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl md:aspect-[4/5]">
                 <Image
                   src={metadata.image}
                   alt={metadata.title}

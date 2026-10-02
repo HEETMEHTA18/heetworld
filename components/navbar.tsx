@@ -204,7 +204,7 @@ export function Navbar() {
           >
             <nav
               aria-label="Mobile"
-              className="flex flex-1 flex-col gap-0 px-6 pt-20"
+              className="min-h-0 flex-1 overflow-y-auto px-6 pb-8 pt-20"
             >
               {NAV_LINKS.map((link, i) => {
                 const external = link.href.startsWith("http");

@@ -7,6 +7,11 @@
     "directory": "./out",
     "binding": "ASSETS"
   },
+  "vars": {
+    "CONTACT_FROM_EMAIL": "Heetworld Contact <onboarding@resend.dev>",
+    "CONTACT_TO_EMAIL": "explore@heetworld.tech",
+    "PUBLIC_ORIGIN": "https://heetworld.tech"
+  },
   "observability": {
     "enabled": true
   }

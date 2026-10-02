@@ -35,7 +35,7 @@ export function ProjectShowcase({ projects }: { projects: ProjectMeta[] }) {
                   imageFirst && "lg:order-2"
                 )}
               >
-                <div className="aspect-[16/11] w-full">
+                <div className="relative aspect-[16/11] w-full">
                   {imageSrc ? (
                     <Image
                       src={imageSrc}

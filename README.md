@@ -16,6 +16,22 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Contact email delivery
+
+Contact messages are delivered by the Cloudflare Worker through Resend. Set the
+API key as a Worker secret before deploying:
+
+```bash
+pnpm build
+pnpm exec wrangler secret put RESEND_API_KEY
+pnpm exec wrangler deploy
+```
+
+Set `CONTACT_FROM_EMAIL` in `wrangler.jsonc` to a sender address on a verified
+Resend domain when moving beyond Resend's test sender. Replies use the visitor's
+email address as `Reply-To`. To enable the newsletter, add your Resend audience
+ID as `RESEND_AUDIENCE_ID` in `wrangler.jsonc` before deploying.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

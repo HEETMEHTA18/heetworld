@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import Link from "next/link";
 
 type TerminalLine = {
   type: "input" | "output" | "success" | "error" | "link";
@@ -15,7 +14,22 @@ interface TerminalWidgetProps {
 }
 
 export function TerminalWidget({ mode }: TerminalWidgetProps) {
-  const [lines, setLines] = useState<TerminalLine[]>([]);
+  const [lines, setLines] = useState<TerminalLine[]>(() =>
+    mode === "contact"
+      ? [
+          { type: "output", text: "Heet Mehta — AI / ML · Software · Experiments" },
+          { type: "output", text: "" },
+          { type: "output", text: "Email is the fastest way to reach me." },
+          { type: "output", text: "I reply within 24 hours." },
+          { type: "output", text: "" },
+          {
+            type: "output",
+            text: 'Type "contact" to send a message, or "social" for links.',
+          },
+          { type: "output", text: "" },
+        ]
+      : []
+  );
   const [input, setInput] = useState("");
   const [step, setStep] = useState<
     "idle" | "email" | "name" | "subject" | "message" | "confirm" | "done"
@@ -46,56 +60,41 @@ export function TerminalWidget({ mode }: TerminalWidgetProps) {
     inputRef.current?.focus();
   }, []);
 
-  useEffect(() => {
-    setLines([
-      { type: "output", text: "Heet Mehta — AI / ML · Software · Experiments" },
-      { type: "output", text: "" },
-      { type: "output", text: "Email is the fastest way to reach me." },
-      { type: "output", text: "I reply within 24 hours." },
-      { type: "output", text: "" },
-      { type: "output", text: 'Type "contact" to send a message, or "social" for links.' },
-      { type: "output", text: "" },
-    ]);
-  }, [mode]);
-
   const handleSendEmail = useCallback(async () => {
     if (!email || !name) return;
     setSending(true);
 
     try {
-      const res = await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, subject, message }),
       });
+      const result = (await response.json()) as { error?: string; message?: string };
 
-      if (!res.ok) throw new Error("Failed to send");
+      if (!response.ok) {
+        throw new Error(result.error || "Unable to deliver the message.");
+      }
 
       setLines((prev) => [
         ...prev,
-        { type: "input", text: `> ${email}` },
+        { type: "input", text: "> send" },
         { type: "output", text: "" },
-        { type: "success", text: "Message sent successfully!" },
-        { type: "output", text: `  From: ${name} <${email}>` },
+        { type: "success", text: result.message || "Message delivered successfully." },
         { type: "output", text: `  To: explore@heetworld.tech` },
-        {
-          type: "output",
-          text: `  Subject: ${subject || `Hello from ${name}`}`,
-        },
+        { type: "output", text: `  Reply-to: ${email}` },
         { type: "output", text: "" },
-        { type: "output", text: "A confirmation has been sent to your email." },
-        { type: "output", text: "I'll get back to you within 24 hours." },
-        { type: "output", text: "" },
-        { type: "output", text: "Thanks for reaching out!" },
+        { type: "output", text: "You can close this window. I'll reply by email." },
       ]);
-    } catch {
+    } catch (error) {
       setLines((prev) => [
         ...prev,
-        { type: "input", text: `> ${email}` },
+        { type: "input", text: "> send" },
         {
           type: "error",
-          text: "Failed to send. Try again or email explore@heetworld.tech directly.",
+          text: error instanceof Error ? error.message : "Unable to deliver the message.",
         },
+        { type: "output", text: "Try again, or email explore@heetworld.tech directly." },
       ]);
     }
 
@@ -148,8 +147,8 @@ export function TerminalWidget({ mode }: TerminalWidgetProps) {
           {
             type: "link",
             text: "Email",
-            href: "mailto:explore@heetworld.tech",
-            label: "explore@heetworld.tech",
+            href: "/contact",
+            label: "open contact form",
           },
           { type: "output", text: "" },
         ]);
@@ -216,7 +215,7 @@ export function TerminalWidget({ mode }: TerminalWidgetProps) {
           { type: "output", text: "" },
           {
             type: "output",
-            text: 'Type "send" to open your email client, or "cancel" to abort.',
+            text: 'Type "send" to deliver the message, or "cancel" to abort.',
           },
         ]);
         setStep("confirm");
@@ -249,7 +248,7 @@ export function TerminalWidget({ mode }: TerminalWidgetProps) {
 
       setInput("");
     },
-    [input, step, handleSendEmail]
+    [email, input, name, step, subject, handleSendEmail]
   );
 
   const handleKeyDown = useCallback(

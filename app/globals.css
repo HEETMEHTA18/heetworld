@@ -81,6 +81,8 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;
+    overflow-x: hidden;
+    scrollbar-width: none;
   }
 
   body {
@@ -91,6 +93,13 @@
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
   }
 
   ::selection {
