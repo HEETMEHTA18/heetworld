@@ -2,15 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import { useVillageStore } from "@/store/villageStore";
-import { X, Wifi, Battery, Signal, Loader2 } from "lucide-react";
+import { X, Wifi, Battery, Signal } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PhoneMockup() {
   const { activePhoneProject, setActivePhoneProject } = useVillageStore();
   const [currentTime, setCurrentTime] = useState("09:41");
   const [batteryLevel] = useState(87);
-  const [iframeContent, setIframeContent] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(false);
 
   // Update clock inside the phone
   useEffect(() => {
@@ -36,72 +34,6 @@ export default function PhoneMockup() {
   };
 
   const url = activePhoneProject ? PROJECT_URLS[activePhoneProject] || "https://github.com/heetmehta18" : "";
-
-  // Fetch website HTML via proxy list to bypass X-Frame-Options dynamically
-  useEffect(() => {
-    if (!url) {
-      setIframeContent("");
-      return;
-    }
-
-    setIsLoading(true);
-    setIframeContent("");
-
-    const proxyRetrievers = [
-      (u: string) => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
-      (u: string) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-      (u: string) => `https://thingproxy.freeboard.io/fetch/${u}`
-    ];
-
-    let proxyIndex = 0;
-
-    const tryFetchWithProxy = () => {
-      if (proxyIndex >= proxyRetrievers.length) {
-        console.warn("All proxies failed, falling back to direct iframe integration");
-        setIframeContent("");
-        setIsLoading(false);
-        return;
-      }
-
-      const proxyUrl = proxyRetrievers[proxyIndex](url);
-      fetch(proxyUrl)
-        .then((res) => {
-          if (!res.ok) throw new Error(`Proxy status ${res.status}`);
-          return res.text();
-        })
-        .then((html) => {
-          if (!html || html.trim().length === 0) {
-            throw new Error("Empty response content from proxy");
-          }
-          
-          let parsedHtml = html;
-          const baseTag = `<base href="${url}" />`;
-          
-          // Remove frame-busting scripts
-          parsedHtml = parsedHtml.replace(/window\.top/g, "window.self");
-          parsedHtml = parsedHtml.replace(/top\.location/g, "self.location");
-          parsedHtml = parsedHtml.replace(/window\s*!==\s*top/g, "false");
-          
-          if (parsedHtml.includes("<head>")) {
-            parsedHtml = parsedHtml.replace("<head>", `<head>${baseTag}`);
-          } else if (parsedHtml.includes("<html>")) {
-            parsedHtml = parsedHtml.replace("<html>", `<html><head>${baseTag}</head>`);
-          } else {
-            parsedHtml = baseTag + parsedHtml;
-          }
-
-          setIframeContent(parsedHtml);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          console.error(`Proxy index ${proxyIndex} failed:`, err);
-          proxyIndex++;
-          tryFetchWithProxy();
-        });
-    };
-
-    tryFetchWithProxy();
-  }, [url]);
 
   if (!activePhoneProject) return null;
 
@@ -188,28 +120,12 @@ export default function PhoneMockup() {
 
               {/* Web Content Render Area */}
               <div className="flex-1 relative bg-white overflow-hidden flex flex-col">
-                {isLoading && (
-                  <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#0c0a07] text-[#F2E6C9] font-mono">
-                    <Loader2 className="w-8 h-8 text-[#D4A017] animate-spin mb-4" />
-                    <span className="text-xs">Loading Live Website...</span>
-                  </div>
-                )}
-
-                {iframeContent ? (
-                  <iframe 
-                    srcDoc={iframeContent} 
-                    className="w-full h-full border-0 bg-white" 
-                    title="Live Website View"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-                  />
-                ) : (
-                  <iframe 
-                    src={url} 
-                    className="w-full h-full border-0 bg-white" 
-                    title="Live Website Fallback"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-                  />
-                )}
+                <iframe
+                  src={url}
+                  className="h-full w-full border-0 bg-white"
+                  title="Live Website View"
+                  sandbox="allow-scripts allow-popups"
+                />
               </div>
 
             </div>

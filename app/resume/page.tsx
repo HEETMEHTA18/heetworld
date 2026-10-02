@@ -76,7 +76,7 @@ export default function ResumePage() {
           <iframe
             src="/resume.pdf"
             title="Heet Mehta — Resume"
-            className="h-[75vh] w-full print:h-auto"
+            className="h-[65dvh] min-h-[28rem] w-full print:h-auto sm:h-[75vh] lg:h-[80vh]"
           />
         </div>
       </Container>

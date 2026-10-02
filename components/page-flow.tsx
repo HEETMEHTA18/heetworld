@@ -67,12 +67,12 @@ export function PageFlow({ currentPath }: { currentPath: string }) {
         </motion.div>
 
         {/* Navigation */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col items-stretch justify-between gap-4 sm:flex-row sm:items-center">
           {/* Previous */}
           {prev ? (
             <Link
               href={prev.href}
-              className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 sm:p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-foreground/20 flex-1 max-w-sm"
+              className="group flex w-full items-center gap-4 rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-foreground/20 sm:max-w-sm sm:flex-1 sm:p-6"
             >
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-muted text-muted-foreground transition-colors group-hover:bg-foreground group-hover:text-background shrink-0">
                 <ArrowRight className="h-4 w-4 rotate-180" />
@@ -92,7 +92,7 @@ export function PageFlow({ currentPath }: { currentPath: string }) {
               </div>
             </Link>
           ) : (
-            <div className="flex-1 max-w-sm" />
+            <div className="hidden max-w-sm flex-1 sm:block" />
           )}
 
           {/* Back to top */}
@@ -101,7 +101,7 @@ export function PageFlow({ currentPath }: { currentPath: string }) {
             initial={reduceMotion ? false : { opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-foreground/20 hover:text-foreground shrink-0"
+            className="order-first flex h-12 w-12 shrink-0 self-center rounded-full border border-border bg-card text-muted-foreground transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-foreground/20 hover:text-foreground sm:order-none"
             aria-label="Back to top"
           >
             <ArrowUp className="h-4 w-4" />
@@ -111,7 +111,7 @@ export function PageFlow({ currentPath }: { currentPath: string }) {
           {next ? (
             <Link
               href={next.href}
-              className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 sm:p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-foreground/20 flex-1 max-w-sm text-right justify-end"
+              className="group flex w-full items-center justify-end gap-4 rounded-2xl border border-border bg-card p-5 text-right transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-foreground/20 sm:max-w-sm sm:flex-1 sm:p-6"
             >
               <div className="min-w-0">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
@@ -133,7 +133,7 @@ export function PageFlow({ currentPath }: { currentPath: string }) {
           ) : isLast ? (
             <Link
               href="/"
-              className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 sm:p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-foreground/20 flex-1 max-w-sm text-right justify-end"
+              className="group flex w-full items-center justify-end gap-4 rounded-2xl border border-border bg-card p-5 text-right transition-all hover:-translate-y-0.5 hover:shadow-lg hover:border-foreground/20 sm:max-w-sm sm:flex-1 sm:p-6"
             >
               <div className="min-w-0">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
@@ -149,7 +149,7 @@ export function PageFlow({ currentPath }: { currentPath: string }) {
               </div>
             </Link>
           ) : (
-            <div className="flex-1 max-w-sm" />
+            <div className="hidden max-w-sm flex-1 sm:block" />
           )}
         </div>
 

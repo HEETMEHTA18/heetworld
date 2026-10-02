@@ -7,7 +7,6 @@ import {
   X,
   ExternalLink,
   Terminal,
-  Award,
   Send,
   ArrowRight,
   Download,
@@ -575,7 +574,7 @@ function TownHallPanel() {
   );
 }
 
-// 8. The Harbor (Contact Form) — realistic workflow: opens mail client + shows success
+// 8. The Harbor (Contact Form)
 function HarborPanel() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -590,14 +589,21 @@ function HarborPanel() {
       if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
         throw new Error("Please fill in all fields.");
       }
-      // Build realistic mailto — works without backend, proper workflow
-      const subject = encodeURIComponent(`Portfolio inquiry from ${formData.name}`);
-      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n`);
-      const mailto = `mailto:explore@heetworld.tech?subject=${subject}&body=${body}`;
-      // Open mail client
-      window.location.href = mailto;
-      // Small delay to show feedback even though mailto is instant
-      await new Promise((resolve) => setTimeout(resolve, 600));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: `Portfolio inquiry from ${formData.name.trim()}`,
+          message: formData.message.trim(),
+        }),
+      });
+      const result = (await response.json()) as { error?: string };
+      if (!response.ok) {
+        throw new Error(result.error || "Unable to deliver the message.");
+      }
+
       setFormStatus("success");
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
@@ -692,13 +698,13 @@ function HarborPanel() {
               className="w-full py-3 bg-[#3498DB]/10 hover:bg-[#3498DB]/25 border border-[#3498DB]/40 rounded-xl text-center text-[#3498DB] font-semibold transition-all hover:shadow-[0_4px_15px_rgba(52,152,219,0.15)] hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 disabled:opacity-55"
             >
               <Send className="w-3.5 h-3.5" />
-              {formStatus === "sending" ? "Opening email client..." : "Send Message"}
+              {formStatus === "sending" ? "Delivering message..." : "Send Message"}
             </button>
             {formStatus === "error" && formError && (
               <p className="text-[11px] text-[#C0392B] mt-2">{formError}</p>
             )}
             <p className="text-[10px] text-[#F2E6C9]/30 mt-2 text-center">
-              Or email directly: <a href="mailto:explore@heetworld.tech" className="text-[#3498DB] hover:underline">explore@heetworld.tech</a>
+              Messages are delivered securely to explore@heetworld.tech.
             </p>
             <p className="text-[9px] text-[#F2E6C9]/20 mt-1 text-center leading-relaxed">
               This is a contact form for Heet Mehta&apos;s portfolio. Your name and email are used only to reply to your message. No data is stored or shared.

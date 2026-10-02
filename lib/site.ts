@@ -19,7 +19,7 @@ export const site = {
     github: "https://github.com/heetmehta18",
     linkedin: "https://linkedin.com/in/heetmehta18",
     twitter: "https://x.com/heetmehta33176",
-    email: "mailto:explore@heetworld.tech",
+    email: "/contact",
   },
   spotify: {
     track: "https://open.spotify.com/track/0q4442eIt44kTWEhkoTlh8",

@@ -77,7 +77,7 @@ export default function VillageScene() {
   }, [isNight, isRain, isSnow, autoDayNight, dayNightProgress]);
 
   return (
-    <div className="w-full h-screen absolute inset-0 bg-[#050505] touch-none">
+    <div className="absolute inset-0 h-screen h-dvh w-full touch-none bg-[#050505]">
       <Canvas
         camera={{ position: [0, 10, 85], fov: 55, near: 0.1, far: 150 }}
         shadows={{ enabled: true, type: THREE.PCFShadowMap }}

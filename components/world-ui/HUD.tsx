@@ -3,21 +3,19 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useVillageStore } from "@/store/villageStore";
 import { useAmbientSound } from "@/lib/useAmbientSound";
-import { Volume2, VolumeX, Download, Mail, Mouse, Map, CloudSun, CloudRain, CloudSnow, Eye, Plane, Sun, Moon, Maximize, Terminal, Send, ArrowRight, Settings, Play, Square, User } from "lucide-react";
+import { Volume2, VolumeX, Download, Mail, Mouse, Map, CloudSun, CloudRain, CloudSnow, Eye, Plane, Sun, Moon, Terminal, Send, Settings, Play, Square, User } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "@/components/icons";
 import { motion, AnimatePresence } from "framer-motion";
 import { BUILDINGS } from "@/lib/world-constants";
 import AboutMe from "./AboutMe";
 
 export default function HUD() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile] = useState(() =>
+    typeof window !== "undefined" &&
+    window.matchMedia("(pointer: coarse)").matches &&
+    window.innerWidth < 1024
+  );
   const [showSettings, setShowSettings] = useState(false);
-
-  useEffect(() => {
-    const isTouch = window.matchMedia("(pointer: coarse)").matches;
-    const isSmall = window.innerWidth < 1024;
-    setIsMobile(isTouch && isSmall);
-  }, []);
 
   const {
     soundOn,
@@ -43,20 +41,16 @@ export default function HUD() {
     setAutoDayNight,
     ghData,
     setGhData,
-    characterPosition,
     tourActive,
     setTourActive,
     setTourIndex,
     setTourPause,
     setActiveBuilding,
     setTimeOfDay,
-    setGuideGreeting,
     welcomeMessageActive,
     setShowAboutMe
   } = useVillageStore();
 
-  const [loadingText, setLoadingText] = useState("Initializing environment...");
-  const [isReady, setIsReady] = useState(false);
   const [showScrollHint, setShowScrollHint] = useState(false);
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
@@ -526,7 +520,7 @@ export default function HUD() {
                 <LinkedInIcon className="w-4 sm:w-5 h-4 sm:h-5" />
               </a>
               <a
-                href="mailto:explore@heetworld.tech"
+                href="/contact"
                 className="bg-black/40 backdrop-blur-md p-2 sm:p-3 rounded-full border border-[#00FFCC]/20 hover:border-[#00FFCC]/60 transition-all text-[#00FFCC]"
                 title="Email Heet"
               >

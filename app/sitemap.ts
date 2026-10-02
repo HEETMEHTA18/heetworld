@@ -1,13 +1,13 @@
 import { MetadataRoute } from "next";
 
-import { getContentSlugs } from "@/lib/content";
+import { getAllArticles, getContentSlugs } from "@/lib/content";
 import { site } from "@/lib/site";
 
 export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projectSlugs = getContentSlugs("content/projects");
-  const articleSlugs = getContentSlugs("content/articles");
+  const articles = await getAllArticles();
   const researchSlugs = getContentSlugs("content/research");
 
   const routes: MetadataRoute.Sitemap = [
@@ -98,8 +98,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const articles: MetadataRoute.Sitemap = articleSlugs.map((slug) => ({
-    url: `${site.url}/writing/${slug}`,
+  const articleRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
+    url: `${site.url}/writing/${article.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
@@ -112,5 +112,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...routes, ...projects, ...articles, ...research];
+  return [...routes, ...projects, ...articleRoutes, ...research];
 }

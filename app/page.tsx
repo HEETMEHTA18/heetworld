@@ -37,7 +37,7 @@ export default async function HomePage() {
   return (
     <div className="w-full">
       <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 relative">
           <Image
             src="/images/hero-banner.jpg"
             alt=""

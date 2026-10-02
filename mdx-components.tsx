@@ -6,7 +6,9 @@ import { Callout, Caption, Stat } from "@/components/mdx/annotations";
 
 const components: MDXComponents = {
   a: ({ href = "", children, ...props }) => {
-    const external = href.startsWith("http");
+    const external = /^(https?:|mailto:)/i.test(href);
+    const safe = /^(https?:|mailto:|\/|#|$)/i.test(href);
+    if (!safe) return <span>{children}</span>;
     if (external) {
       return (
         <a
@@ -26,6 +28,7 @@ const components: MDXComponents = {
       sizes="(min-width: 1024px) 720px, 100vw"
       style={{ width: "100%", height: "auto" }}
       {...(props as ImageProps)}
+      alt={(props as ImageProps).alt ?? ""}
     />
   ),
   pre: ({ children }) => (
