@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 export const metadata = {
   title: "Resume",
-  description: "Heet Mehta — AI engineer and builder. Resume.",
+  description: "Heet Mehta — AI engineer and builder. Resumes.",
 };
 
 export default function ResumePage() {
@@ -58,26 +58,58 @@ export default function ResumePage() {
           </span>
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-card">
-          <div className="flex items-center justify-between border-b border-border bg-muted/40 px-4 py-2.5">
-            <span className="flex items-center gap-2 font-mono text-[11px] text-muted-foreground">
-              <FileText className="h-3.5 w-3.5 text-accent" />
-              resume.pdf
-            </span>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-[11px] text-accent underline-offset-4 hover:underline"
-            >
-              Open in new tab ↗
-            </a>
+        <div className="mt-8">
+          <h2 className="mb-4 text-xl font-medium tracking-[-0.02em] text-foreground sm:text-2xl">
+            Resume 1 — General
+          </h2>
+          <div className="overflow-hidden rounded-2xl border border-border bg-card">
+            <div className="flex items-center justify-between border-b border-border bg-muted/40 px-4 py-2.5">
+              <span className="flex items-center gap-2 font-mono text-[11px] text-muted-foreground">
+                <FileText className="h-3.5 w-3.5 text-accent" />
+                resume.pdf
+              </span>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-[11px] text-accent underline-offset-4 hover:underline"
+              >
+                Open in new tab ↗
+              </a>
+            </div>
+            <iframe
+              src="/resume.pdf"
+              title="Heet Mehta — Resume 1"
+              className="h-[65dvh] min-h-[28rem] w-full print:h-auto sm:h-[75vh] lg:h-[80vh]"
+            />
           </div>
-          <iframe
-            src="/resume.pdf"
-            title="Heet Mehta — Resume"
-            className="h-[65dvh] min-h-[28rem] w-full print:h-auto sm:h-[75vh] lg:h-[80vh]"
-          />
+        </div>
+
+        <div className="mt-10">
+          <h2 className="mb-4 text-xl font-medium tracking-[-0.02em] text-foreground sm:text-2xl">
+            Resume 2 — ATS Optimized
+          </h2>
+          <div className="overflow-hidden rounded-2xl border border-border bg-card">
+            <div className="flex items-center justify-between border-b border-border bg-muted/40 px-4 py-2.5">
+              <span className="flex items-center gap-2 font-mono text-[11px] text-muted-foreground">
+                <FileText className="h-3.5 w-3.5 text-accent" />
+                Heet_Mehta_Resume_ATS.pdf
+              </span>
+              <a
+                href="/Heet_Mehta_Resume_ATS.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-[11px] text-accent underline-offset-4 hover:underline"
+              >
+                Open in new tab ↗
+              </a>
+            </div>
+            <iframe
+              src="/Heet_Mehta_Resume_ATS.pdf"
+              title="Heet Mehta — Resume 2 (ATS)"
+              className="h-[65dvh] min-h-[28rem] w-full print:h-auto sm:h-[75vh] lg:h-[80vh]"
+            />
+          </div>
         </div>
       </Container>
     </>

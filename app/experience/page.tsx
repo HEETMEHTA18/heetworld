@@ -15,7 +15,6 @@ import { PageHeader } from "@/components/page-header";
 import { Pill, Tag } from "@/components/ui/pill";
 import { Reveal } from "@/components/reveal";
 import { cn } from "@/lib/utils";
-import { PageFlow } from "@/components/page-flow";
 
 export const metadata = {
   title: "Experience",
@@ -132,7 +131,6 @@ function Timeline({ items, muted = false }: { items: ExperienceItem[]; muted?: b
         })}
       </div>
 
-      <PageFlow currentPath="/experience" />
     </div>
   );
 }

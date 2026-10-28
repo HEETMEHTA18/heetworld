@@ -1,0 +1,56 @@
+export const metadata = {
+  slug: "code-pie",
+  title: "Code Pie (formerly BinaryBattles)",
+  tagline: "Competitive Programming Platform",
+  description:
+    "A distributed competitive programming platform built by an 18-member team. Owned the contest module with Redis/Bull queues, isolated Docker workers, and scaled to 1,000+ requests per second.",
+  year: "2026",
+  status: "Active",
+  category: "Full-Stack · Platform",
+  tags: ["Node.js", "React", "TypeScript", "PostgreSQL", "Redis", "Docker"],
+  stack: ["Node.js", "React", "TypeScript", "PostgreSQL", "Redis", "Bull", "Docker", "Nginx", "PgBouncer"],
+  github: "https://github.com/tatvam-org/Code-Pie-by-Tatvam",
+  featured: true,
+  order: 2,
+  visual: "dashboard",
+  image: "/images/dave-hoefler-lsoogGC_5dg-unsplash.jpg",
+  accent: "#3B82F6",
+  problem:
+    "Building a scalable contest platform that can handle concurrent submissions, real-time judging, and high load across distributed workers.",
+  solution:
+    "Designed contest module architecture with submission queues, rate limiting, distributed 3-node setup with load balancing, and Monaco Editor-based workspace with multi-language judging.",
+  metrics: [
+    { value: "1,000+", label: "Requests per second" },
+    { value: "18", label: "Team members" },
+    { value: "3-node", label: "Distributed setup" },
+  ],
+  timeline: [
+    { period: "Mar 2026", label: "Project start" },
+    { period: "Present", label: "Active development" },
+  ],
+};
+
+# Code Pie (formerly BinaryBattles)
+
+A scalable, real-time competitive programming platform built with Node.js services, PostgreSQL, Redis, and a React/Vite frontend. Designed for classroom tournaments, hackathons, and everyday practice coding. Now maintained by the Tatvam team (Department of Computer Engineering, CSPIT, CHARUSAT University).
+
+## Architecture & Scale
+
+- Contributor in an 18-member team; owned the contest module and its architecture
+- Managed submission-queue capacity and rate thresholds across Redis/Bull queues and isolated Docker workers
+- Scaled to a distributed 3-node setup (Nginx load balancer, PgBouncer, Redis workers) sustaining 1,000+ requests per second
+- Handled contest workflow stages (worker runner, Redis queue/cache, PostgreSQL) and contest-page APIs (problem statements, results, submission history)
+- Documented 3-PC LAN topology: PC-MAIN (172.16.2.10) + PC-DB (172.16.2.9) + PC-CACHE (172.16.2.11)
+
+## Features
+
+- **Tournament Mode** - Bulk-create N parallel 1v1 rooms, global leaderboard, admin-controlled contests with countdown
+- **Tic-Tac-Toe Grid** - Solve questions to claim cells; first to make a tic-tac-toe wins instantly with knife system
+- **Monaco Editor** - Fully syntax-highlighted C/C++ editor with multi-language support (C, C++, Python, SQL)
+- **Submission Insights** - Per-problem runtime/memory distribution, accepted-solution percentiles, private notes
+- **Horizontal Scaling** - Nginx load balancer, Bull/Redis task queues, isolated worker node executors
+- Built the contest workspace with in-progress code persistence in localStorage
+
+<Callout type="info" title="Status">
+Active development.
+</Callout>

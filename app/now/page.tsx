@@ -4,7 +4,6 @@ import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 import { formatDate } from "@/lib/utils";
-import { PageFlow } from "@/components/page-flow";
 
 export const metadata = {
   title: "Now",
@@ -115,7 +114,6 @@ export default function NowPage() {
         </div>
       </Container>
 
-      <PageFlow currentPath="/now" />
     </>
   );
 }
