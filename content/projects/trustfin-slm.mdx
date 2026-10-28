@@ -1,0 +1,63 @@
+export const metadata = {
+  slug: "trustfin-slm",
+  title: "TrustFin-SLM",
+  tagline: "Trustworthy Small Language Models for Financial Tasks",
+  description:
+    "Fine-tuned Qwen3-1.7B with balanced joint QLoRA across 16 experiments, built a reproducible 4-benchmark evaluation pipeline, and proposed the EVG-CAS abstention method reducing protected-test errors by 31.0% at 80% coverage.",
+  year: "2026",
+  status: "In Progress",
+  category: "AI · ML",
+  tags: ["LLM", "QLoRA", "Fine-tuning", "Financial AI", "Evaluation"],
+  stack: ["Python", "Hugging Face", "Qwen3-1.7B", "QLoRA", "PyTorch"],
+  github: "https://github.com/HEETMEHTA18/trust_fin",
+  featured: true,
+  order: 0,
+  visual: "diagram",
+  image: "/images/projects/casey-horner-4rDCa5hBlCs-unsplash.jpg",
+  accent: "#10B981",
+  problem:
+    "Financial tasks require high reliability and calibrated uncertainty. Small LLMs are efficient but often overconfident on financial reasoning tasks where errors can be costly.",
+  solution:
+    "Fine-tuned Qwen3-1.7B with balanced joint QLoRA, built a reproducible evaluation pipeline with frozen data contracts and validation gates, and proposed EVG-CAS abstention to improve trustworthiness.",
+  metrics: [
+    { value: "0.675", label: "FinQA execution score" },
+    { value: "0.730", label: "FiQA R²" },
+    { value: "31.0%", label: "Error reduction at 80% coverage" },
+  ],
+  timeline: [
+    { period: "Jul 2026", label: "Project start" },
+    { period: "Present", label: "Research in progress" },
+    { period: "Next", label: "Paper submission" },
+  ],
+};
+
+# TrustFin-SLM
+
+TrustFin-SLM is a research pipeline for building, validating, and evaluating trustworthy small language models (SLMs) on financial reasoning (FinQA), financial sentiment (FiQA), FOMC stance classification, and multi-dimensional trust benchmarks (FinTrust).
+
+## Datasets
+
+- **FinQA** - Financial numerical reasoning (train/dev/test)
+- **FiQA Sentiment** - Aspect-aware sentiment regression [-1,1] (train/valid/test)
+- **FinBen-FOMC** - FOMC stance classification (test only, eval-only)
+- **FinTrust** - 7-dimension trust benchmark (eval-only)
+
+## Training & Evaluation
+
+- Fine-tuned Qwen3-1.7B with balanced joint QLoRA across 16 baseline experiments
+- Selected backbone on validation data only (FinQA execution score 0.675, FiQA R² 0.730)
+- Built reproducible 4-benchmark evaluation pipeline with SHA-256 frozen data contracts and 68 validation gates
+- Kept protected test sets out of training and threshold tuning
+- Evaluation policy enforces strict separation between training/validation and protected test sets
+
+## EVG-CAS Abstention
+
+Proposed the EVG-CAS abstention method: a frozen threshold cut protected-test answered-error by 31.0% at 80% coverage, validated with paired McNemar tests and bootstrap confidence intervals. Research paper draft in progress.
+
+## Project Structure
+
+The project follows a phased approach (Phase 2 through Phase 4) with frozen artifacts, pre-registered evaluations, and rigorous statistical validation.
+
+<Callout type="info" title="Status">
+Research paper draft in progress.
+</Callout>

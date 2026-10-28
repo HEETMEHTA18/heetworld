@@ -3,7 +3,6 @@ import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { ResearchCard } from "@/components/content-cards";
 import { Pill } from "@/components/ui/pill";
-import { PageFlow } from "@/components/page-flow";
 
 export const metadata = {
   title: "Research",
@@ -62,7 +61,6 @@ export default async function ResearchPage() {
         )}
       </Container>
 
-      <PageFlow currentPath="/research" />
     </>
   );
 }

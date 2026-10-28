@@ -33,16 +33,16 @@
 }
 
 :root {
-  --background: #fafaf8;
+  --background: #fbf8f2;
   --foreground: #111111;
-  --card: #ffffff;
+  --card: #fffdf9;
   --card-foreground: #111111;
-  --muted: #f3f3f1;
+  --muted: #f4efe7;
   --muted-foreground: #666666;
-  --border: #e5e5e5;
+  --border: #e8e0d5;
   --ring: #111111;
   --accent: #111111;
-  --accent-foreground: #fafaf8;
+  --accent-foreground: #fbf8f2;
   --accent-soft: rgba(17, 17, 17, 0.04);
   --accent-hover: #2a2a2a;
 

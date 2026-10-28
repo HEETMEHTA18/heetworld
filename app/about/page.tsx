@@ -7,7 +7,6 @@ import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { SectionDivider } from "@/components/section";
 import { Reveal } from "@/components/reveal";
-import { PageFlow } from "@/components/page-flow";
 
 export const metadata = {
   title: "About",
@@ -296,7 +295,6 @@ export default function AboutPage() {
         </Reveal>
       </Container>
 
-      <PageFlow currentPath="/about" />
     </>
   );
 }

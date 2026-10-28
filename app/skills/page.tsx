@@ -2,7 +2,6 @@ import { archivedSkillGroups, skillGroups } from "@/content/data/skills";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
-import { PageFlow } from "@/components/page-flow";
 import { SkillIcon } from "@/components/skill-icon";
 import { StackPlayground } from "@/components/stack-playground";
 
@@ -153,7 +152,6 @@ export default function SkillsPage() {
         </section>
       </Container>
 
-      <PageFlow currentPath="/skills" />
     </>
   );
 }

@@ -125,7 +125,7 @@ export const metadata: Metadata = {
 
 export const viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafaf8" },
+    { media: "(prefers-color-scheme: light)", color: "#fbf8f2" },
     { media: "(prefers-color-scheme: dark)", color: "#0f0f0f" },
   ],
   width: "device-width",
@@ -217,8 +217,8 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://plausible.io" />
-        <meta name="theme-color" content="#fafaf8" />
-        <meta name="msapplication-TileColor" content="#fafaf8" />
+        <meta name="theme-color" content="#fbf8f2" />
+        <meta name="msapplication-TileColor" content="#fbf8f2" />
       </head>
       <body className="texture-noise">
         <script

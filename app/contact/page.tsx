@@ -3,7 +3,6 @@
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { TerminalWidget } from "@/components/terminal-widget";
-import { PageFlow } from "@/components/page-flow";
 
 export default function ContactPage() {
   return (
@@ -18,7 +17,6 @@ export default function ContactPage() {
         <TerminalWidget mode="contact" />
       </Container>
 
-      <PageFlow currentPath="/contact" />
     </>
   );
 }

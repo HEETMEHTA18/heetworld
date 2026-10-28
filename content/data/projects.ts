@@ -1,7 +1,11 @@
 import type { ProjectMeta } from "@/types";
 
-import { metadata as tatvikMeta } from "@/content/projects/tatvik.mdx";
+import { metadata as trustfinMeta } from "@/content/projects/trustfin-slm.mdx";
+import { metadata as codepieMeta } from "@/content/projects/code-pie.mdx";
 import { metadata as autodevsMeta } from "@/content/projects/autodevs.mdx";
+import { metadata as coastalGuardianMeta } from "@/content/projects/coastal-guardian.mdx";
+import { metadata as tatvikMeta } from "@/content/projects/tatvik.mdx";
+import { metadata as invonotifyMeta } from "@/content/projects/invonotify.mdx";
 import { metadata as trafficMeta } from "@/content/projects/smart-traffic-system.mdx";
 import { metadata as aipipelineMeta } from "@/content/projects/ai-pipeline.mdx";
 import { metadata as coastalMeta } from "@/content/projects/coastal-threat.mdx";
@@ -9,11 +13,13 @@ import { metadata as squadMeta } from "@/content/projects/squad-qa.mdx";
 import { metadata as sastaMeta } from "@/content/projects/sasta-shark-tank.mdx";
 import { metadata as cvMeta } from "@/content/projects/cv-experiments.mdx";
 import { metadata as mlMeta } from "@/content/projects/ml-experiments.mdx";
-import { metadata as invonotifyMeta } from "@/content/projects/invonotify.mdx";
 
 export const projectsMeta: ProjectMeta[] = [
-  tatvikMeta,
+  trustfinMeta,
+  codepieMeta,
   autodevsMeta,
+  coastalGuardianMeta,
+  tatvikMeta,
   invonotifyMeta,
   trafficMeta,
   aipipelineMeta,

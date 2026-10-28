@@ -7,7 +7,10 @@ import { Reveal } from "@/components/reveal";
 import { cn } from "@/lib/utils";
 
 const IMAGE_MAP: Record<string, string> = {
+  "trustfin-slm": "/images/projects/casey-horner-4rDCa5hBlCs-unsplash.jpg",
+  "code-pie": "/images/dave-hoefler-lsoogGC_5dg-unsplash.jpg",
   autodevs: "/images/clement-m-igX2deuD9lc-unsplash.jpg",
+  "coastal-guardian": "/images/projects/alice-triquet-HeEJU3nrg_0-unsplash.jpg",
   tatvik: "/images/projects/alice-triquet-HeEJU3nrg_0-unsplash.jpg",
   invonotify: "/images/projects/daniel-gomez-eKegp5f2PPk-unsplash.jpg",
   "squad-qa": "/images/dave-hoefler-lsoogGC_5dg-unsplash.jpg",

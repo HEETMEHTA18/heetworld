@@ -2,7 +2,6 @@ import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 import { UsesNotebookClient } from "./uses-client";
-import { PageFlow } from "@/components/page-flow";
 
 export const metadata = {
   title: "Stack — Heet Mehta",
@@ -24,7 +23,6 @@ export default function UsesPage() {
         </Reveal>
       </Container>
 
-      <PageFlow currentPath="/uses" />
     </>
   );
 }

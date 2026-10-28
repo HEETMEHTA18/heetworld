@@ -6,7 +6,6 @@ import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 import { cn } from "@/lib/utils";
-import { PageFlow } from "@/components/page-flow";
 
 export const metadata = {
   title: "Projects",
@@ -180,7 +179,6 @@ export default async function ProjectsPage() {
         )}
       </Container>
 
-      <PageFlow currentPath="/projects" />
 
     </>
   );
